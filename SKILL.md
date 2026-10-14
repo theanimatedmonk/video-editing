@@ -1,6 +1,6 @@
 ---
 name: video-editing
-description: The user's video editing workflow and tested motion recipes for HyperFrames / GSAP. Use for any request to edit, cut, or polish a video ("edit this reel", "cut the dead air", "make it like this reference", "review the render"): it routes to a format, runs the pipeline (asset plan approved first, watch the footage, rough cut, audio edge check on every cut, build, review by a different model, every correction saved as a rule). Also use for glide cuts with motion blur, glitch text exits, smooth headline motion, animated vector songbirds, a big-number-to-logo-orbit reveal, music ducking, and audio automation that keeps exports from going silent.
+description: The user's video editing workflow and tested motion recipes for HyperFrames / GSAP. Use for any request to edit, cut, or polish a video ("edit this reel", "cut the dead air", "make it like this reference", "review the render"): it routes to a format, runs the pipeline (asset plan approved first, watch the footage, rough cut, audio edge check on every cut, build, review by a different model, every correction saved as a rule). Also use for on-screen copy that reads as one story (hook question, line breaks for emphasis), glide cuts with motion blur, glitch text exits, smooth headline motion, animated vector songbirds, a big-number-to-logo-orbit reveal, music ducking, and audio automation that keeps exports from going silent.
 ---
 
 # Video editing
@@ -29,6 +29,7 @@ Scripts need only `ffmpeg`/`ffprobe` and Python 3 (standard library). Run them w
 
 | Recipe | Use it for | File |
 |---|---|---|
+| Copywriting | on-screen lines that tell one cohesive story; breaking a line into big stacked rows | `references/copywriting.md` |
 | Glide cut | scene changes that feel like one continuous glide | `references/glide-cut.md` |
 | Glitch exit | headlines that tear into RGB bands as they leave | `references/glitch-exit.md` |
 | Smooth line motion | text that drifts in softly and never parks | `references/smooth-line-motion.md` |

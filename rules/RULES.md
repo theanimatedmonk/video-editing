@@ -29,3 +29,11 @@ Read before every edit. Add one whenever a note is given (format in `references/
 - **Never trust transcript times for cut points** (cut, from the published workflow this skill follows)
   Why: rounded word times clip last syllables.
   Check: `scripts/edge_check.py` passes on every cut list.
+
+- **Write the on-screen lines as one story before styling them** (copy, 2026-10-14)
+  Why: the lines read as separate captions; the person asked for a cohesive story, a "?" on the hook question, and the hook broken into big rows.
+  Check: read the lines alone, in order: hook question → answer → proof → turn → call to action that echoes the hook (`references/copywriting.md`).
+
+- **Big type over a photo gets a soft shade behind it** (type, 2026-10-14)
+  Why: amber text over a bright photo measured 2.5:1 contrast.
+  Check: `hyperframes check` contrast passes (3:1 or better).
