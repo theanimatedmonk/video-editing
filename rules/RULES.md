@@ -37,3 +37,7 @@ Read before every edit. Add one whenever a note is given (format in `references/
 - **Big type over a photo gets a soft shade behind it** (type, 2026-10-14)
   Why: amber text over a bright photo measured 2.5:1 contrast.
   Check: `hyperframes check` contrast passes (3:1 or better).
+
+- **Promo music is calm and premium; fades are slow** (audio, 2026-10-14)
+  Why: the upbeat electronic bed wasn't smooth enough; the person asked for smoother music.
+  Check: ambient bed with soft pads; fade-in about 0.8 s, dips ramp over 0.35 s down and 0.7 s up, 2 s fade-out (`references/audio-rules.md`).

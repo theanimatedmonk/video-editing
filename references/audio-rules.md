@@ -25,3 +25,17 @@ A whoosh's hit lands `peakOffset` seconds into the file: start it `peakOffset` b
 ## Footage sound
 
 Keep a clip's own sound on its `<video data-has-audio="true">` (no `muted`); mute silent screen recordings. Two audible clips must not share one `data-track-index` at overlapping times.
+
+## Choosing and smoothing the music bed
+
+- For product promos, a calm, premium ambient bed (soft synth pads, a gentle pulse) reads smoother than an upbeat electronic track. Search for: "calm premium modern ambient, soft synth pads, gentle rhythmic pulse, tech promo".
+- Match loudness when swapping tracks: `ffmpeg -t <dur> -i bed.wav -af ebur128 -f null -` and compare the integrated `I:` values; keep `data-volume` when they are within 1 LU.
+- Smooth envelope: fade in over about 0.8 s, take a dip down over about 0.35 s and back up over about 0.7 s, and fade out over the last 2 s. Shorter ramps sound like a fader being yanked.
+
+```json
+{"version":1,"lanes":[{"target":"volume","points":[
+  {"t":0,"v":0},{"t":0.8,"v":0.9},{"t":1.0,"v":0.9},{"t":1.35,"v":0.2},
+  {"t":2.3,"v":0.2},{"t":3.0,"v":1},{"t":23.5,"v":1},{"t":25.5,"v":0}]}]}
+```
+
+- Studio rewrites the attribute with `&quot;` entities after you edit in the app. Replace the whole `data-automation="..."` or `'...'` attribute with a regex rather than a plain string match, then grep to confirm the new points landed.
