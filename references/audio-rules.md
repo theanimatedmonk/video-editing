@@ -28,8 +28,8 @@ Keep a clip's own sound on its `<video data-has-audio="true">` (no `muted`); mut
 
 ## Choosing and smoothing the music bed
 
-- For product promos, a calm, premium ambient bed (soft synth pads, a gentle pulse) reads smoother than an upbeat electronic track. Search for: "calm premium modern ambient, soft synth pads, gentle rhythmic pulse, tech promo".
-- Match loudness when swapping tracks: `ffmpeg -t <dur> -i bed.wav -af ebur128 -f null -` and compare the integrated `I:` values; keep `data-volume` when they are within 1 LU.
+- Preferred bed: a **lofi beat** (search "chill lofi hip hop instrumental, relaxed groove, warm piano"). Upbeat electronic was too busy; calm ambient was the step between. Pick a track at least as long as the film; library lofi tracks are often 7–24 s, so search twice before looping.
+- Match loudness when swapping tracks: `ffmpeg -t <dur> -i bed.wav -af ebur128 -f null -` and compare the integrated `I:` values; keep `data-volume` when they are within 1 LU, otherwise scale it by 10^(−ΔLU/20) (e.g. 4 LU louder → × 0.64).
 - Smooth envelope: fade in over about 0.8 s, take a dip down over about 0.35 s and back up over about 0.7 s, and fade out over the last 2 s. Shorter ramps sound like a fader being yanked.
 
 ```json
