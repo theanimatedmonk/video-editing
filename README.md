@@ -29,7 +29,7 @@ Install: clone into `~/.claude/skills/video-editing` (the folder name is the ski
 
 ## Motion recipes (`references/`)
 
-Copywriting (story-first on-screen lines, stacked emphasis rows), glide cut, glitch exit, smooth line motion, vector songbirds, number → orbit, audio rules, style notes.
+Copywriting (story-first on-screen lines, stacked emphasis rows), glide cut, glitch exit, glitch effects, text transitions, text morph, smooth line motion, vector songbirds, number → orbit, audio rules, style notes.
 
 ## Rules (`rules/RULES.md`)
 

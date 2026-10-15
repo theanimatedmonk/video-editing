@@ -1,6 +1,6 @@
 ---
 name: video-editing
-description: The user's video editing workflow and tested motion recipes for HyperFrames / GSAP. Use for any request to edit, cut, or polish a video ("edit this reel", "cut the dead air", "make it like this reference", "review the render"): it routes to a format, runs the pipeline (asset plan approved first, watch the footage, rough cut, audio edge check on every cut, build, review by a different model, every correction saved as a rule). Also use for on-screen copy that reads as one story (hook question, line breaks for emphasis), glide cuts with motion blur, glitch text exits, smooth headline motion, animated vector songbirds, a big-number-to-logo-orbit reveal, music ducking, and audio automation that keeps exports from going silent.
+description: The user's video editing workflow and tested motion recipes for HyperFrames / GSAP. Use for any request to edit, cut, or polish a video ("edit this reel", "cut the dead air", "make it like this reference", "review the render"): it routes to a format, runs the pipeline (asset plan approved first, watch the footage, rough cut, audio edge check on every cut, build, review by a different model, every correction saved as a rule). Also use for on-screen copy that reads as one story (hook question, line breaks for emphasis), glide cuts with motion blur, glitch text exits and other glitch effects (entry, beat hit, slice, glitch cut), text transitions (blur-in, mask slide-up, word cascade, scramble, typewriter, swap at peak speed), text morphing (gooey blur, scramble morph, letter roll, anagram rearrange), smooth headline motion, animated vector songbirds, a big-number-to-logo-orbit reveal, music ducking, and audio automation that keeps exports from going silent.
 ---
 
 # Video editing
@@ -32,6 +32,9 @@ Scripts need only `ffmpeg`/`ffprobe` and Python 3 (standard library). Run them w
 | Copywriting | on-screen lines that tell one cohesive story; breaking a line into big stacked rows | `references/copywriting.md` |
 | Glide cut | scene changes that feel like one continuous glide | `references/glide-cut.md` |
 | Glitch exit | headlines that tear into RGB bands as they leave | `references/glitch-exit.md` |
+| Glitch effects | glitch entry, beat hit, slice displacement, glitch scene cut, scanlines | `references/glitch-effects.md` |
+| Text transitions | blur-in, mask slide-up, word cascade, scramble, typewriter, line swap at peak speed, slot roll | `references/text-transitions.md` |
+| Text morph | one word becomes another: gooey blur, scramble morph, letter roll, anagram rearrange, SVG morph | `references/text-morph.md` |
 | Smooth line motion | text that drifts in softly and never parks | `references/smooth-line-motion.md` |
 | Vector songbirds | shaded birds that bank along arcs, beat wings, chirp | `references/vector-songbirds.md` |
 | Number → orbit | a big stat resolves through pixels, dissolves, becomes tiles orbiting a badge | `references/number-to-orbit.md` |
