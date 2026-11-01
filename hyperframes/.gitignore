@@ -1,0 +1,13 @@
+# Keep video off GitHub (renders + source footage).
+*.mp4
+*.mov
+
+# Studio-local caches and agent artifacts.
+.thumbnails/
+.waveform-cache/
+.hyperframes/requests/
+.hyperframes/run-traces/
+.hyperframes/live-runs/
+.hyperframes/video-state-lock/
+.hyperframes/backup/
+.DS_Store
