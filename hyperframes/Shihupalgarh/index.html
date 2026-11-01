@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; background: #000; }
+
+      /* Each shot: the recording is framed so the app's side panel stays off-screen. */
+      .shot { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+      .shot-frame { position: absolute; left: 0; top: -108px; width: 2340px; height: 1296px; transform-origin: 0% 50%; }
+      .shot video { position: absolute; left: 0; top: 0; width: 2340px; height: 1296px; object-fit: cover; }
+
+      /* Cinematic finish */
+      .vignette { position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 55%, rgba(10,4,0,0.55) 100%); }
+      .blackout { position: absolute; inset: 0; background: #000; pointer-events: none; }
+
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-199x" id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+
+      <!-- Footage -->
+      <div data-hf-id="hf-z4us" class="shot" id="shot-1"><div data-hf-id="hf-69u4" class="shot-frame">
+        <video data-hf-id="hf-s5qm" id="v-distant-ruins" class="clip" src="assets/Screen Recording 2026-10-23 at 8.24.14 AM.mov" data-start="0" data-duration="5.2" data-media-start="0" data-track-index="0" muted playsinline></video>
+      </div></div>
+      <div data-hf-id="hf-7sqn" class="shot" id="shot-2"><div data-hf-id="hf-r3hg" class="shot-frame">
+        <video data-hf-id="hf-3nhy" id="v-walk-ruins" class="clip" src="assets/Screen Recording 2026-10-22 at 9.24.48 PM (online-video-cutter.com).mp4" data-start="3.7" data-duration="6.3" data-media-start="1.5" data-track-index="1" muted playsinline></video>
+      </div></div>
+      <div data-hf-id="hf-3umm" class="shot" id="shot-3"><div data-hf-id="hf-pwkd" class="shot-frame">
+        <video data-hf-id="hf-960p" id="v-restore-hall" class="clip" src="assets/Screen Recording 2026-10-22 at 9.24.48 PM (online-video-cutter.com).mp4" data-start="8.5" data-duration="12.5" data-media-start="11.5" data-track-index="0" muted playsinline></video>
+      </div></div>
+      <div data-hf-id="hf-ciih" class="shot" id="shot-4"><div data-hf-id="hf-qave" class="shot-frame">
+        <video data-hf-id="hf-3m89" id="v-hall-side" class="clip" src="assets/Screen Recording 2026-10-23 at 8.23.31 AM.mov" data-start="19.5" data-duration="6.7" data-media-start="8" data-track-index="1" muted playsinline></video>
+      </div></div>
+      <div data-hf-id="hf-bquo" class="shot" id="shot-5"><div data-hf-id="hf-saej" class="shot-frame">
+        <video data-hf-id="hf-lgz8" id="v-final-restore" class="clip" src="assets/Screen Recording 2026-10-23 at 8.24.14 AM.mov" data-start="24.7" data-duration="5.3" data-media-start="10" data-track-index="0" muted playsinline></video>
+      </div></div>
+
+      <div data-hf-id="hf-q7bi" class="vignette"></div>
+
+
+      <div data-hf-id="hf-unsq" class="blackout" id="blackout"></div>
+
+      <!-- Sound -->
+      <audio data-hf-id="hf-vla7" id="score" src="assets/viramiller-ethereal-magical-reverie-276713.mp3" data-start="0" data-duration="30" data-track-index="5" data-volume="1" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:0},{&quot;t&quot;:1,&quot;v&quot;:1},{&quot;t&quot;:27,&quot;v&quot;:1},{&quot;t&quot;:30,&quot;v&quot;:0}]}]}"></audio>
+      <audio data-hf-id="hf-qh0p" id="boom" src="assets/Deep cinematic boom.mp3" data-start="10.7" data-duration="7.2" data-track-index="6" data-volume="0.8"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Shots: dissolve in, slow push the whole time
+      const shots = [
+        ["#shot-1", 0, 5.2, 1.8],
+        ["#shot-2", 3.7, 6.3, 1.5],
+        ["#shot-3", 8.5, 12.5, 1.5],
+        ["#shot-4", 19.5, 6.7, 1.5],
+        ["#shot-5", 24.7, 5.3, 1.5],
+      ];
+      shots.forEach(([sel, start, dur, fade]) => {
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: fade, ease: "sine.inOut" }, start);
+        tl.fromTo(sel + " .shot-frame", { scale: 1 }, { scale: 1.07, duration: dur, ease: "none" }, start);
+      });
+
+      // Open from black, close to black
+      tl.fromTo("#blackout", { opacity: 1 }, { opacity: 0, duration: 1.6, ease: "sine.out" }, 0);
+      tl.to("#blackout", { opacity: 1, duration: 2, ease: "sine.inOut" }, 28);
+
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
