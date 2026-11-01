@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "historyId": null,
+  "currentRevision": null,
+  "pendingChanges": true,
+  "files": {},
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "7707c087-69b5-4eb4-8e11-32989fb9cacd"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "6fed54d9-8907-4521-87be-e1e92f60810a",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/.hyperframes/artifacts/checks/6fed54d9-8907-4521-87be-e1e92f60810a.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792724584424,
+        "contentHash": "fbea164deaf207da8d6928328a6f7a90730a8251e7698e6dd6313c1cf113d6d2",
+        "revision": null,
+        "inputFingerprint": "69228de19f89435db603b8c9ae8b3f0652fd9b7892c5431b781c60be08309b3a",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "e1fc0712-eefd-43f5-b559-187e4e38f816",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/.hyperframes/artifacts/checks/e1fc0712-eefd-43f5-b559-187e4e38f816.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792724601401,
+        "contentHash": "afde482cd4fe4276dc50ad01d315f5bebc1885e410cdd8acea4effa562d23f32",
+        "revision": null,
+        "inputFingerprint": "1bc8d7febfe9653872462dd8c967956db95dfd35ebb1d03c8be34e94ed8fc6fa",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "b542ff19-617a-471b-8dad-438bda7f384d",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/.hyperframes/artifacts/checks/b542ff19-617a-471b-8dad-438bda7f384d.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792724979077,
+        "contentHash": "a0826a5eebde06702ea6558815a8749af9f2b2c2105f99bfeee29406c22213e3",
+        "revision": null,
+        "inputFingerprint": "d11bcad3f26a0ff5f8ddf2fb8ab9a7eca247939b9732d1fcfe2ce90f8c0fada2",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "0e9f8a0c-4e05-4a19-be5f-9fc51cccfbeb",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/.hyperframes/artifacts/checks/0e9f8a0c-4e05-4a19-be5f-9fc51cccfbeb.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792725098357,
+        "contentHash": "ff30ca21572d60c719ba67ab170e30c5381106058387a878dfa819b35505ebd5",
+        "revision": null,
+        "inputFingerprint": "b7524b9a1ea5edb1cfbc454518ad3a8c0637b454d2e865dbf5a8ad71dcc81521",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "7707c087-69b5-4eb4-8e11-32989fb9cacd",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/.hyperframes/artifacts/checks/7707c087-69b5-4eb4-8e11-32989fb9cacd.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792725675907,
+        "contentHash": "ff30ca21572d60c719ba67ab170e30c5381106058387a878dfa819b35505ebd5",
+        "revision": null,
+        "inputFingerprint": "f2e90ffea7af3860cb4068d584803679f6a509c88ab82f066c3832c9cf2abb4f",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "aae3a588-4bdc-4814-8226-cdc59ba53567-3"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "aae3a588-4bdc-4814-8226-cdc59ba53567-0",
+        "image": "/tmp/shs/snap/frame-00-at-3.5s.png",
+        "time": 3.5,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792724614129,
+        "contentHash": "8134f0f97fe8dfb91f1c83e3e5a9d512965a2f2f85001f66dd1c6916c0cc33d4",
+        "revision": null,
+        "inputFingerprint": "1bc8d7febfe9653872462dd8c967956db95dfd35ebb1d03c8be34e94ed8fc6fa",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "aae3a588-4bdc-4814-8226-cdc59ba53567-1",
+        "image": "/tmp/shs/snap/frame-01-at-26.5s.png",
+        "time": 26.5,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792724614129,
+        "contentHash": "bca84397abad902b5576182a51381674bd197c3fc452b2f892923c6de8d3e861",
+        "revision": null,
+        "inputFingerprint": "1bc8d7febfe9653872462dd8c967956db95dfd35ebb1d03c8be34e94ed8fc6fa",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "aae3a588-4bdc-4814-8226-cdc59ba53567-2",
+        "image": "/tmp/shs/snap/frame-02-at-33s.png",
+        "time": 33,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792724614129,
+        "contentHash": "dfaa83873ca8ad39238e70df73ef179e34ca1dffe7d245a771896602fca39328",
+        "revision": null,
+        "inputFingerprint": "1bc8d7febfe9653872462dd8c967956db95dfd35ebb1d03c8be34e94ed8fc6fa",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "aae3a588-4bdc-4814-8226-cdc59ba53567-3",
+        "image": "/tmp/shs/snap/frame-03-at-46.5s.png",
+        "time": 46.5,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1792724614129,
+        "contentHash": "1ee04c478404bf17121216ad30d043c9cc9e7d1dc3c63ff2316dbbe2738effa1",
+        "revision": null,
+        "inputFingerprint": "1bc8d7febfe9653872462dd8c967956db95dfd35ebb1d03c8be34e94ed8fc6fa",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  }
+}
