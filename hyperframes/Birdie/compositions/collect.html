@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #collect {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-cz8f" id="collect" data-composition-id="collect" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-jt59" id="collect-words">
+          <div data-hf-id="hf-uif7" class="headline" style="position: absolute; right: 1260px; top: 440px; font-size: 150px; letter-spacing: -0.05em; text-align: right">
+            <div data-hf-id="hf-3fv7" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-5zkq" class="w">Collect</span></div>
+          </div>
+          <div data-hf-id="hf-iz1c" class="headline" style="position: absolute; left: 1260px; top: 440px; font-size: 150px; letter-spacing: -0.05em">
+            <div data-hf-id="hf-r69f" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-1bws" class="w accent">them</span><span data-hf-id="hf-ci0d" class="w accent">all.</span></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-gz6y" class="phone" data-layout-allow-overflow="" id="phone-collect" style="left: 719px">
+          <video data-hf-id="hf-xor3" id="v-collect" class="clip" src="assets/carausal-3.mp4" playsinline data-has-audio="true" data-start="0" data-duration="2.8" data-media-start="0" data-playback-rate="2" data-volume="0.6" data-track-index="2" style="left: -91px; top: -46px"></video>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at);
+      tl.fromTo("#phone-collect", { scale: 0.4, y: 0, filter: "blur(20px)" }, { scale: 1, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0);
+      tl.to("#phone-collect", { y: -16, duration: 1.85, ease: "sine.inOut" }, 0.55);
+      tl.fromTo("#collect-words", { scale: 1.15 }, { scale: 1, duration: 1.0, ease: "expo.out" }, 0);
+      rise("#collect-words", 0.1, 0.07);
+      // inverse zoom out to the end card
+      tl.to("#phone-collect", { scale: 0.2, opacity: 0, filter: "blur(16px)", duration: 0.4, ease: "expo.in" }, 2.4);
+      tl.to("#collect-words", { scale: 0.5, opacity: 0, duration: 0.4, ease: "expo.in" }, 2.4);
+        window.__timelines["collect"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

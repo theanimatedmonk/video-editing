@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #board {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-v2g3" id="board" data-composition-id="board" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-lxjy" id="board-inner" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-zyzq" class="photo-bg" style="background-image: url('assets/I2S mic.png')"></div>
+          <div data-hf-id="hf-orw5" id="board-card" class="photo-card" style="left: 960px; top: 225px; width: 840px; height: 630px">
+            <img data-hf-id="hf-dgg2" src="assets/I2S mic.png" alt="">
+          </div>
+          <div data-hf-id="hf-f2s8" id="board-copy" class="copy" style="left: 130px; top: 380px; width: 800px">
+            <div data-hf-id="hf-qgjm" class="kicker line" data-layout-allow-overflow=""><div data-hf-id="hf-cfzr" class="w-k">Wired to an ESP32</div></div>
+            <div data-hf-id="hf-guw8" class="headline" style="margin-top: 24px">
+              <div data-hf-id="hf-3fv7" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-qn9t" class="w">That</span><span data-hf-id="hf-zrlo" class="w teal">listens.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at);
+      // whip in from the right, carrying the last scene's motion
+      tl.fromTo("#board-inner", { x: 1400, filter: "blur(30px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0);
+      tl.fromTo("#board-card", { rotate: 4, scale: 1 }, { rotate: 1.5, scale: 1.06, duration: 1.9, ease: "power1.out" }, 0);
+      rise("#board-copy", 0.15, 0.08);
+      // zoom-through into the title
+      tl.to("#board-inner", { scale: 2.4, opacity: 0, filter: "blur(24px)", duration: 0.4, ease: "power3.in" }, 1.9);
+        window.__timelines["board"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

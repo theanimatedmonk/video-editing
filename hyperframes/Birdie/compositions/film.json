@@ -1,0 +1,70 @@
+{
+  "duration": 25.5,
+  "brand": "Birdie",
+  "feature": {
+    "name": "Birdie call identification",
+    "url": "",
+    "viewer": "home birders who hear birds outside their window",
+    "task": "catch a bird's call with a tiny mic and get its name, then keep it in a logbook",
+    "before": "you hear birds singing outside but can't tell which ones",
+    "after": "every call is named, logged and replayable"
+  },
+  "ground": "#07080D",
+  "ink": "#F5F3EE",
+  "accent": "#F5C26B",
+  "current": "left",
+  "brandReveal": "proof",
+  "beats": [
+    {
+      "id": "hook",
+      "start": 0,
+      "end": 5,
+      "line": "Who's singing outside your window?",
+      "picture": "a hand holds the tiny I2S mic, the camera travels left to the breadboard rig by the window, and a teal listening dot lights on the mic",
+      "moment": "",
+      "take": "",
+      "ui": [],
+      "exit": "carrier",
+      "carrier": "the teal listening dot flies off the mic into the phone's Listening pill"
+    },
+    {
+      "id": "proof",
+      "start": 5,
+      "end": 15.5,
+      "line": "Know any birdcall",
+      "picture": "the phone listens, the bird card resolves and flips to the Indian Roller; then 100+ species resolves through a pixel front, dissolves outside-in, and eight logbook birds swirl clockwise around the Birdie badge",
+      "moment": "M945",
+      "take": "a big amber number resolves left to right through a pixel front inside a hairline panel, holds, dissolves from both ends while the panel narrows to a square, then upright tiles swirl in clockwise on a collapsing radius and keep orbiting a centre badge until they exit clockwise",
+      "ui": [
+        "the app is listening: the sketched card shimmers as the call is matched",
+        "the match lands: the card turns into the Indian Roller photo with its name"
+      ],
+      "exit": "carrier",
+      "carrier": "the Birdie mark from the badge centre travels up-left into the corner"
+    },
+    {
+      "id": "turn",
+      "start": 15.5,
+      "end": 21,
+      "line": "Every call, logged and replayable",
+      "picture": "the Radar list of birds heard today scrolls, the day's call chart fills, then the Logbook grid of collected birds",
+      "moment": "",
+      "take": "",
+      "ui": [
+        "tap Radar: the list of species heard today with call counts",
+        "tap Logbook: the grid of collected birds with their call counts"
+      ],
+      "exit": "carrier",
+      "carrier": "the Birdie mark travels from the corner into the end card"
+    },
+    {
+      "id": "cta",
+      "start": 21,
+      "end": 25.5,
+      "line": "Try Birdie at your window",
+      "picture": "the Birdie mark lands over a window of moving aurora light",
+      "moment": "",
+      "take": ""
+    }
+  ]
+}

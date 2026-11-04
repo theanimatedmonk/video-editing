@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Inter";
+          src: url("assets/fonts/InterVariable.woff2") format("woff2");
+          font-weight: 100 900;
+        }
+        #proof {
+          position: absolute;
+          inset: 0;
+        }
+        #proof-line {
+          position: absolute;
+          left: 150px;
+          top: 360px;
+          width: 900px;
+          font-size: 100px;
+        }
+        #proof-phone {
+          left: 1180px;
+        }
+        #m-panel {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 1500px;
+          height: 440px;
+          margin: -220px 0 0 -750px;
+          background: #151a28;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 10px;
+          opacity: 0;
+        }
+        .m-rule {
+          position: absolute;
+          left: 0;
+          width: 1920px;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.16);
+          opacity: 0;
+        }
+        #m-count-wrap {
+          position: absolute;
+          opacity: 0;
+          left: 0;
+          right: 0;
+          top: 330px;
+          display: flex;
+          justify-content: center;
+        }
+        #m-count-box {
+          position: relative;
+        }
+        #m-count {
+          font-family: ui-sans-serif, system-ui, sans-serif;
+          font-size: 230px;
+          font-weight: 800;
+          letter-spacing: -0.05em;
+          line-height: 1;
+          color: #f5c26b;
+          white-space: nowrap;
+          clip-path: inset(0% 100% 0% 0%);
+        }
+        .m-band {
+          position: absolute;
+          top: 0;
+          width: 48px;
+          height: 100%;
+          opacity: 0;
+        }
+        .m-px {
+          position: absolute;
+          width: 11px;
+          height: 11px;
+          background: #f5c26b;
+        }
+        #m-plate {
+          position: absolute;
+          left: 50%;
+          top: 640px;
+          width: 400px;
+          margin-left: -200px;
+          padding: 16px 0;
+          border-radius: 8px;
+          background: #f5f3ee;
+          color: #07080d;
+          font-family: "Inter", sans-serif;
+          font-size: 32px;
+          font-weight: 600;
+          text-align: center;
+          opacity: 0;
+        }
+        .m-dot {
+          position: absolute;
+          top: 700px;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #f5c26b;
+          opacity: 0;
+        }
+        #m-disc-out {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 320px;
+          height: 320px;
+          margin: -160px 0 0 -160px;
+          border-radius: 50%;
+          background: #10131c;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          opacity: 0;
+        }
+        #m-disc-in {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 236px;
+          height: 236px;
+          margin: -118px 0 0 -118px;
+          border-radius: 50%;
+          background: #171b27;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 60px rgba(111, 227, 208, 0.18);
+          opacity: 0;
+        }
+        #m-orbit {
+          position: absolute;
+          left: 960px;
+          top: 540px;
+          width: 0;
+          height: 0;
+        }
+        .m-spin, .m-spin2, .m-arm, .m-radial, .m-up, .m-up2, .m-up3 {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 0;
+          height: 0;
+        }
+        .m-tile {
+          position: absolute;
+          left: -66px;
+          top: -66px;
+          width: 132px;
+          height: 132px;
+          border-radius: 20px;
+          overflow: hidden;
+          background: #f5f3ee;
+          border: 3px solid #e9c891;
+          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+        }
+        .m-tile img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      </style>
+      <div data-hf-id="hf-14z3" id="proof" data-composition-id="proof" data-width="1920" data-height="1080">
+        <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute"><filter data-hf-id="hf-7j5f" id="hb-proof" x="-10%" y="-5%" width="120%" height="110%" color-interpolation-filters="sRGB"><fegaussianblur data-hf-id="hf-xkeb" id="hb-proof-blur" stdDeviation="0 0" /></filter></svg>
+        <div data-hf-id="hf-n16s" class="ln-carry"><h2 data-hf-id="hf-jbak" id="proof-line" class="line-text glitch" data-text="Know any birdcall">Know any birdcall</h2></div>
+        <div data-hf-id="hf-b3ns" class="phone" data-layout-allow-overflow="" id="proof-phone">
+          <div data-hf-id="hf-xv8o" id="proof-glide" style="position: absolute; inset: 0; filter: url(#hb-proof)">
+            <video data-hf-id="hf-byr2" id="proof-video" class="clip" src="assets/birdwatch.mp4" playsinline data-has-audio="true" data-start="0" data-duration="6" data-media-start="8.5" data-playback-rate="1.5" data-volume="0.6" data-track-index="0" style="left: -80px; top: -38px"></video>
+          </div>
+        </div>
+
+        <div data-hf-id="hf-oguw" class="m-rule" id="m-rule-top" style="top: 320px"></div>
+        <div data-hf-id="hf-zera" class="m-rule" id="m-rule-bot" style="top: 760px"></div>
+        <div data-hf-id="hf-z7qz" id="m-panel"></div>
+        <div data-hf-id="hf-6t05" id="m-count-wrap">
+          <div data-hf-id="hf-usi8" id="m-count-box">
+            <div data-hf-id="hf-qtvw" id="m-count">100+ species</div>
+            <div data-hf-id="hf-222j" class="m-band" id="m-band-r"></div>
+            <div data-hf-id="hf-a1s0" class="m-band" id="m-band-a"></div>
+            <div data-hf-id="hf-kx9n" class="m-band" id="m-band-b"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-3g2z" class="m-dot" style="left: 560px"></div>
+        <div data-hf-id="hf-fd4a" class="m-dot" style="left: 640px"></div>
+        <div data-hf-id="hf-fofp" class="m-dot" style="left: 720px"></div>
+        <div data-hf-id="hf-iyvh" class="m-dot" style="left: 1190px"></div>
+        <div data-hf-id="hf-33t0" class="m-dot" style="left: 1270px"></div>
+        <div data-hf-id="hf-ca3r" class="m-dot" style="left: 1350px"></div>
+        <div data-hf-id="hf-e4ht" id="m-plate">in your logbook</div>
+
+        <div data-hf-id="hf-b7l7" id="m-badge" style="position: absolute; inset: 0; filter: url(#hb-proof)">
+          <div data-hf-id="hf-c6wr" id="m-disc-out"></div>
+          <div data-hf-id="hf-cfsk" id="m-disc-in"></div>
+        </div>
+        <div data-hf-id="hf-74ax" id="m-orbit">
+          <div data-hf-id="hf-ynwa" class="m-spin"><div data-hf-id="hf-w5r8" class="m-spin2">
+            <div data-hf-id="hf-331j" class="m-arm" style="rotate: 0deg"><div data-hf-id="hf-yosf" class="m-radial" id="m-rad-0"><div data-hf-id="hf-7gug" class="m-up" style="rotate: 0deg"><div data-hf-id="hf-esqh" class="m-up2"><div data-hf-id="hf-e12o" class="m-up3"><div data-hf-id="hf-2941" class="m-tile" id="m-tile-0"><img data-hf-id="hf-c971" src="assets/birds/peregrine-falcon.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-hg9q" class="m-arm" style="rotate: 45deg"><div data-hf-id="hf-uqoe" class="m-radial" id="m-rad-1"><div data-hf-id="hf-p4mk" class="m-up" style="rotate: -45deg"><div data-hf-id="hf-p425" class="m-up2"><div data-hf-id="hf-04w8" class="m-up3"><div data-hf-id="hf-z9ug" class="m-tile" id="m-tile-1"><img data-hf-id="hf-6fm5" src="assets/birds/caspian-tern.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-wgtw" class="m-arm" style="rotate: 90deg"><div data-hf-id="hf-okyl" class="m-radial" id="m-rad-2"><div data-hf-id="hf-1y8q" class="m-up" style="rotate: -90deg"><div data-hf-id="hf-qaz8" class="m-up2"><div data-hf-id="hf-yxz5" class="m-up3"><div data-hf-id="hf-a5c3" class="m-tile" id="m-tile-2"><img data-hf-id="hf-z74e" src="assets/birds/shikra.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-jz5c" class="m-arm" style="rotate: 135deg"><div data-hf-id="hf-ntas" class="m-radial" id="m-rad-3"><div data-hf-id="hf-3fsu" class="m-up" style="rotate: -135deg"><div data-hf-id="hf-pwo7" class="m-up2"><div data-hf-id="hf-zca6" class="m-up3"><div data-hf-id="hf-6782" class="m-tile" id="m-tile-3"><img data-hf-id="hf-4lqh" src="assets/birds/red-vented-bulbul.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-eilo" class="m-arm" style="rotate: 180deg"><div data-hf-id="hf-basb" class="m-radial" id="m-rad-4"><div data-hf-id="hf-xvuu" class="m-up" style="rotate: -180deg"><div data-hf-id="hf-r3la" class="m-up2"><div data-hf-id="hf-y5d3" class="m-up3"><div data-hf-id="hf-nfid" class="m-tile" id="m-tile-4"><img data-hf-id="hf-s2eg" src="assets/birds/indian-roller.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-3lso" class="m-arm" style="rotate: 225deg"><div data-hf-id="hf-7coa" class="m-radial" id="m-rad-5"><div data-hf-id="hf-j1pe" class="m-up" style="rotate: -225deg"><div data-hf-id="hf-qpa9" class="m-up2"><div data-hf-id="hf-yjo4" class="m-up3"><div data-hf-id="hf-mnuk" class="m-tile" id="m-tile-5"><img data-hf-id="hf-g0s2" src="assets/birds/barn-owl.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-6cji" class="m-arm" style="rotate: 270deg"><div data-hf-id="hf-3ek9" class="m-radial" id="m-rad-6"><div data-hf-id="hf-s6f4" class="m-up" style="rotate: -270deg"><div data-hf-id="hf-rw7c" class="m-up2"><div data-hf-id="hf-xcr1" class="m-up3"><div data-hf-id="hf-vbqf" class="m-tile" id="m-tile-6"><img data-hf-id="hf-69q5" src="assets/birds/crested-serpent-eagle.jpg" alt=""></div></div></div></div></div></div>
+            <div data-hf-id="hf-bsek" class="m-arm" style="rotate: 315deg"><div data-hf-id="hf-2mwg" class="m-radial" id="m-rad-7"><div data-hf-id="hf-5fg2" class="m-up" style="rotate: -315deg"><div data-hf-id="hf-rhwb" class="m-up2"><div data-hf-id="hf-xr22" class="m-up3"><div data-hf-id="hf-rdme" class="m-tile" id="m-tile-7"><img data-hf-id="hf-fg41" src="assets/birds/alexandrine-parakeet.jpg" alt=""></div></div></div></div></div></div>
+          </div></div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        // Lines drift in softly, keep gliding left at a steady pace, then glitch away.
+        function lineLife(sel, at, out) {
+          const el = document.querySelector(sel);
+          const carry = el.parentElement;
+          const end = out + 0.5;
+          tl.set(carry, { x: 0 }, 0);
+          tl.to(carry, { x: -80, duration: end - at, ease: "none" }, at);
+          tl.fromTo(el, { x: 56, opacity: 0, filter: "blur(8px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, at);
+          let seed = 0;
+          for (const ch of sel) seed = (seed * 31 + ch.charCodeAt(0)) % 2147483647;
+          seed = seed || 7;
+          const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+          const band = () => { const top = Math.floor(rnd() * 80); return [top + "%", Math.max(0, 100 - top - 8 - Math.floor(rnd() * 30)) + "%"]; };
+          const FLICKER = [1, 0.85, 1, 0.55, 0.9, 0.4, 0.75, 0.25, 0.6, 0.15, 0.35, 0.08, 0.2, 0.04, 0];
+          FLICKER.forEach((o, i) => {
+            const [t1, b1] = band(), [t2, b2] = band();
+            const amp = 8 + i * 4;
+            tl.set(el, {
+              opacity: o,
+              skewX: (rnd() - 0.5) * 14,
+              "--ga": i < FLICKER.length - 1 ? 0.95 : 0,
+              "--gx1": ((rnd() - 0.5) * 2 * amp).toFixed(1) + "px",
+              "--gx2": ((rnd() - 0.5) * 2 * amp).toFixed(1) + "px",
+              "--gt1": t1, "--gb1": b1, "--gt2": t2, "--gb2": b2,
+            }, out + i / 30);
+          });
+        }
+        // --- phone: the app listens and names the bird ---
+        tl.fromTo("#proof-phone", { x: 230, opacity: 0.35 }, { x: 0, opacity: 1, duration: 0.4, ease: "power4.out", immediateRender: true }, 0);
+        tl.fromTo("#hb-proof-blur", { attr: { stdDeviation: "10 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.4, ease: "power4.out", immediateRender: true }, 0);
+        lineLife("#proof-line", 0.45, 2.2);
+        // zoom-through: push past the named bird into the count
+        tl.to("#proof-phone", { scale: 1.2, filter: "blur(14px)", duration: 0.3, ease: "power3.in" }, 5.6);
+        tl.to("#proof-phone", { opacity: 0, duration: 0.25, ease: "power2.in" }, 5.65);
+
+        // --- pixel fronts: deterministic lattices of squares ---
+        let seed = 11;
+        const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+        document.querySelectorAll("#proof .m-band").forEach((band) => {
+          for (let y = 0; y < 220; y += 14) for (let x = 0; x < 48; x += 14) {
+            if (rnd() < 0.45) continue;
+            const s = document.createElement("div");
+            s.className = "m-px";
+            s.style.left = x + "px";
+            s.style.top = y + 6 + "px";
+            s.style.opacity = (0.35 + rnd() * 0.65).toFixed(2);
+            band.appendChild(s);
+          }
+        });
+        const W = document.getElementById("m-count").offsetWidth;
+
+        // --- the count resolves left to right inside a widening hairline panel ---
+        const T = 6.0, P0 = 5.72;
+        tl.fromTo("#m-panel", { opacity: 0, scaleX: 0.2 }, { opacity: 1, scaleX: 1, duration: 0.9, ease: "expo.out" }, P0);
+        tl.fromTo(".m-rule", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, P0);
+        tl.fromTo("#m-rule-top", { y: 110 }, { y: 0, duration: 0.9, ease: "expo.out" }, P0);
+        tl.fromTo("#m-rule-bot", { y: -110 }, { y: 0, duration: 0.9, ease: "expo.out" }, P0);
+        tl.fromTo("#m-count-wrap", { scale: 0.55, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.75, ease: "power3.out" }, T + 0.05);
+        tl.fromTo("#m-count", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.7, ease: "power2.out" }, T + 0.05);
+        tl.fromTo("#m-band-r", { x: -24, opacity: 1 }, { x: W - 24, duration: 0.7, ease: "power2.out" }, T + 0.05);
+        tl.to("#m-band-r", { opacity: 0, duration: 0.12, ease: "power1.in" }, T + 0.68);
+        tl.fromTo("#m-plate", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, T + 0.25);
+        const dots = gsap.utils.toArray("#proof .m-dot");
+        [[0, 3], [1, 4], [2, 5]].forEach((pair, k) =>
+          tl.to([dots[pair[0]], dots[pair[1]]], { opacity: 1, duration: 0.1, ease: "none" }, T + 0.45 + k * 0.1));
+
+        // --- it dissolves from both ends while the panel narrows into a square ---
+        const D = T + 1.25;
+        tl.to("#m-count", { clipPath: "inset(0% 50% 0% 50%)", duration: 0.45, ease: "power2.in" }, D);
+        tl.fromTo("#m-band-a", { x: -24, opacity: 1 }, { x: W / 2 - 24, duration: 0.45, ease: "power2.in" }, D);
+        tl.fromTo("#m-band-b", { x: W - 24, opacity: 1 }, { x: W / 2 - 24, duration: 0.45, ease: "power2.in" }, D);
+        tl.to(["#m-band-a", "#m-band-b"], { opacity: 0, duration: 0.1, ease: "none" }, D + 0.4);
+        tl.to("#m-count-wrap", { opacity: 0, duration: 0.1, ease: "none" }, D + 0.42);
+        tl.to("#m-plate", { y: 90, opacity: 0, duration: 0.35, ease: "power2.in" }, D);
+        tl.to(dots, { opacity: 0, duration: 0.15, ease: "none", stagger: 0.04 }, D + 0.05);
+        tl.to("#m-panel", { scaleX: 0.36, scaleY: 1.2, duration: 0.55, ease: "power3.inOut" }, D + 0.05);
+        tl.to(".m-rule", { opacity: 0, duration: 0.4, ease: "power2.in" }, D + 0.2);
+
+        // --- eight logbook birds swirl in clockwise and orbit the badge ---
+        const O = D + 0.35;
+        tl.fromTo(".m-tile", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, O);
+        tl.fromTo(".m-radial", { x: 640 }, { x: 340, duration: 0.8, ease: "expo.out" }, O);
+        // the swirl: fast, then a slow orbit that never stops; a second spin speeds the exit
+        tl.fromTo(".m-spin", { rotate: -120 }, { rotate: 60, duration: 2.0, ease: "expo.out" }, O);
+        tl.fromTo(".m-up2", { rotate: 120 }, { rotate: -60, duration: 2.0, ease: "expo.out" }, O);
+        tl.fromTo(".m-spin2", { rotate: 0 }, { rotate: 150, duration: 1.5, ease: "power2.in" }, O + 1.5);
+        tl.fromTo(".m-up3", { rotate: 0 }, { rotate: -150, duration: 1.5, ease: "power2.in" }, O + 1.5);
+        // the badge discs grow at the centre while the panel square fades behind them
+        tl.fromTo("#m-disc-out", { opacity: 0, scale: 0.45 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, O + 0.3);
+        tl.fromTo("#m-disc-in", { opacity: 0, scale: 0.45 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, O + 0.36);
+        tl.to("#m-panel", { opacity: 0, duration: 0.5, ease: "power2.out" }, O + 0.4);
+        // tiles leave clockwise, one after another, on an expanding orbit
+        const X = O + 2.05;
+        for (let i = 0; i < 8; i++) {
+          const k = (i + 3) % 8;
+          tl.to("#m-rad-" + k, { x: 1150, duration: 0.45, ease: "none" }, X + i * 0.05);
+          tl.to("#m-tile-" + k, { opacity: 0, duration: 0.3, ease: "power1.in" }, X + 0.12 + i * 0.05);
+        }
+        // the badge glides out left as the mark sets off, blur peaking at the cut
+        tl.to("#m-badge", { x: -230, duration: 0.33, ease: "power4.in" }, 10.17);
+        tl.to("#m-badge", { opacity: 0, duration: 0.31, ease: "power2.in" }, 10.17);
+        tl.fromTo("#hb-proof-blur", { attr: { stdDeviation: "0 0" } }, { attr: { stdDeviation: "10 0" }, duration: 0.33, ease: "power4.in", immediateRender: false }, 10.17);
+        window.__timelines["proof"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

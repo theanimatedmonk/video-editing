@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #end {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-zv0j" id="end" data-composition-id="end" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-ja8q" class="ring" id="ring-c"></div>
+        <div data-hf-id="hf-0ij1" class="ring" id="ring-d"></div>
+        <div data-hf-id="hf-88gi" class="center" id="end-center">
+          <div data-hf-id="hf-2qsb" class="listening" id="e-pill"><div data-hf-id="hf-lu65" class="dot"></div>Listening…</div>
+          <div data-hf-id="hf-kjvk" class="wordmark line" data-layout-allow-overflow="" style="margin-top: 26px"><div data-hf-id="hf-02de" id="e-word">Birdie</div></div>
+          <div data-hf-id="hf-v8ma" class="tagline line" data-layout-allow-overflow="" style="margin-top: 18px"><div data-hf-id="hf-vczx" id="e-tag">Hear a bird. <span data-hf-id="hf-mi4k" class="accent">Know the bird.</span></div></div>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at);
+      tl.fromTo("#e-word", { yPercent: 100, scale: 1.4 }, { yPercent: 0, scale: 1, duration: 0.7, ease: "expo.out" }, 0);
+      tl.fromTo("#e-pill", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(2)" }, 0.25);
+      tl.fromTo("#e-tag", { yPercent: 110 }, { yPercent: 0, duration: 0.6, ease: "expo.out" }, 0.45);
+      tl.fromTo("#ring-c", { scale: 0.4, opacity: 0.8 }, { scale: 5, opacity: 0, duration: 1.6, ease: "power2.out" }, 0);
+      tl.fromTo("#ring-d", { scale: 0.4, opacity: 0.6 }, { scale: 5, opacity: 0, duration: 1.6, ease: "power2.out" }, 0.7);
+      tl.fromTo("#e-pill .dot", { scale: 1 }, { scale: 1.6, duration: 0.35, yoyo: true, repeat: 5, ease: "sine.inOut" }, 0.6);
+      tl.fromTo("#end-center", { scale: 1 }, { scale: 1.05, duration: 2.8, ease: "none" }, 0);
+        window.__timelines["end"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #mic {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-jplj" id="mic" data-composition-id="mic" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-vpdp" id="mic-inner" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-3dyo" class="photo-bg" style="background-image: url('assets/mic-zoom.png')"></div>
+          <div data-hf-id="hf-rco7" id="mic-card" class="photo-card" style="left: 260px; top: 115px; width: 640px; height: 852px">
+            <img data-hf-id="hf-66js" src="assets/mic-zoom.png" alt="">
+          </div>
+          <div data-hf-id="hf-sn8c" id="mic-copy" class="copy" style="left: 1010px; top: 360px">
+            <div data-hf-id="hf-qgjm" class="kicker line" data-layout-allow-overflow=""><div data-hf-id="hf-cy4n" class="w-k">Built by hand</div></div>
+            <div data-hf-id="hf-guw8" class="headline" style="margin-top: 24px">
+              <div data-hf-id="hf-3fv7" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-ufi3" class="w">A</span><span data-hf-id="hf-zz2e" class="w">tiny</span></div>
+              <div data-hf-id="hf-r69f" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-e7s6" class="w accent">I²S</span><span data-hf-id="hf-1ofr" class="w">mic.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at);
+      tl.fromTo("#mic-card", { scale: 1.25, rotate: -6, opacity: 0 }, { scale: 1, rotate: -2, opacity: 1, duration: 0.9, ease: "expo.out" }, 0);
+      tl.to("#mic-card", { scale: 1.08, rotate: 0, duration: 1.25, ease: "none" }, 0.9);
+      rise("#mic-copy", 0.25, 0.08);
+      // whip pan out to the left
+      tl.to("#mic-inner", { x: -1400, filter: "blur(30px)", duration: 0.35, ease: "power3.in" }, 2.15);
+        window.__timelines["mic"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

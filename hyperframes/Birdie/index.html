@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        src: url("assets/fonts/InterVariable.woff2") format("woff2");
+        font-weight: 100 900;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #07080d;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #07080d;
+        font-family: "Inter", sans-serif;
+        color: #f5f3ee;
+      }
+
+      /* Headlines */
+      .line-text {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-weight: 800;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+        color: #f5f3ee;
+        opacity: 0;
+      }
+
+      /* Glitch exit: two colour-split copies of the line, torn into bands */
+      .glitch {
+        position: relative;
+        --ga: 0;
+        --gx1: 0px;
+        --gx2: 0px;
+        --gt1: 100%;
+        --gb1: 0%;
+        --gt2: 100%;
+        --gb2: 0%;
+      }
+      .glitch::before,
+      .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        opacity: var(--ga);
+        pointer-events: none;
+        mix-blend-mode: screen;
+      }
+      .glitch::before {
+        color: #ff3d6e;
+        transform: translateX(var(--gx1));
+        clip-path: inset(var(--gt1) 0 var(--gb1) 0);
+      }
+      .glitch::after {
+        color: #38e8ff;
+        transform: translateX(var(--gx2));
+        clip-path: inset(var(--gt2) 0 var(--gb2) 0);
+      }
+
+      /* Photos and phone screens sit on the ground as cards */
+      .photo-card {
+        position: absolute;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(245, 194, 107, 0.5);
+      }
+      .photo-card img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .phone {
+        position: absolute;
+        top: 50px;
+        width: 482px;
+        height: 980px;
+        border-radius: 62px;
+        overflow: hidden;
+        box-shadow: 0 50px 140px rgba(0, 0, 0, 0.7), 0 0 90px rgba(120, 90, 220, 0.22);
+      }
+      .phone video {
+        position: absolute;
+        width: 650px;
+        height: 1072px;
+      }
+
+      /* The listening dot that carries the hook into the app */
+      #listen-dot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 44px;
+        height: 44px;
+        margin: -22px 0 0 -22px;
+        border-radius: 50%;
+        background: #6fe3d0;
+        box-shadow: 0 0 30px #6fe3d0, 0 0 80px rgba(111, 227, 208, 0.5);
+        opacity: 0;
+      }
+
+      /* The Birdie mark: revealed once, then always on screen */
+      #mark {
+        position: absolute;
+        left: 960px;
+        top: 540px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0;
+      }
+      #mark-dot {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #6fe3d0;
+        box-shadow: 0 0 22px #6fe3d0;
+      }
+      #mark-word {
+        font-family: ui-sans-serif, system-ui, sans-serif;
+        font-size: 62px;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        color: #f5f3ee;
+      }
+
+      /* The aurora window in the end card */
+      #aurora-card {
+        position: absolute;
+        left: 160px;
+        top: 140px;
+        width: 1600px;
+        height: 800px;
+        border-radius: 40px;
+        overflow: hidden;
+        box-shadow: 0 0 0 2px rgba(111, 227, 208, 0.35), 0 40px 140px rgba(0, 0, 0, 0.7);
+        opacity: 0;
+      }
+      #aurora-inner {
+        position: absolute;
+        left: -160px;
+        top: -140px;
+        width: 1920px;
+        height: 1080px;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-199x" id="root" data-composition-id="main" data-start="0" data-duration="25.5" data-width="1920" data-height="1080">
+      <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute"><filter data-hf-id="hf-wlir" id="hb-cta" x="-10%" y="-5%" width="120%" height="110%" color-interpolation-filters="sRGB"><fegaussianblur data-hf-id="hf-a0mb" id="hb-cta-blur" stdDeviation="0 0" /></filter></svg>
+
+      <!-- The aurora window behind the end card -->
+      <div data-hf-id="hf-x8jg" id="aurora-card" data-layout-allow-overflow="" style="filter: url(#hb-cta)">
+        <div data-hf-id="hf-9uey" id="aurora-inner">
+          <div data-hf-id="hf-5i62" id="aurora-host" data-composition-id="aurora" data-composition-src="compositions/aurora.html" data-start="21" data-duration="4.5" data-track-index="2" data-width="1920" data-height="1080"></div>
+        </div>
+      </div>
+
+      <!-- The four scenes, back to back -->
+      <section data-hf-id="hf-l083" id="hook-host" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="5" data-track-index="1" data-width="1920" data-height="1080"></section>
+      <section data-hf-id="hf-b8pi" id="proof-host" data-composition-id="proof" data-composition-src="compositions/proof.html" data-start="5" data-duration="10.5" data-track-index="1" data-width="1920" data-height="1080"></section>
+      <section data-hf-id="hf-76v3" id="turn-host" data-composition-id="turn" data-composition-src="compositions/turn.html" data-start="15.5" data-duration="5.5" data-track-index="1" data-width="1920" data-height="1080"></section>
+      <section data-hf-id="hf-51g3" id="cta-host" data-composition-id="cta" data-composition-src="compositions/cta.html" data-start="21" data-duration="4.5" data-track-index="1" data-width="1920" data-height="1080"></section>
+
+      <!-- Objects that cross the cuts -->
+      <div data-hf-id="hf-8pli" id="listen-dot"></div>
+      <div data-hf-id="hf-m5oz" id="mark" data-brand-mark="">
+        <div data-hf-id="hf-lwls" id="mark-dot"></div>
+        <div data-hf-id="hf-c671" id="mark-word" data-brand-mark="">Birdie</div>
+      </div>
+
+      <!-- Sound -->
+      <audio data-hf-id="hf-svyh" id="chirps" src="assets/Bird chirps.mp3" data-start="1.05" data-duration="1.6" data-media-start="0.12" data-volume="1" data-track-index="8" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:1.2,&quot;v&quot;:1},{&quot;t&quot;:1.6,&quot;v&quot;:0}]}]}"></audio>
+      <audio data-hf-id="hf-g2jm" id="music" src="assets/Astral Generated Music 9e1e55d0.wav" data-start="0" data-duration="25.5" data-volume="0.35" data-track-index="5" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0},{"t":0.8,"v":0.9},{"t":1.0,"v":0.9},{"t":1.35,"v":0.2},{"t":2.3,"v":0.2},{"t":3.0,"v":1},{"t":23.5,"v":1},{"t":25.5,"v":0}]}]}'></audio>
+      <audio data-hf-id="hf-m66a" id="sfx-1" src="assets/Fast synthetic whoosh.mp3" data-start="4.3" data-duration="1.5" data-volume="0.6" data-track-index="6"></audio>
+      <audio data-hf-id="hf-5f1i" id="sfx-2" src="assets/Fast synthetic whoosh.mp3" data-start="10.4" data-duration="1.5" data-volume="0.6" data-track-index="7"></audio>
+      <audio data-hf-id="hf-iv8f" id="sfx-3" src="assets/Fast synthetic whoosh.mp3" data-start="15.0" data-duration="1.5" data-volume="0.6" data-track-index="6"></audio>
+      <audio data-hf-id="hf-3svo" id="sfx-4" src="assets/Fast synthetic whoosh.mp3" data-start="20.5" data-duration="1.5" data-volume="0.6" data-track-index="7"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Listening dot: lights on the breadboard's mic, rides the push, then flies into the phone's Listening pill
+      tl.set("#listen-dot", { x: 488, y: 360 }, 0);
+      tl.fromTo("#listen-dot", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 3.45);
+      tl.to("#listen-dot", { x: 435, y: 340, duration: 0.85, ease: "power1.in" }, 3.45);
+      tl.to("#listen-dot", { x: 1361, y: 166, duration: 0.95, ease: "expo.inOut" }, 4.3);
+      tl.to("#listen-dot", { scale: 0.36, duration: 0.4, ease: "power3.out" }, 5.12);
+      tl.to("#listen-dot", { opacity: 0, duration: 0.3, ease: "power2.in" }, 5.25);
+
+      // The Birdie mark: builds in the badge, travels to the corner, then into the end card
+      tl.set("#mark", { xPercent: -50, yPercent: -50 }, 0);
+      tl.fromTo("#mark", { opacity: 0, scale: 1.25, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 13.3);
+      tl.to("#mark", { x: -740, y: -430, scale: 0.6, duration: 0.9, ease: "expo.inOut" }, 15.15);
+      tl.to("#mark", { x: 0, y: -110, scale: 2.1, duration: 0.9, ease: "expo.inOut" }, 20.65);
+      tl.fromTo("#mark-dot", { scale: 1 }, { scale: 1.6, duration: 0.3, ease: "power2.out" }, 22.8);
+      tl.to("#mark-dot", { scale: 1, duration: 0.35, ease: "power2.inOut" }, 23.1);
+      tl.to("#mark-dot", { scale: 1.6, duration: 0.3, ease: "power2.out" }, 23.55);
+      tl.to("#mark-dot", { scale: 1, duration: 0.35, ease: "power2.inOut" }, 23.92);
+
+      // The aurora window glides in from the right, blur clearing as it lands
+      tl.fromTo("#aurora-card", { opacity: 0.35, x: 230 }, { opacity: 1, x: 0, duration: 0.4, ease: "power4.out" }, 21.0);
+      tl.fromTo("#hb-cta-blur", { attr: { stdDeviation: "10 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.4, ease: "power4.out", immediateRender: false }, 21.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

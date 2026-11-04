@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #logbook {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-gv6z" id="logbook" data-composition-id="logbook" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-u20u" class="copy" id="log-copy" style="left: 900px; top: 360px">
+          <div data-hf-id="hf-1fie" class="headline" id="log-1" style="position: absolute; top: 0">
+            <div data-hf-id="hf-3fv7" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-4q4b" class="w">Every</span><span data-hf-id="hf-ch98" class="w">call,</span></div>
+            <div data-hf-id="hf-r69f" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-mx6p" class="w">on</span><span data-hf-id="hf-9o0j" class="w">the</span><span data-hf-id="hf-4p7w" class="w teal">radar.</span></div>
+          </div>
+          <div data-hf-id="hf-15ob" class="headline" id="log-2" style="position: absolute; top: 0">
+            <div data-hf-id="hf-qrye" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-vhmj" class="w">Every</span><span data-hf-id="hf-1mn1" class="w">bird,</span></div>
+            <div data-hf-id="hf-qdnd" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-gpzr" class="w">in</span><span data-hf-id="hf-kxir" class="w">your</span><span data-hf-id="hf-juhd" class="w accent">logbook.</span></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-gne0" class="phone" data-layout-allow-overflow="" id="phone-log" style="left: 300px">
+          <video data-hf-id="hf-m74d" id="v-log" class="clip" src="assets/carausal-2.mp4" playsinline muted data-start="0" data-duration="5" data-media-start="3" data-playback-rate="2" data-track-index="1" style="left: -80px; top: -38px"></video>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at)
+          .set(sel, { opacity: 0 }, at + 0.4);
+      const show = (sel, at) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, at);
+      tl.fromTo("#phone-log", { x: -200, filter: "blur(28px)" }, { x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0);
+      tl.to("#phone-log", { y: -14, rotate: -1, duration: 4.1, ease: "sine.inOut" }, 0.5);
+      show("#log-1", 0.15);
+      rise("#log-1", 0.15);
+      sink("#log-1", 2.2);
+      show("#log-2", 2.5);
+      rise("#log-2", 2.5);
+      // zoom-through: the phone rushes at the camera
+      tl.to("#log-copy", { opacity: 0, x: 200, filter: "blur(20px)", duration: 0.35, ease: "power3.in" }, 4.65);
+      tl.to("#phone-log", { scale: 2.6, x: 420, opacity: 0, filter: "blur(24px)", duration: 0.35, ease: "expo.in" }, 4.65);
+        window.__timelines["logbook"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

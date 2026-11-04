@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #title {
+          position: absolute;
+          inset: 0;
+        }
+      </style>
+      <div data-hf-id="hf-xdn3" id="title" data-composition-id="title" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-ekgw" class="ring" id="ring-a"></div>
+        <div data-hf-id="hf-n8cr" class="ring" id="ring-b"></div>
+        <div data-hf-id="hf-wubd" class="center" id="title-center">
+          <div data-hf-id="hf-7i20" class="listening" id="t-pill"><div data-hf-id="hf-lu65" class="dot"></div>Listening…</div>
+          <div data-hf-id="hf-pdh3" class="headline" id="t-meet" style="font-size: 170px; margin-top: 30px">
+            <div data-hf-id="hf-3fv7" class="line" data-layout-allow-overflow=""><span data-hf-id="hf-btpr" class="w">Meet</span><span data-hf-id="hf-k407" class="w accent">Birdie.</span></div>
+          </div>
+        </div>
+      </div>
+      <script>
+      const tl = gsap.timeline({ paused: true });
+      const words = (sel) => gsap.utils.toArray(sel + " .w, " + sel + " .w-k");
+      const rise = (sel, at, stagger = 0.06) =>
+        tl.fromTo(words(sel), { yPercent: 110, rotate: 4 }, { yPercent: 0, rotate: 0, duration: 0.55, ease: "expo.out", stagger }, at);
+      const sink = (sel, at) =>
+        tl.to(words(sel), { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.03 }, at);
+      tl.fromTo("#t-meet", { scale: 0.35, filter: "blur(20px)" }, { scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0);
+      rise("#t-meet", 0, 0.08);
+      tl.fromTo("#t-pill", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 0.2);
+      tl.fromTo("#ring-a", { scale: 0.3, opacity: 0.9 }, { scale: 4, opacity: 0, duration: 1.2, ease: "power2.out" }, 0);
+      tl.fromTo("#ring-b", { scale: 0.3, opacity: 0.7 }, { scale: 4, opacity: 0, duration: 1.2, ease: "power2.out" }, 0.4);
+      tl.fromTo("#t-pill .dot", { scale: 1 }, { scale: 1.5, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.2);
+      // crash zoom toward the phone
+      tl.to("#title-center", { scale: 3.2, opacity: 0, filter: "blur(18px)", duration: 0.35, ease: "expo.in" }, 1.25);
+        window.__timelines["title"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

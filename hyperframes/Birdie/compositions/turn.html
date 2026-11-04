@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Inter";
+          src: url("assets/fonts/InterVariable.woff2") format("woff2");
+          font-weight: 100 900;
+        }
+        #turn {
+          position: absolute;
+          inset: 0;
+        }
+        #turn-line {
+          position: absolute;
+          left: 150px;
+          top: 380px;
+          width: 900px;
+          font-size: 100px;
+        }
+        #turn-phone {
+          left: 1180px;
+        }
+      </style>
+      <div data-hf-id="hf-od29" id="turn" data-composition-id="turn" data-width="1920" data-height="1080">
+        <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute"><filter data-hf-id="hf-zb4i" id="hb-turn" x="-10%" y="-5%" width="120%" height="110%" color-interpolation-filters="sRGB"><fegaussianblur data-hf-id="hf-wxg0" id="hb-turn-blur" stdDeviation="0 0" /></filter></svg>
+        <div data-hf-id="hf-n16s" class="ln-carry"><h2 data-hf-id="hf-jub0" id="turn-line" class="line-text glitch" data-text="Every call, logged and replayable">Every call, logged and replayable</h2></div>
+        <div data-hf-id="hf-q3rx" class="phone" data-layout-allow-overflow="" id="turn-phone" style="filter: url(#hb-turn)">
+          <video data-hf-id="hf-8i3m" id="turn-video" class="clip" src="assets/carausal-2.mp4" playsinline muted data-start="0" data-duration="5.5" data-media-start="4" data-playback-rate="1.5" data-track-index="0" style="left: -80px; top: -38px"></video>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        // Lines drift in softly, keep gliding left at a steady pace, then glitch away.
+        function lineLife(sel, at, out) {
+          const el = document.querySelector(sel);
+          const carry = el.parentElement;
+          const end = out + 0.5;
+          tl.set(carry, { x: 0 }, 0);
+          tl.to(carry, { x: -80, duration: end - at, ease: "none" }, at);
+          tl.fromTo(el, { x: 56, opacity: 0, filter: "blur(8px)" }, { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, at);
+          let seed = 0;
+          for (const ch of sel) seed = (seed * 31 + ch.charCodeAt(0)) % 2147483647;
+          seed = seed || 7;
+          const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+          const band = () => { const top = Math.floor(rnd() * 80); return [top + "%", Math.max(0, 100 - top - 8 - Math.floor(rnd() * 30)) + "%"]; };
+          const FLICKER = [1, 0.85, 1, 0.55, 0.9, 0.4, 0.75, 0.25, 0.6, 0.15, 0.35, 0.08, 0.2, 0.04, 0];
+          FLICKER.forEach((o, i) => {
+            const [t1, b1] = band(), [t2, b2] = band();
+            const amp = 8 + i * 4;
+            tl.set(el, {
+              opacity: o,
+              skewX: (rnd() - 0.5) * 14,
+              "--ga": i < FLICKER.length - 1 ? 0.95 : 0,
+              "--gx1": ((rnd() - 0.5) * 2 * amp).toFixed(1) + "px",
+              "--gx2": ((rnd() - 0.5) * 2 * amp).toFixed(1) + "px",
+              "--gt1": t1, "--gb1": b1, "--gt2": t2, "--gb2": b2,
+            }, out + i / 30);
+          });
+        }
+        tl.fromTo("#turn-phone", { x: 230, opacity: 0.35 }, { x: 0, opacity: 1, duration: 0.4, ease: "power4.out", immediateRender: true }, 0);
+        tl.fromTo("#hb-turn-blur", { attr: { stdDeviation: "10 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.4, ease: "power4.out", immediateRender: true }, 0);
+        lineLife("#turn-line", 0.35, 2.85);
+        // the camera pushes into the logbook grid as it fills
+        tl.to("#turn-phone", { scale: 1.12, duration: 1.4, ease: "power2.inOut" }, 3.3);
+        // cut-the-curve exit to the left
+        tl.to("#turn-phone", { x: -230, duration: 0.33, ease: "power4.in" }, 5.17);
+        tl.to("#turn-phone", { opacity: 0, duration: 0.31, ease: "power2.in" }, 5.17);
+        tl.fromTo("#hb-turn-blur", { attr: { stdDeviation: "0 0" } }, { attr: { stdDeviation: "10 0" }, duration: 0.33, ease: "power4.in", immediateRender: false }, 5.17);
+        window.__timelines["turn"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
