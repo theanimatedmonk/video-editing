@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #garden-wall { position: absolute; inset: 0; background: #cfdcc4; }
+        #garden-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #garden-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #garden-frame { width: 604px; height: 857px; padding: 22px; background: #fbf6ec; box-shadow: 0 30px 60px rgba(74,51,40,0.22), 0 0 0 1px rgba(74,51,40,0.08); }
+        #garden-win { position: relative; width: 560px; height: 813px; overflow: hidden; }
+        #garden-img { position: absolute; inset: 0; }
+        #garden-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+        /* a gentle stream of hearts and the odd bird drifting up beside the photo */
+        #garden-floaties { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .garden-floaty { position: absolute; top: 1010px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+        .garden-floaty svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgba(244,33,46,0.22)); }
+        .garden-floaty-bird { display: block; line-height: 1; filter: drop-shadow(0 6px 10px rgba(60,40,30,0.18)); }
+      </style>
+      <div data-hf-id="hf-1nh2" id="root" data-composition-id="garden" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-8v8v" id="garden-wall"></div>
+        <div data-hf-id="hf-c4wb" id="garden-trim"></div>
+        <div data-hf-id="hf-v0jz" id="garden-stage"><div data-hf-id="hf-e78a" id="garden-frame"><div data-hf-id="hf-3wnn" id="garden-win"><div data-hf-id="hf-fwbl" id="garden-img" data-layout-allow-overflow=""><img data-hf-id="hf-f7v3" src="../assets/grok-image-b6d443f0-53a0-4127-8fb7-2a2c97695a7b.jpg" alt=""></div></div></div></div>
+        <div data-hf-id="hf-v96r" id="garden-floaties" data-layout-allow-overflow=""></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#garden-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#garden-trim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "sine.inOut" }, 0.2);
+        tl.fromTo("#garden-frame", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.4, ease: "sine.out" }, 0.3);
+        tl.fromTo("#garden-img", { scale: 1.06 }, { scale: 1.16, duration: 4.5, ease: "none" }, 0);
+        const HEART = '<svg viewBox="0 0 24 24"><path d="M12 21.2l-1.4-1.3C5.4 15.2 2 12.1 2 8.3 2 5.2 4.4 2.8 7.5 2.8c1.7 0 3.4.8 4.5 2.1 1.1-1.3 2.8-2.1 4.5-2.1 3.1 0 5.5 2.4 5.5 5.5 0 3.8-3.4 6.9-8.6 11.6L12 21.2z" fill="#F4212E"/></svg>';
+        let seed = 9031;
+        const rand = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+        const floaties = document.getElementById("garden-floaties");
+        const COUNT = 8, LAST = 4.5 - 2.7;
+        for (let i = 0; i < COUNT; i++) {
+          const bird = i % 4 === 2;
+          const right = i % 2 === 0;
+          const size = bird ? 42 + rand() * 12 : 34 + rand() * 24;
+          const el = document.createElement("div");
+          el.className = "garden-floaty";
+          el.style.left = Math.round(right ? 1330 + rand() * 170 : 420 + rand() * 170) + "px";
+          el.style.width = el.style.height = Math.round(size) + "px";
+          el.innerHTML = bird ? '<span class="garden-floaty-bird" style="font-size:' + Math.round(size * 0.9) + 'px">' + (i % 8 === 2 ? "🐦" : "🐤") + "</span>" : HEART;
+          floaties.appendChild(el);
+          const t0 = 0.3 + (LAST - 0.3) * (i / (COUNT - 1)) + rand() * 0.15;
+          const rise = 2.4 + rand() * 0.5;
+          const sway = (8 + rand() * 14) * (rand() < 0.5 ? -1 : 1);
+          tl.fromTo(el, { y: 0 }, { y: -(520 + rand() * 220), duration: rise, ease: "sine.out" }, t0);
+          tl.fromTo(el, { scale: 0.3, rotation: -sway * 0.4 }, { scale: 1, rotation: sway * 0.4, duration: 0.45, ease: "back.out(2.6)" }, t0);
+          tl.fromTo(el, { x: -sway }, { x: sway, duration: rise / 3, ease: "sine.inOut", yoyo: true, repeat: 2 }, t0);
+          tl.to(el, { opacity: 0.85, duration: 0.2, ease: "none" }, t0);
+          tl.to(el, { opacity: 0, duration: rise * 0.45, ease: "sine.in" }, t0 + rise * 0.55);
+        }
+        window.__timelines["garden"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

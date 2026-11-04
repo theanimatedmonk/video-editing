@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #window-wall { position: absolute; inset: 0; background: #f2c6c2; }
+        #window-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #window-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #window-frame { width: 1084px; height: 824px; padding: 22px; background: #fbf6ec; box-shadow: 0 30px 60px rgba(74,51,40,0.22), 0 0 0 1px rgba(74,51,40,0.08); }
+        #window-win { position: relative; width: 1040px; height: 780px; overflow: hidden; }
+        #window-img { position: absolute; inset: 0; }
+        #window-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+      </style>
+      <div data-hf-id="hf-h687" id="root" data-composition-id="window" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-u8s2" id="window-wall"></div>
+        <div data-hf-id="hf-v1i2" id="window-trim"></div>
+        <div data-hf-id="hf-wbbk" id="window-stage"><div data-hf-id="hf-87zx" id="window-frame"><div data-hf-id="hf-h3vc" id="window-win"><div data-hf-id="hf-qq5q" id="window-img" data-layout-allow-overflow=""><img data-hf-id="hf-jku7" src="../assets/WhatsApp%20Image%202026-11-03%20at%207.21.56%20PM.jpeg" alt=""></div></div></div></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#window-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#window-trim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "sine.inOut" }, 0.2);
+        tl.fromTo("#window-frame", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.4, ease: "sine.out" }, 0.3);
+        tl.fromTo("#window-img", { scale: 1.0 }, { scale: 1.12, duration: 5, ease: "none" }, 0);
+        window.__timelines["window"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

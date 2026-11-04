@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #scan-wall { position: absolute; inset: 0; background: #d9cfe8; }
+        #scan-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #scan-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        /* 3D phone: a screen face plus a metal side, bottom edge and back plate, turned slightly */
+        .scan-wrap { position: absolute; width: 461px; height: 940px; perspective: 2200px; }
+        #scan-shadow { position: absolute; width: 520px; height: 900px; border-radius: 120px; background: rgba(60,40,30,0.32); filter: blur(46px); }
+        #scan-device { position: absolute; inset: 0; transform-style: preserve-3d; }
+        #scan-back { position: absolute; inset: 0; border-radius: 76px; background: #26262a; transform: translateZ(-28px); }
+        #scan-side { position: absolute; left: 461px; top: 64px; width: 28px; height: 812px; border-radius: 14px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, #5d5d63 0%, #8c8c93 35%, #4a4a50 70%, #2c2c30 100%); }
+        #scan-btn { position: absolute; left: 7px; top: 190px; width: 14px; height: 110px; border-radius: 7px; background: #3a3a40; }
+        #scan-bottom { position: absolute; left: 64px; top: 940px; width: 333px; height: 28px; border-radius: 14px; transform-origin: 50% 0; transform: rotateX(-90deg); background: linear-gradient(180deg, #6a6a70, #2c2c30); }
+        #scan-phone { position: absolute; inset: 0; overflow: hidden; border-radius: 76px; }
+        #scan-video, #scan-video2 { position: absolute; left: -78px; top: -35px; width: 622px; height: 1026px; }
+        #scan-screen2 { position: absolute; inset: 0; }
+        #scan-glare { position: absolute; inset: 0; border-radius: 76px; overflow: hidden; pointer-events: none; }
+        /* live-reaction stream: hearts and a few birds floating up beside the phone */
+        #scan-floaties { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        .scan-floaty { position: absolute; top: 1010px; display: flex; align-items: center; justify-content: center; opacity: 0; }
+        .scan-floaty svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgba(244,33,46,0.25)); }
+        .scan-floaty-bird { display: block; line-height: 1; filter: drop-shadow(0 6px 10px rgba(60,40,30,0.18)); }
+        #scan-sheen { position: absolute; left: -60%; top: -20%; width: 70%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0) 100%); }
+      </style>
+      <div data-hf-id="hf-dp5u" id="root" data-composition-id="scan" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-iu0z" id="scan-wall"></div>
+        <div data-hf-id="hf-nczv" id="scan-stage">
+          <div data-hf-id="hf-cxz3" id="scan-shadow"></div>
+          <div data-hf-id="hf-5v12" class="scan-wrap" id="scan-wrap">
+            <div data-hf-id="hf-g1lx" id="scan-device">
+              <div data-hf-id="hf-l61u" id="scan-back"></div>
+              <div data-hf-id="hf-qr1q" id="scan-side"><div data-hf-id="hf-tqsp" id="scan-btn"></div></div>
+              <div data-hf-id="hf-h2cq" id="scan-bottom"></div>
+              <div data-hf-id="hf-r268" id="scan-phone" data-layout-allow-overflow="">
+                <video data-hf-id="hf-4n1u" id="scan-video" src="../assets/birdwatch.mp4" data-start="0" data-duration="7.96" data-media-start="3" data-playback-rate="1.5" data-track-index="0" muted playsinline></video>
+                <!-- Radar and Logbook recording, dissolving in on the same phone -->
+                <div data-hf-id="hf-mtef" id="scan-screen2"><video data-hf-id="hf-xu1v" id="scan-video2" data-hf-media-start-basis="local" src="../assets/carausal-2.mp4" data-start="7.16" data-duration="5.64" data-media-start="1.99" data-playback-rate="1.5" data-track-index="1" muted playsinline></video></div>
+              </div>
+              <div data-hf-id="hf-s92c" id="scan-glare"><div data-hf-id="hf-ojw6" id="scan-sheen"></div></div>
+            </div>
+          </div>
+        </div>
+        <div data-hf-id="hf-i4fb" id="scan-trim"></div>
+        <div data-hf-id="hf-ivyj" id="scan-floaties" data-layout-allow-overflow=""></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#scan-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#scan-trim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "sine.inOut" }, 0.2);
+        tl.fromTo(["#scan-wrap", "#scan-shadow"], { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.6, ease: "sine.out" }, 0.2);
+        // the phone turns gently into its resting angle, then holds it
+        tl.fromTo("#scan-device", { rotationY: -34, rotationX: 10 }, { rotationY: -20, rotationX: 6, duration: 2.2, ease: "sine.out" }, 0.2);
+        tl.fromTo("#scan-shadow", { x: 70 }, { x: 46, duration: 2.2, ease: "sine.out" }, 0.2);
+        // screen-to-screen dissolve on the same phone while the wall turns from lavender to green
+        tl.fromTo("#scan-screen2", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 7.16);
+        tl.fromTo("#scan-wall", { backgroundColor: "#d9cfe8" }, { backgroundColor: "#cfe3c4", duration: 0.8, ease: "sine.inOut", immediateRender: false }, 7.16);
+        tl.fromTo("#scan-sheen", { xPercent: 0 }, { xPercent: 300, duration: 12.8, ease: "none" }, 0);
+        tl.fromTo("#scan-stage", { scale: 1 }, { scale: 1.0643, duration: 12.8, ease: "none" }, 0);
+        // Hearts and birds: a seeded random stream, so every preview and export is identical
+        const HEART = '<svg viewBox="0 0 24 24"><path d="M12 21.2l-1.4-1.3C5.4 15.2 2 12.1 2 8.3 2 5.2 4.4 2.8 7.5 2.8c1.7 0 3.4.8 4.5 2.1 1.1-1.3 2.8-2.1 4.5-2.1 3.1 0 5.5 2.4 5.5 5.5 0 3.8-3.4 6.9-8.6 11.6L12 21.2z" fill="#F4212E"/></svg>';
+        let seed = 20261103;
+        const rand = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+        const floaties = document.getElementById("scan-floaties");
+        for (let i = 0; i < 34; i++) {
+          const bird = i % 5 === 2;
+          const right = rand() < 0.7;
+          const size = bird ? 46 + rand() * 16 : 40 + rand() * 30;
+          const el = document.createElement("div");
+          el.className = "scan-floaty";
+          el.style.left = Math.round(right ? 1250 + rand() * 190 : 470 + rand() * 180) + "px";
+          el.style.width = el.style.height = Math.round(size) + "px";
+          el.innerHTML = bird ? '<span class="scan-floaty-bird" style="font-size:' + Math.round(size * 0.9) + 'px">' + (i % 10 === 2 ? "🐦" : "🐤") + "</span>" : HEART;
+          floaties.appendChild(el);
+          const t0 = 1.0 + i * 0.27 + rand() * 0.2;
+          const dur = 2.5 + rand() * 0.8;
+          const sway = (8 + rand() * 18) * (rand() < 0.5 ? -1 : 1);
+          tl.fromTo(el, { y: 0 }, { y: -(560 + rand() * 260), duration: dur, ease: "sine.out" }, t0);
+          tl.fromTo(el, { scale: 0.3, rotation: -sway * 0.4 }, { scale: 1, rotation: sway * 0.4, duration: 0.45, ease: "back.out(2.6)" }, t0);
+          tl.fromTo(el, { x: -sway }, { x: sway, duration: dur / 3, ease: "sine.inOut", yoyo: true, repeat: 2 }, t0);
+          tl.to(el, { opacity: 1, duration: 0.2, ease: "none" }, t0);
+          tl.to(el, { opacity: 0, duration: dur * 0.45, ease: "sine.in" }, t0 + dur * 0.55);
+        }
+        window.__timelines["scan"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

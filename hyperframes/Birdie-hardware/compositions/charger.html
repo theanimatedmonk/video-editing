@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #charger-wall { position: absolute; inset: 0; background: #bfe0cf; }
+        #charger-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #charger-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #charger-frame { width: 1084px; height: 824px; padding: 22px; background: #fbf6ec; box-shadow: 0 30px 60px rgba(74,51,40,0.22), 0 0 0 1px rgba(74,51,40,0.08); }
+        #charger-win { position: relative; width: 1040px; height: 780px; overflow: hidden; }
+        #charger-img { position: absolute; inset: 0; }
+        #charger-img img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+      </style>
+      <div data-hf-id="hf-xzwb" id="root" data-composition-id="charger" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-5gyy" id="charger-wall"></div>
+        <div data-hf-id="hf-p8gi" id="charger-trim"></div>
+        <div data-hf-id="hf-nzrs" id="charger-stage"><div data-hf-id="hf-nhdh" id="charger-frame"><div data-hf-id="hf-nu9s" id="charger-win"><div data-hf-id="hf-kgac" id="charger-img" data-layout-allow-overflow=""><img data-hf-id="hf-o967" src="../assets/WhatsApp%20Image%202026-11-02%20at%208.51.24%20PM.jpeg" alt=""></div></div></div></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#charger-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#charger-trim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "sine.inOut" }, 0.2);
+        tl.fromTo("#charger-frame", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.4, ease: "sine.out" }, 0.3);
+        tl.fromTo("#charger-img", { scale: 1.0 }, { scale: 1.12, duration: 4, ease: "none" }, 0);
+        window.__timelines["charger"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

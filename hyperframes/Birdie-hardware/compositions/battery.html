@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #battery-wall { position: absolute; inset: 0; background: #f6d6c9; }
+        #battery-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #battery-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #battery-shape { position: relative; width: 560px; height: 300px; }
+        #battery-body { position: absolute; left: 0; top: 0; width: 520px; height: 300px; border: 12px solid #4a3328; border-radius: 40px; padding: 18px; background: #fbf6ec; }
+        #battery-cap { position: absolute; left: 524px; top: 100px; width: 36px; height: 100px; background: #4a3328; border-radius: 0 16px 16px 0; }
+        #battery-level { position: relative; width: 100%; height: 100%; border-radius: 20px; overflow: hidden; }
+        #battery-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: #8fc79a; transform-origin: left center; }
+        #battery-bolt { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        #battery-bolt svg { display: block; }
+      </style>
+      <div data-hf-id="hf-8hg0" id="root" data-composition-id="battery" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-ytj9" id="battery-wall"></div>
+        <div data-hf-id="hf-0s8x" id="battery-trim"></div>
+        <div data-hf-id="hf-mggl" id="battery-stage"><div data-hf-id="hf-oqbg" id="battery-shape">
+          <div data-hf-id="hf-oze9" id="battery-body"><div data-hf-id="hf-wswp" id="battery-level"><div data-hf-id="hf-svda" id="battery-fill"></div>
+            <div data-hf-id="hf-rep8" id="battery-bolt"><svg data-hf-id="hf-ey0h" width="96" height="140" viewBox="0 0 30 44"><path data-hf-id="hf-bh7c" d="M18 0 L2 26 H13 L10 44 L28 16 H17 Z" fill="#4a3328" /></svg></div>
+          </div></div>
+          <div data-hf-id="hf-zewz" id="battery-cap"></div>
+        </div></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#battery-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0);
+        tl.fromTo("#battery-trim", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "sine.inOut" }, 0.2);
+        tl.fromTo("#battery-shape", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.2, ease: "sine.out" }, 0.3);
+        tl.fromTo("#battery-fill", { scaleX: 0 }, { scaleX: 1, duration: 2.2, ease: "sine.inOut" }, 0.8);
+        tl.fromTo("#battery-bolt", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "sine.out" }, 2.6);
+        window.__timelines["battery"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

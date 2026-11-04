@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="UTF-8"></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        /* Wall with a phone-shaped window in the same tilted plane, so the phone underneath stays solid while the wall colour dissolves */
+        #logbook-wallplane { position: absolute; inset: 0; }
+        #logbook-wall { position: absolute; inset: 0; border-radius: 76px; box-shadow: 0 0 0 1200px #cfe3c4; }
+        #logbook-trim { position: absolute; left: 60px; top: 60px; right: 60px; bottom: 60px; border: 2px solid rgba(74,51,40,0.18); }
+        #logbook-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        /* 3D phone: a screen face plus a metal side, bottom edge and back plate, turned slightly */
+        .logbook-wrap { position: absolute; width: 461px; height: 940px; perspective: 2200px; }
+        #logbook-shadow { position: absolute; width: 520px; height: 900px; border-radius: 120px; background: rgba(60,40,30,0.32); filter: blur(46px); }
+        #logbook-device { position: absolute; inset: 0; transform-style: preserve-3d; }
+        #logbook-back { position: absolute; inset: 0; border-radius: 76px; background: #26262a; transform: translateZ(-28px); }
+        #logbook-side { position: absolute; left: 461px; top: 64px; width: 28px; height: 812px; border-radius: 14px; transform-origin: 0 50%; transform: rotateY(90deg); background: linear-gradient(90deg, #5d5d63 0%, #8c8c93 35%, #4a4a50 70%, #2c2c30 100%); }
+        #logbook-btn { position: absolute; left: 7px; top: 190px; width: 14px; height: 110px; border-radius: 7px; background: #3a3a40; }
+        #logbook-bottom { position: absolute; left: 64px; top: 940px; width: 333px; height: 28px; border-radius: 14px; transform-origin: 50% 0; transform: rotateX(-90deg); background: linear-gradient(180deg, #6a6a70, #2c2c30); }
+        #logbook-phone { position: absolute; inset: 0; overflow: hidden; border-radius: 76px; }
+        #logbook-video { position: absolute; left: -78px; top: -35px; width: 622px; height: 1026px; }
+        #logbook-glare { position: absolute; inset: 0; border-radius: 76px; overflow: hidden; pointer-events: none; }
+        #logbook-sheen { position: absolute; left: -60%; top: -20%; width: 70%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0) 100%); }
+      </style>
+      <div data-hf-id="hf-1pti" id="root" data-composition-id="logbook" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-c5ef" id="logbook-stage">
+          <div data-hf-id="hf-hmqi" class="logbook-wrap" id="logbook-wallwrap"><div data-hf-id="hf-tbkn" id="logbook-wallplane"><div data-hf-id="hf-2l53" id="logbook-wall"></div></div></div>
+          <div data-hf-id="hf-2pr7" id="logbook-shadow"></div>
+          <div data-hf-id="hf-3ikq" class="logbook-wrap" id="logbook-wrap">
+            <div data-hf-id="hf-2s1t" id="logbook-device">
+              <div data-hf-id="hf-s3vy" id="logbook-back"></div>
+              <div data-hf-id="hf-dh5m" id="logbook-side"><div data-hf-id="hf-d87h" id="logbook-btn"></div></div>
+              <div data-hf-id="hf-kram" id="logbook-bottom"></div>
+              <div data-hf-id="hf-ndnm" id="logbook-phone" data-layout-allow-overflow="">
+                <video data-hf-id="hf-q0yg" id="logbook-video" src="../assets/carausal-2.mp4" data-start="0" data-duration="6.3" data-media-start="1" data-playback-rate="1.5" data-track-index="0" muted playsinline></video>
+              </div>
+              <div data-hf-id="hf-y8c0" id="logbook-glare"><div data-hf-id="hf-03v6" id="logbook-sheen"></div></div>
+            </div>
+          </div>
+        </div>
+        <div data-hf-id="hf-ga1v" id="logbook-trim"></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        // Same phone, same angle, same spot: only the screen and the wall colour dissolve, the slow push carries on
+        tl.set("#logbook-device", { rotationY: -20, rotationX: 6 }, 0);
+        tl.set("#logbook-wallplane", { rotationY: -20, rotationX: 6 }, 0);
+        tl.set("#logbook-shadow", { x: 46 }, 0);
+        tl.fromTo("#logbook-wall", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0.66);
+        tl.fromTo("#logbook-phone", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.inOut" }, 0.66);
+        tl.fromTo("#logbook-sheen", { xPercent: 172 }, { xPercent: 190, duration: 0.8, ease: "none" }, 0.66);
+        tl.fromTo("#logbook-stage", { scale: 1.036 }, { scale: 1.0643, duration: 5.64, ease: "none" }, 0.66);
+        window.__timelines["logbook"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
