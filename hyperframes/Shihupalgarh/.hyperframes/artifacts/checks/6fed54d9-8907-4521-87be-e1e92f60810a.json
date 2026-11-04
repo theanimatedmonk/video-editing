@@ -1,0 +1,569 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 3 has 6 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"intro-card\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#intro-card",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"intro-card\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"hall-title\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#hall-title",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"hall-title\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"end-card\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#end-card",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"end-card\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 8.333,
+        "selector": "#shot-1 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-1",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 2.778,
+        "lastSeen": 47.222,
+        "occurrences": 9,
+        "heldMs": 0,
+        "times": [
+          2.778,
+          8.333,
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 13.889,
+        "selector": "#shot-2 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-2",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 8.333,
+        "lastSeen": 47.222,
+        "occurrences": 8,
+        "heldMs": 0,
+        "times": [
+          8.333,
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 30.556,
+        "selector": "#shot-3 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-3",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 13.889,
+        "lastSeen": 47.222,
+        "occurrences": 7,
+        "heldMs": 0,
+        "times": [
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 41.667,
+        "selector": "#shot-4 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 30.556,
+        "lastSeen": 47.222,
+        "occurrences": 4,
+        "heldMs": 0,
+        "times": [
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 41.667,
+        "selector": "#shot-5 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -126.01,
+          "right": 2405.05,
+          "bottom": 1206.01,
+          "width": 2405.05,
+          "height": 1332.03
+        },
+        "containerSelector": "#shot-5",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 485.05,
+          "top": 126.01,
+          "bottom": 126.01
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -126.01,
+          "width": 2405.05,
+          "height": 1332.03
+        },
+        "firstSeen": 41.667,
+        "lastSeen": 47.222,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          41.667,
+          47.222
+        ]
+      }
+    ],
+    "duration": 50,
+    "samples": [
+      2.778,
+      8.333,
+      13.889,
+      19.444,
+      25,
+      30.556,
+      36.111,
+      41.667,
+      47.222
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 5,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.84:1; WCAG AA requires 3:1.",
+        "text": "At the heart of the city",
+        "fg": "rgb(247,227,187)",
+        "bg": "rgb(158,130,110)",
+        "ratio": 2.84,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(67,61,51)",
+        "large": true,
+        "selector": "div > div:nth-of-type(12) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 650.9375,
+          "y": 304.7406921386719,
+          "width": 618.109375,
+          "height": 31
+        },
+        "time": 25,
+        "times": [
+          25
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.85:1; WCAG AA requires 3:1.",
+        "text": "The Sixteen-Pillared Hall",
+        "fg": "rgb(246,239,227)",
+        "bg": "rgb(164,138,114)",
+        "ratio": 2.85,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(69,67,64)",
+        "large": true,
+        "selector": "div > div:nth-of-type(12) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 200.02685546875,
+          "y": 369.1184997558594,
+          "width": 1519.9306640625,
+          "height": 138.11160278320312
+        },
+        "time": 25,
+        "times": [
+          25
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 3.42:1; WCAG AA requires 4.5:1.",
+        "text": "The Ashokan age",
+        "fg": "rgb(247,227,187)",
+        "bg": "rgb(141,117,101)",
+        "ratio": 3.42,
+        "requiredRatio": 4.5,
+        "suggestedColor": "rgb(14,12,10)",
+        "large": false,
+        "selector": "div > div:nth-of-type(13) > span",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 150,
+          "y": 729.16748046875,
+          "width": 1100,
+          "height": 25.953125
+        },
+        "time": 36.111,
+        "times": [
+          36.111
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      2.778,
+      13.889,
+      25,
+      36.111,
+      47.222
+    ],
+    "checked": 14,
+    "passed": 11
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "first_frame_empty",
+        "severity": "warning",
+        "message": "Frame 0 shows only the background, and the first frame is the thumbnail on social players: have the title or key image already on screen at 0 s instead of entering from nothing; see references/review.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 6 text elements stay under it for 0.5 s or more, the smallest \"Odisha, India\" at 22 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "Odisha, India",
+        "selector": "#line-1 > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 150,
+          "y": 737.42,
+          "width": 260.31,
+          "height": 26
+        },
+        "time": 7.25,
+        "times": [
+          1.375,
+          7.25,
+          14,
+          25,
+          29.875,
+          44
+        ],
+        "fontPx": 22,
+        "floorPx": 28,
+        "seconds": 5.875,
+        "elements": [
+          {
+            "selector": "#line-1 > span:nth-of-type(1)",
+            "text": "Odisha, India",
+            "fontPx": 22,
+            "time": 7.25,
+            "seconds": 5.875
+          },
+          {
+            "selector": "#line-2 > span:nth-of-type(1)",
+            "text": "The Arthashastra",
+            "fontPx": 22,
+            "time": 14,
+            "seconds": 4.875
+          },
+          {
+            "selector": "#line-3 > span:nth-of-type(1)",
+            "text": "The Ashokan age",
+            "fontPx": 22,
+            "time": 29.875,
+            "seconds": 6.875
+          },
+          {
+            "selector": "#intro-card > div:nth-of-type(1)",
+            "text": "Kalinga · c. 3rd century BCE",
+            "fontPx": 26,
+            "time": 1.375,
+            "seconds": 4.5
+          },
+          {
+            "selector": "#hall-title > div:nth-of-type(1)",
+            "text": "At the heart of the city",
+            "fontPx": 26,
+            "time": 25,
+            "seconds": 3.5
+          },
+          {
+            "selector": "#end-card > div:nth-of-type(1)",
+            "text": "Ruins remembered · glory restored",
+            "fontPx": 26,
+            "time": 44,
+            "seconds": 5.125
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 400
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

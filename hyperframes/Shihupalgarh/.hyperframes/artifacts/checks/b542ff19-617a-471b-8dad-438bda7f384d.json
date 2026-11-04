@@ -1,0 +1,364 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 2,
+    "findings": [
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 5,
+        "selector": "#shot-1 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-1",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-69u4"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 1.667,
+        "lastSeen": 28.333,
+        "occurrences": 9,
+        "heldMs": 0,
+        "times": [
+          1.667,
+          5,
+          8.333,
+          11.667,
+          15,
+          18.333,
+          21.667,
+          25,
+          28.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 11.667,
+        "selector": "#shot-2 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-2",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-r3hg"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 5,
+        "lastSeen": 28.333,
+        "occurrences": 8,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333,
+          11.667,
+          15,
+          18.333,
+          21.667,
+          25,
+          28.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 21.667,
+        "selector": "#shot-3 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-3",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-pwkd"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 11.667,
+        "lastSeen": 28.333,
+        "occurrences": 6,
+        "heldMs": 0,
+        "times": [
+          11.667,
+          15,
+          18.333,
+          21.667,
+          25,
+          28.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 21.667,
+        "selector": "#shot-4 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -119.47,
+          "right": 2381.42,
+          "bottom": 1199.47,
+          "width": 2381.42,
+          "height": 1318.94
+        },
+        "containerSelector": "#shot-4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 461.42,
+          "top": 119.47,
+          "bottom": 119.47
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-qave"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -119.47,
+          "width": 2381.42,
+          "height": 1318.94
+        },
+        "firstSeen": 21.667,
+        "lastSeen": 28.333,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          21.667,
+          25,
+          28.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 28.333,
+        "selector": "#shot-5 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -136.58,
+          "right": 2443.19,
+          "bottom": 1216.58,
+          "width": 2443.19,
+          "height": 1353.15
+        },
+        "containerSelector": "#shot-5",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 523.19,
+          "top": 136.58,
+          "bottom": 136.58
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-saej"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -136.58,
+          "width": 2443.19,
+          "height": 1353.15
+        },
+        "firstSeen": 28.333,
+        "lastSeen": 28.333,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          28.333
+        ]
+      }
+    ],
+    "duration": 30,
+    "samples": [
+      1.667,
+      5,
+      8.333,
+      11.667,
+      15,
+      18.333,
+      21.667,
+      25,
+      28.333
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 5,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      1.667,
+      8.333,
+      15,
+      21.667,
+      28.333
+    ],
+    "checked": 0,
+    "passed": 0
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "first_frame_empty",
+        "severity": "warning",
+        "message": "Frame 0 shows only the background, and the first frame is the thumbnail on social players: have the title or key image already on screen at 0 s instead of entering from nothing; see references/review.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 240
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

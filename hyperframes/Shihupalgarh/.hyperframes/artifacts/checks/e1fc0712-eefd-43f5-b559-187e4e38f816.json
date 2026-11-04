@@ -1,0 +1,448 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 3 has 6 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"intro-card\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#intro-card",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"intro-card\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"hall-title\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#hall-title",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"hall-title\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"end-card\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#end-card",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Shihupalgarh/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"end-card\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 4,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 8.333,
+        "selector": "#shot-1 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-1",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 2.778,
+        "lastSeen": 47.222,
+        "occurrences": 9,
+        "heldMs": 0,
+        "times": [
+          2.778,
+          8.333,
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 13.889,
+        "selector": "#shot-2 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-2",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 8.333,
+        "lastSeen": 47.222,
+        "occurrences": 8,
+        "heldMs": 0,
+        "times": [
+          8.333,
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 30.556,
+        "selector": "#shot-3 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-3",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 13.889,
+        "lastSeen": 47.222,
+        "occurrences": 7,
+        "heldMs": 0,
+        "times": [
+          13.889,
+          19.444,
+          25,
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "warning",
+        "time": 41.667,
+        "selector": "#shot-4 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -153.36,
+          "right": 2503.8,
+          "bottom": 1233.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "containerSelector": "#shot-4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 583.8,
+          "top": 153.36,
+          "bottom": 153.36
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -153.36,
+          "width": 2503.8,
+          "height": 1386.72
+        },
+        "firstSeen": 30.556,
+        "lastSeen": 47.222,
+        "occurrences": 4,
+        "heldMs": 0,
+        "times": [
+          30.556,
+          36.111,
+          41.667,
+          47.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 41.667,
+        "selector": "#shot-5 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -126.01,
+          "right": 2405.05,
+          "bottom": 1206.01,
+          "width": 2405.05,
+          "height": 1332.03
+        },
+        "containerSelector": "#shot-5",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "right": 485.05,
+          "top": 126.01,
+          "bottom": 126.01
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -126.01,
+          "width": 2405.05,
+          "height": 1332.03
+        },
+        "firstSeen": 41.667,
+        "lastSeen": 47.222,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          41.667,
+          47.222
+        ]
+      }
+    ],
+    "duration": 50,
+    "samples": [
+      2.778,
+      8.333,
+      13.889,
+      19.444,
+      25,
+      30.556,
+      36.111,
+      41.667,
+      47.222
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 5,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.98:1; WCAG AA requires 3:1.",
+        "text": "The Sixteen-Pillared Hall",
+        "fg": "rgb(246,239,227)",
+        "bg": "rgb(161,134,112)",
+        "ratio": 2.98,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(66,64,61)",
+        "large": true,
+        "selector": "div > div:nth-of-type(12) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 200.02685546875,
+          "y": 372.1184997558594,
+          "width": 1519.9306640625,
+          "height": 138.11160278320312
+        },
+        "time": 25,
+        "times": [
+          25
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      2.778,
+      13.889,
+      25,
+      36.111,
+      47.222
+    ],
+    "checked": 14,
+    "passed": 13
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "first_frame_empty",
+        "severity": "warning",
+        "message": "Frame 0 shows only the background, and the first frame is the thumbnail on social players: have the title or key image already on screen at 0 s instead of entering from nothing; see references/review.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 400
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}
