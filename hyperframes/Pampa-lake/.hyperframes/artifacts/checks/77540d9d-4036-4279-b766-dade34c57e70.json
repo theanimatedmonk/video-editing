@@ -1,0 +1,519 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": false,
+    "errorCount": 4,
+    "warningCount": 4,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "non_deterministic_code",
+        "severity": "error",
+        "message": "Script contains `Math.random()` which produces non-deterministic output. Renders may differ between frames or runs.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/assets/rive/rive.js",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use a seeded PRNG (e.g. a simple mulberry32) so renders are deterministic across frames."
+      },
+      {
+        "code": "non_deterministic_code",
+        "severity": "error",
+        "message": "Script contains `Date.now()` which produces non-deterministic output. Renders may differ between frames or runs.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/assets/rive/rive.js",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Remove time-dependent code. Use GSAP timeline position instead of wall-clock time."
+      },
+      {
+        "code": "non_deterministic_code",
+        "severity": "error",
+        "message": "Script contains `performance.now()` which produces non-deterministic output. Renders may differ between frames or runs.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/assets/rive/rive.js",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Remove time-dependent code. Use GSAP timeline position instead of wall-clock time."
+      },
+      {
+        "code": "requestanimationframe_in_composition",
+        "severity": "error",
+        "message": "`requestAnimationFrame` runs on wall-clock time, not the GSAP timeline. It will not sync with frame capture and may cause flickering or missed frames during rendering.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Use GSAP tweens or onUpdate callbacks instead of requestAnimationFrame for animation logic."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"lake\"> is a timeline element that contains nested <canvas id=\"lake-canvas\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#lake",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"lake\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"title\"> is a timeline element that contains nested <p>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#title",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"title\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"line-1\"> is a timeline element that contains nested <p>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#line-1",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"line-1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"line-2\"> is a timeline element that contains nested <p>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#line-2",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"line-2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": false,
+    "errorCount": 2,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "console_warning",
+        "severity": "warning",
+        "message": "[Rive: state-machines-param] The `stateMachines` parameter is deprecated: please use `stateMachine` with a single state machine name instead.\nTo suppress this warning, set Rive.suppressDeprecationWarnings = [\"state-machines-param\"]",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "30",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "http://127.0.0.1:56868/",
+        "line": 12517
+      },
+      {
+        "code": "console_error",
+        "severity": "error",
+        "message": "wasm streaming compile failed: TypeError: Failed to execute 'compile' on 'WebAssembly': Incorrect response MIME type. Expected 'application/wasm'.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "30",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "http://127.0.0.1:56868/",
+        "line": 5822
+      },
+      {
+        "code": "console_error",
+        "severity": "error",
+        "message": "falling back to ArrayBuffer instantiation",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "main",
+          "data-start": "0",
+          "data-duration": "30",
+          "data-width": "1920",
+          "data-height": "1080"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "http://127.0.0.1:56868/",
+        "line": 5822
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 30,
+    "samples": [
+      1.667,
+      5,
+      8.333,
+      11.667,
+      15,
+      18.333,
+      21.667,
+      25,
+      28.333
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 5,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "error",
+        "message": "Contrast is 1.26:1; WCAG AA requires 3:1.",
+        "text": "Vālmīki Rāmāyaṇa · Kiṣkindhā Kāṇḍa",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(234,224,207)",
+        "ratio": 1.26,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(131,128,123)",
+        "large": true,
+        "selector": "div > div:nth-of-type(3) > p",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 603.203125,
+          "y": 263.1632080078125,
+          "width": 713.578125,
+          "height": 31
+        },
+        "time": 1.667,
+        "times": [
+          1.667,
+          8.333
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.35:1; WCAG AA requires 3:1.",
+        "text": "Pampā Sarovar",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(176,164,149)",
+        "ratio": 2.35,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(87,85,82)",
+        "large": true,
+        "selector": "div > div:nth-of-type(3) > h1",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 458.546875,
+          "y": 298.8399963378906,
+          "width": 1002.90625,
+          "height": 168
+        },
+        "time": 8.333,
+        "times": [
+          8.333
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 1.92:1; WCAG AA requires 3:1.",
+        "text": "Clear water, lotuses in bloom,",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(189,182,177)",
+        "ratio": 1.92,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(100,98,94)",
+        "large": true,
+        "selector": "div > div:nth-of-type(4) > p:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 652.65625,
+          "y": 785,
+          "width": 614.671875,
+          "height": 72.5
+        },
+        "time": 15,
+        "times": [
+          15
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 1.73:1; WCAG AA requires 3:1.",
+        "text": "and the calls of birds on every bank.",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(203,191,184)",
+        "ratio": 1.73,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(108,106,102)",
+        "large": true,
+        "selector": "div > div:nth-of-type(4) > p:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 587.890625,
+          "y": 857.5,
+          "width": 744.21875,
+          "height": 72.5
+        },
+        "time": 15,
+        "times": [
+          15
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.44:1; WCAG AA requires 3:1.",
+        "text": "Here, in the spring, Rāma stood at the shore",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(157,165,151)",
+        "ratio": 2.44,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(85,83,80)",
+        "large": true,
+        "selector": "div > div:nth-of-type(5) > p:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 505.671875,
+          "y": 742.0009155273438,
+          "width": 908.640625,
+          "height": 72.5
+        },
+        "time": 21.667,
+        "times": [
+          21.667
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 1.75:1; WCAG AA requires 3:1.",
+        "text": "and longed for Sītā.",
+        "fg": "rgb(255,250,240)",
+        "bg": "rgb(201,191,175)",
+        "ratio": 1.75,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(107,105,101)",
+        "large": true,
+        "selector": "div > div:nth-of-type(5) > p:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 758.15625,
+          "y": 815.8245239257812,
+          "width": 403.671875,
+          "height": 72.49993896484375
+        },
+        "time": 21.667,
+        "times": [
+          21.667
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1.667,
+      8.333,
+      15,
+      21.667,
+      28.333
+    ],
+    "checked": 7,
+    "passed": 0
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "film_silent",
+        "severity": "warning",
+        "message": "This 30 s film has no sound source (no <audio>, no <video> with sound): add a music bed and sounds on the visible actions unless the person asked for silence; see references/sound.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 2 text elements stay under it for 0.5 s or more, the smallest \"Rāma at Pampā\" at 20 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "Rāma at Pampā",
+        "selector": "p.credit",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 846.3,
+          "y": 904,
+          "width": 227.39,
+          "height": 26
+        },
+        "time": 22.75,
+        "times": [
+          1.875,
+          22.75
+        ],
+        "fontPx": 20,
+        "floorPx": 28,
+        "seconds": 5.125,
+        "elements": [
+          {
+            "selector": "p.credit",
+            "text": "Rāma at Pampā",
+            "fontPx": 20,
+            "time": 22.75,
+            "seconds": 5.125
+          },
+          {
+            "selector": "p.eyebrow",
+            "text": "Vālmīki Rāmāyaṇa · Kiṣkindhā Kāṇḍa",
+            "fontPx": 24,
+            "time": 1.875,
+            "seconds": 7.375
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 240
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "audio_none",
+        "severity": "info",
+        "message": "The film has no sound: no clip in it plays audio.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ]
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}
