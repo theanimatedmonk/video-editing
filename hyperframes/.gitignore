@@ -10,4 +10,5 @@
 .hyperframes/live-runs/
 .hyperframes/video-state-lock/
 .hyperframes/backup/
+.hyperframes/references/
 .DS_Store
