@@ -1,0 +1,558 @@
+{
+  "version": 1,
+  "historyId": null,
+  "currentRevision": null,
+  "pendingChanges": true,
+  "files": {},
+  "revisions": {},
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "3ab2de67-a583-48b8-9a77-146ef970e4e3"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "77540d9d-4036-4279-b766-dade34c57e70",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/77540d9d-4036-4279-b766-dade34c57e70.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793904884658,
+        "contentHash": "482ffa0a4a30141a7e9ede9b243ff1a67a352a6dfaa17a2c1341cb4f2d1ad046",
+        "revision": null,
+        "inputFingerprint": "9092eae284b8e70ea7a3b1d453817af5fbebe84d652d8b48919ec0fc4dcd72ae",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "1c267ecd-1a25-4ee0-9083-f6e66c71fd65",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/1c267ecd-1a25-4ee0-9083-f6e66c71fd65.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793904906841,
+        "contentHash": "c28c487befd27439dbdf32836740c9fabb8c3b2b4d915ad72f126f43845a384c",
+        "revision": null,
+        "inputFingerprint": "9092eae284b8e70ea7a3b1d453817af5fbebe84d652d8b48919ec0fc4dcd72ae",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "d6bdf6c7-33d4-4084-9aed-93971c9f0f45",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/d6bdf6c7-33d4-4084-9aed-93971c9f0f45.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793904990015,
+        "contentHash": "72f03b03246bc11ed82df672c5eafbc7bc29a1ee169b187e48e492937297c8c3",
+        "revision": null,
+        "inputFingerprint": "9799a76c05c6e3f4dedbbb422e2c89e9c16bbbb432d0697ab24785edd3d8f9e6",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "35be15e6-538c-45ff-9366-0e306cdf6871",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/35be15e6-538c-45ff-9366-0e306cdf6871.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793905097189,
+        "contentHash": "1a08e9cc3e5fb36016433fdda9a5dd906a0bb5b53851080ebe38e900bc4d898c",
+        "revision": null,
+        "inputFingerprint": "40f28e7f58c9e48de146621c5e0cad7fc4070a92059b174ee64574ab6ed2f566",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "5e2d48a8-15c6-46de-9ad2-dc372ccdc1c5",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/5e2d48a8-15c6-46de-9ad2-dc372ccdc1c5.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793905522086,
+        "contentHash": "1a08e9cc3e5fb36016433fdda9a5dd906a0bb5b53851080ebe38e900bc4d898c",
+        "revision": null,
+        "inputFingerprint": "d58bd2d70044c7e8c0717012979e76709c4ed28d7cfe81119658db7ae76a53c3",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "4147b81d-f7c2-4377-bbf4-f776b20b0b22",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/4147b81d-f7c2-4377-bbf4-f776b20b0b22.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793905921701,
+        "contentHash": "000aa36341c4c86373d9bf641dbdc359c8ad190595d08c5c524075e5b8ada4aa",
+        "revision": null,
+        "inputFingerprint": "086346e937293a3c5814230e411a7f52a4c230c820cd69bf6d357da0e4448a2d",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "b43a6e01-1c60-4d64-993b-6d25dc16f99b",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/b43a6e01-1c60-4d64-993b-6d25dc16f99b.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793906058872,
+        "contentHash": "000aa36341c4c86373d9bf641dbdc359c8ad190595d08c5c524075e5b8ada4aa",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "e84e6e1d-a43e-4cf8-b2de-f73cc2781020",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/e84e6e1d-a43e-4cf8-b2de-f73cc2781020.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793906364738,
+        "contentHash": "000aa36341c4c86373d9bf641dbdc359c8ad190595d08c5c524075e5b8ada4aa",
+        "revision": null,
+        "inputFingerprint": "ba5255d418600b422e13304677d1873c396c098e5788d47c35170904ac404bd1",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "79075ff2-96df-4e49-b6de-aecf7f94eabf",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/79075ff2-96df-4e49-b6de-aecf7f94eabf.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793906534896,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "e21b41dc6f15ce49e823aa4954ecb58089940d5313a2e87daa131d8ba3c0c856",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "3cd5a5f2-7159-4906-90e0-954c7d8fe92c",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/3cd5a5f2-7159-4906-90e0-954c7d8fe92c.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793907805970,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "bbbe3dbd87b6ffba38214808463b0f0fefdf8f0830f0a291316f928528fd16e4",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "9b98e99e-4e9e-4d4e-bddc-b77860b57409",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/9b98e99e-4e9e-4d4e-bddc-b77860b57409.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793907906790,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "b23c74d4fae8ef16d197853891907a376e84e1167c3f66ff137656d9a765a010",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "5eccd1e9-3700-451b-ba7f-9adea9301826",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/5eccd1e9-3700-451b-ba7f-9adea9301826.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793908173122,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "6b33055d29b36b20d4eda89ab82be3bb0a56599cfb902156bec5ec12feba21e0",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "a044bf29-067d-4c92-920f-daa387e2e8a3",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/a044bf29-067d-4c92-920f-daa387e2e8a3.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793908189403,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "8dd0688677d677db427335936c971608cf8f45fbed689dac882809269155ca6f",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "e7598e1f-4d32-4efd-aa7a-76eaf5518641",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/e7598e1f-4d32-4efd-aa7a-76eaf5518641.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793908477274,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "02de6e9a1e9b87a11e7a2d9a24ebb9b2a6f1a40872e5973f9a657093de13c692",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "13a96eed-ea2d-409a-9445-9b51aa9c9242",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/13a96eed-ea2d-409a-9445-9b51aa9c9242.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793908635655,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "d3585eb0ac84b45d592917449119f3bc409e5b9748d921f062a97c768792232a",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "id": "3ab2de67-a583-48b8-9a77-146ef970e4e3",
+        "scope": "project",
+        "report": "/Users/sajal.k/.hyperframes-studio/Pampa-lake/.hyperframes/artifacts/checks/3ab2de67-a583-48b8-9a77-146ef970e4e3.json",
+        "metadata": {
+          "ok": true,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1793908652159,
+        "contentHash": "5c9c3ead5c3e1bb6cb6ce340ecdd94c68e26d1375c87129f2fc38fd38251ebe7",
+        "revision": null,
+        "inputFingerprint": "58f74fed765d05c452975d5d1d3dd7b1407d4214f2de2fceff2efaad321ea2dc",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": null,
+      "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-4"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-0",
+        "image": "/tmp/pampa-snap/frame-00-at-2s.png",
+        "time": 2,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793906045514,
+        "contentHash": "eda7832c50a7150b30db132f6828dd2875c911ccd9812317928b39c5524f6403",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-1",
+        "image": "/tmp/pampa-snap/frame-01-at-8s.png",
+        "time": 8,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793906045514,
+        "contentHash": "bc1b9ca2051cd531e35579febdf293f759e50b982d152ddf6c3249cfe6fac966",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-2",
+        "image": "/tmp/pampa-snap/frame-02-at-14s.png",
+        "time": 14,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793906045514,
+        "contentHash": "a06f3daebf5bc4882006e3c78293e702d7e794210b171f8a6d091f920c04f752",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-3",
+        "image": "/tmp/pampa-snap/frame-03-at-20s.png",
+        "time": 20,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793906045514,
+        "contentHash": "dc0ff483b366e8c7f4531008df65560f79cc2b2bbd4adc7d4788cc26504cf180",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "8afecc4a-a090-44d8-b019-b18b2d4b4253-4",
+        "image": "/tmp/pampa-snap/frame-04-at-26s.png",
+        "time": 26,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1793906045514,
+        "contentHash": "07a1018f005677710b2712f0215a59e5dd8c622b0ac8911236ea6d02716dd255",
+        "revision": null,
+        "inputFingerprint": "5b9d143cf66b3c3f0eb8fc5e2b141bf55ba5377d2a04b1b49915627d59258d97",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  }
+}
