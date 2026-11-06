@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #f7ecd0;
+        }
+        #lake-canvas {
+          position: absolute;
+          inset: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        /* A soft warm vignette at the edges. */
+        #lake-veil {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: radial-gradient(ellipse 85% 75% at 50% 48%, rgba(60, 40, 25, 0) 60%, rgba(60, 40, 25, 0.22) 100%);
+        }
+        #lake-fade {
+          position: absolute;
+          inset: 0;
+          background: #1a120c;
+          pointer-events: none;
+        }
+      </style>
+
+      <div data-hf-id="hf-w3k0" id="root" data-composition-id="lake" data-width="1920" data-height="1080">
+        <canvas data-hf-id="hf-wrq2" id="lake-canvas" width="1920" height="1080"></canvas>
+        <div data-hf-id="hf-xw1l" id="lake-veil"></div>
+        <div data-hf-id="hf-ppuf" id="lake-fade"></div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/@rive-app/webgl2@2.44.2/rive.js"></script>
+      <script>
+        // Fade up from dark at the start, back to dark at the end.
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#lake-fade", { opacity: 1 }, { opacity: 0, duration: 2.2, ease: "power2.out" }, 0);
+        tl.to("#lake-fade", { opacity: 1, duration: 1.8, ease: "power2.in" }, 28.2);
+        window.__timelines["lake"] = tl;
+      </script>
+      <script>
+        // The Rive lake: the Pampa Sarovar artboard of the Rive file. Its own
+        // camera move (`tour`) glides from the hero view over the water to the
+        // lotus beds and the hamsas. Rive's render loop is switched off: each
+        // HyperFrames seek steps the state machine to that time and draws one
+        // frame, so every frame is the same on every run.
+        (function () {
+          const STEP = 1 / 60;
+          const SCENE = { tour: 1, tourSpeed: 1.6 };
+          const canvas = document.getElementById("lake-canvas");
+
+          let lake = null;
+          let current = 0;
+          let wanted = 0;
+          let resolveReady;
+          window.__hf = window.__hf || {};
+          window.__hf.buildReady = window.__hf.buildReady || {};
+          window.__hf.buildReady["pampa-lake"] = new Promise((resolve) => (resolveReady = resolve));
+
+          function applyScene() {
+            const vm = lake.viewModelInstance;
+            for (const [name, value] of Object.entries(SCENE)) {
+              const prop = vm && vm.number(name);
+              if (prop) prop.value = value;
+            }
+            lake.advanceAndReportChanges(0);
+            current = 0;
+          }
+
+          function restart() {
+            lake.reset({ artboard: "Pampa Sarovar", stateMachine: "Scene", autoplay: true, autoBind: true });
+            applyScene();
+          }
+
+          function renderAt(t) {
+            if (!lake) {
+              wanted = t;
+              return;
+            }
+            // Going back in time starts the scene over and steps forward again.
+            if (t < current - 1e-6) restart();
+            while (current < t - 1e-6) {
+              const dt = Math.min(STEP, t - current);
+              lake.advanceAndReportChanges(dt);
+              current += dt;
+            }
+            // Draw this state without advancing it again.
+            lake.lastRenderTime = 1;
+            lake._needsRedraw = true;
+            draw.call(lake, 1);
+            if (lake.runtime && lake.runtime.resolveAnimationFrame) lake.runtime.resolveAnimationFrame();
+          }
+
+          const instance = new rive.Rive({
+            src: "assets/rive/pampa_lake.riv",
+            canvas,
+            artboard: "Pampa Sarovar",
+            stateMachine: "Scene",
+            autoplay: true,
+            autoBind: true,
+            enableGPUCanvas: true,
+            layout: new rive.Layout({ fit: rive.Fit.Cover, alignment: rive.Alignment.Center }),
+            onLoad: () => {
+              instance.stopRendering();
+              instance.resizeDrawingSurfaceToCanvas(1);
+              lake = instance;
+              // Start from a clean scene, whatever Rive drew while loading.
+              restart();
+              renderAt(wanted);
+              resolveReady();
+            },
+            onLoadError: (error) => {
+              console.error("Pampa lake failed to load", error);
+              resolveReady();
+            },
+          });
+          // HyperFrames is the clock: Rive never schedules frames of its own.
+          const draw = instance.draw;
+          instance.scheduleRendering = function () {};
+          instance.startRendering = function () {};
+          instance.drawFrame = function () {};
+          instance.draw = function () {};
+          instance._boundDraw = function () {};
+
+          window.addEventListener("hf-seek", (event) => renderAt(event.detail.time));
+        })();
+      </script>
+    </template>
+  </body>
+</html>
