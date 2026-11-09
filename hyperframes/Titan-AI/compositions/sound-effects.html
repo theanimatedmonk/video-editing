@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        #sound-effects {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+      </style>
+      <!-- Every sound, timed so it lands on its moment on screen. Times are seconds in the video. -->
+      <div data-hf-id="hf-5lob" id="sound-effects" data-composition-id="sound-effects" data-width="1920" data-height="1080">
+        <!-- notifications -->
+        <audio data-hf-id="hf-c0zp" id="sfx-notifications" src="assets/audio/sfx/stem-notifications.mp3" data-start="0.000" data-duration="3.600" data-track-index="0" data-volume="0.80"></audio>
+        <!-- rumble -->
+        <audio data-hf-id="hf-zwhs" id="sfx-rumble" src="assets/audio/sfx/stem-rumble.mp3" data-start="1.350" data-duration="1.950" data-track-index="1" data-volume="0.85"></audio>
+        <!-- card pile -->
+        <audio data-hf-id="hf-yi23" id="sfx-card-pile" src="assets/audio/sfx/stem-card-pile.mp3" data-start="3.000" data-duration="3.200" data-track-index="2" data-volume="0.90"></audio>
+        <!-- tag pops -->
+        <audio data-hf-id="hf-eq65" id="sfx-tag-pops" src="assets/audio/sfx/stem-tag-pops.mp3" data-start="11.000" data-duration="2.800" data-track-index="0" data-volume="0.78"></audio>
+        <!-- typing -->
+        <audio data-hf-id="hf-2pkv" id="sfx-typing" src="assets/audio/sfx/stem-typing.mp3" data-start="20.000" data-duration="27.400" data-track-index="0" data-volume="0.80"></audio>
+        <!-- countdown -->
+        <audio data-hf-id="hf-fiq3" id="sfx-countdown" src="assets/audio/sfx/stem-countdown.mp3" data-start="57.100" data-duration="2.500" data-track-index="0" data-volume="0.32"></audio>
+        <!-- 1.95s number catches fire -->
+        <audio data-hf-id="hf-xaaw" id="sfx-fire-1" src="assets/audio/sfx/fire.mp3" data-start="1.220" data-duration="2.360" data-track-index="3" data-volume="0.50"></audio>
+        <!-- 2.70s it keeps burning -->
+        <audio data-hf-id="hf-y29v" id="sfx-fire-2" src="assets/audio/sfx/fire.mp3" data-start="1.970" data-duration="2.360" data-track-index="4" data-volume="0.42"></audio>
+        <!-- 3.10s count gives way to the flood -->
+        <audio data-hf-id="hf-uaz9" id="sfx-count-out" src="assets/audio/sfx/whoosh.mp3" data-start="2.755" data-duration="1.290" data-track-index="5" data-volume="0.50"></audio>
+        <!-- 6.92s logo: the seed pops -->
+        <audio data-hf-id="hf-wtnf" id="sfx-logo-seed" src="assets/audio/sfx/pop.mp3" data-start="6.870" data-duration="0.580" data-track-index="1" data-volume="0.60"></audio>
+        <!-- 7.70s logo: the star opens into the tile -->
+        <audio data-hf-id="hf-swx1" id="sfx-logo-open" src="assets/audio/sfx/sparkle.mp3" data-start="7.000" data-duration="3.330" data-track-index="2" data-volume="0.50"></audio>
+        <!-- 8.90s logo: TITAN AI finishes writing -->
+        <audio data-hf-id="hf-u7l9" id="sfx-logo-word" src="assets/audio/sfx/sting.mp3" data-start="7.655" data-duration="4.760" data-track-index="1" data-volume="0.50"></audio>
+        <!-- 9.90s MacBook lid swings up -->
+        <audio data-hf-id="hf-aokw" id="sfx-lid-air" src="assets/audio/sfx/whoosh.mp3" data-start="9.555" data-duration="1.290" data-track-index="3" data-volume="0.30"></audio>
+        <!-- 10.50s lid settles -->
+        <audio data-hf-id="hf-jt4m" id="sfx-lid-rest" src="assets/audio/sfx/keypress.mp3" data-start="10.280" data-duration="0.770" data-track-index="4" data-volume="0.38"></audio>
+        <!-- 13.95s label tabs appear -->
+        <audio data-hf-id="hf-ntwy" id="sfx-tabs-in" src="assets/audio/sfx/pop.mp3" data-start="13.900" data-duration="0.580" data-track-index="1" data-volume="0.40"></audio>
+        <!-- 14.55s Respond tab -->
+        <audio data-hf-id="hf-fsxh" id="sfx-filter-click" src="assets/audio/sfx/click.mp3" data-start="14.310" data-duration="0.290" data-track-index="2" data-volume="0.60"></audio>
+        <!-- 14.85s list filters -->
+        <audio data-hf-id="hf-teyk" id="sfx-filter-move" src="assets/audio/sfx/whoosh.mp3" data-start="14.505" data-duration="1.290" data-track-index="1" data-volume="0.42"></audio>
+        <!-- 18.10s to iPad: AI Inbox -->
+        <audio data-hf-id="hf-ny97" id="sfx-to-ipad" src="assets/audio/sfx/whoosh.mp3" data-start="17.755" data-duration="1.290" data-track-index="1" data-volume="0.34"></audio>
+        <!-- 20.15s tap: Power through replies -->
+        <audio data-hf-id="hf-dlce" id="sfx-power-tap" src="assets/audio/sfx/click.mp3" data-start="19.910" data-duration="0.290" data-track-index="1" data-volume="0.70"></audio>
+        <!-- 20.50s reply queue slides in -->
+        <audio data-hf-id="hf-9olp" id="sfx-panel-in" src="assets/audio/sfx/whoosh.mp3" data-start="20.155" data-duration="1.290" data-track-index="2" data-volume="0.42"></audio>
+        <!-- 21.80s tap Send, email 1 -->
+        <audio data-hf-id="hf-3r2c" id="sfx-send-tap-1" src="assets/audio/sfx/click.mp3" data-start="21.560" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 21.95s email 1 flies off -->
+        <audio data-hf-id="hf-gbt3" id="sfx-send-1" src="assets/audio/sfx/send.mp3" data-start="21.515" data-duration="1.100" data-track-index="2" data-volume="0.50"></audio>
+        <!-- 23.05s tap Send, email 2 -->
+        <audio data-hf-id="hf-05oo" id="sfx-send-tap-2" src="assets/audio/sfx/click.mp3" data-start="22.810" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 23.20s email 2 flies off -->
+        <audio data-hf-id="hf-6htg" id="sfx-send-2" src="assets/audio/sfx/send.mp3" data-start="22.765" data-duration="1.100" data-track-index="2" data-volume="0.47"></audio>
+        <!-- 24.00s tap Send, email 3 -->
+        <audio data-hf-id="hf-osbe" id="sfx-send-tap-3" src="assets/audio/sfx/click.mp3" data-start="23.760" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 24.15s email 3 flies off -->
+        <audio data-hf-id="hf-hapt" id="sfx-send-3" src="assets/audio/sfx/send.mp3" data-start="23.715" data-duration="1.100" data-track-index="3" data-volume="0.44"></audio>
+        <!-- 24.88s tap Send, email 4 -->
+        <audio data-hf-id="hf-7far" id="sfx-send-tap-4" src="assets/audio/sfx/click.mp3" data-start="24.640" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 25.03s email 4 flies off -->
+        <audio data-hf-id="hf-3aq5" id="sfx-send-4" src="assets/audio/sfx/send.mp3" data-start="24.595" data-duration="1.100" data-track-index="2" data-volume="0.41"></audio>
+        <!-- 25.76s tap Send, email 5 -->
+        <audio data-hf-id="hf-qmrs" id="sfx-send-tap-5" src="assets/audio/sfx/click.mp3" data-start="25.520" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 25.91s email 5 flies off -->
+        <audio data-hf-id="hf-jw41" id="sfx-send-5" src="assets/audio/sfx/send.mp3" data-start="25.475" data-duration="1.100" data-track-index="3" data-volume="0.38"></audio>
+        <!-- 26.76s tap Send, email 6 -->
+        <audio data-hf-id="hf-0m30" id="sfx-send-tap-6" src="assets/audio/sfx/click.mp3" data-start="26.520" data-duration="0.290" data-track-index="1" data-volume="0.55"></audio>
+        <!-- 26.91s email 6 flies off -->
+        <audio data-hf-id="hf-f7x3" id="sfx-send-6" src="assets/audio/sfx/send.mp3" data-start="26.475" data-duration="1.100" data-track-index="2" data-volume="0.35"></audio>
+        <!-- 27.00s That's all of them -->
+        <audio data-hf-id="hf-fe35" id="sfx-queue-done" src="assets/audio/sfx/chime.mp3" data-start="26.955" data-duration="0.720" data-track-index="1" data-volume="0.62"></audio>
+        <!-- 28.00s to MacBook: AI Write -->
+        <audio data-hf-id="hf-wmfd" id="sfx-to-mac" src="assets/audio/sfx/whoosh.mp3" data-start="27.655" data-duration="1.290" data-track-index="2" data-volume="0.34"></audio>
+        <!-- 28.05s New message opens -->
+        <audio data-hf-id="hf-6i8f" id="sfx-compose-open" src="assets/audio/sfx/pop.mp3" data-start="28.000" data-duration="0.580" data-track-index="1" data-volume="0.50"></audio>
+        <!-- 30.00s send the ask -->
+        <audio data-hf-id="hf-vu9b" id="sfx-ask-send" src="assets/audio/sfx/click.mp3" data-start="29.760" data-duration="0.290" data-track-index="1" data-volume="0.65"></audio>
+        <!-- 30.75s AI draft starts writing -->
+        <audio data-hf-id="hf-suiy" id="sfx-generating" src="assets/audio/sfx/sparkle.mp3" data-start="30.050" data-duration="3.330" data-track-index="1" data-volume="0.26"></audio>
+        <!-- 32.00s bar becomes Describe your change -->
+        <audio data-hf-id="hf-z25o" id="sfx-bar-change" src="assets/audio/sfx/pop.mp3" data-start="31.950" data-duration="0.580" data-track-index="2" data-volume="0.42"></audio>
+        <!-- 32.80s open tone menu -->
+        <audio data-hf-id="hf-c02u" id="sfx-tone-open" src="assets/audio/sfx/click.mp3" data-start="32.560" data-duration="0.290" data-track-index="2" data-volume="0.60"></audio>
+        <!-- 32.90s tone menu appears -->
+        <audio data-hf-id="hf-pmjf" id="sfx-tone-menu" src="assets/audio/sfx/pop.mp3" data-start="32.850" data-duration="0.580" data-track-index="2" data-volume="0.34"></audio>
+        <!-- 33.50s pick tone -->
+        <audio data-hf-id="hf-itsq" id="sfx-tone-pick" src="assets/audio/sfx/click.mp3" data-start="33.260" data-duration="0.290" data-track-index="3" data-volume="0.60"></audio>
+        <!-- 33.65s draft rewrites, tone -->
+        <audio data-hf-id="hf-ubac" id="sfx-tone-swap" src="assets/audio/sfx/whoosh.mp3" data-start="33.305" data-duration="1.290" data-track-index="4" data-volume="0.42"></audio>
+        <!-- 34.40s open length menu -->
+        <audio data-hf-id="hf-bru9" id="sfx-length-open" src="assets/audio/sfx/click.mp3" data-start="34.160" data-duration="0.290" data-track-index="1" data-volume="0.60"></audio>
+        <!-- 34.50s length menu appears -->
+        <audio data-hf-id="hf-ua6s" id="sfx-length-menu" src="assets/audio/sfx/pop.mp3" data-start="34.450" data-duration="0.580" data-track-index="1" data-volume="0.34"></audio>
+        <!-- 35.10s pick length -->
+        <audio data-hf-id="hf-7s6g" id="sfx-length-pick" src="assets/audio/sfx/click.mp3" data-start="34.860" data-duration="0.290" data-track-index="2" data-volume="0.60"></audio>
+        <!-- 35.25s draft rewrites, length -->
+        <audio data-hf-id="hf-1m40" id="sfx-length-swap" src="assets/audio/sfx/whoosh.mp3" data-start="34.905" data-duration="1.290" data-track-index="3" data-volume="0.42"></audio>
+        <!-- 36.00s open language menu -->
+        <audio data-hf-id="hf-l6hc" id="sfx-language-open" src="assets/audio/sfx/click.mp3" data-start="35.760" data-duration="0.290" data-track-index="1" data-volume="0.60"></audio>
+        <!-- 36.10s language menu appears -->
+        <audio data-hf-id="hf-g6gw" id="sfx-language-menu" src="assets/audio/sfx/pop.mp3" data-start="36.050" data-duration="0.580" data-track-index="1" data-volume="0.34"></audio>
+        <!-- 36.70s pick language -->
+        <audio data-hf-id="hf-kh5w" id="sfx-language-pick" src="assets/audio/sfx/click.mp3" data-start="36.460" data-duration="0.290" data-track-index="2" data-volume="0.60"></audio>
+        <!-- 36.85s draft rewrites, language -->
+        <audio data-hf-id="hf-myds" id="sfx-language-swap" src="assets/audio/sfx/whoosh.mp3" data-start="36.505" data-duration="1.290" data-track-index="3" data-volume="0.42"></audio>
+        <!-- 39.05s to iPad: Tia -->
+        <audio data-hf-id="hf-2f5c" id="sfx-to-ipad-tia" src="assets/audio/sfx/whoosh.mp3" data-start="38.705" data-duration="1.290" data-track-index="1" data-volume="0.30"></audio>
+        <!-- 39.30s Command-semicolon -->
+        <audio data-hf-id="hf-s3ft" id="sfx-shortcut" src="assets/audio/sfx/keypress.mp3" data-start="39.080" data-duration="0.770" data-track-index="2" data-volume="0.78"></audio>
+        <!-- 39.75s Tia slides in -->
+        <audio data-hf-id="hf-kna2" id="sfx-tia-in" src="assets/audio/sfx/whoosh.mp3" data-start="39.405" data-duration="1.290" data-track-index="3" data-volume="0.42"></audio>
+        <!-- 42.55s send: summarize -->
+        <audio data-hf-id="hf-ktlt" id="sfx-tia-send-1" src="assets/audio/sfx/click.mp3" data-start="42.310" data-duration="0.290" data-track-index="1" data-volume="0.62"></audio>
+        <!-- 42.72s question appears -->
+        <audio data-hf-id="hf-pac6" id="sfx-tia-bubble-1" src="assets/audio/sfx/pop.mp3" data-start="42.670" data-duration="0.580" data-track-index="1" data-volume="0.45"></audio>
+        <!-- 44.40s summary arrives -->
+        <audio data-hf-id="hf-rk4h" id="sfx-tia-answer" src="assets/audio/sfx/chime.mp3" data-start="44.355" data-duration="0.720" data-track-index="1" data-volume="0.34"></audio>
+        <!-- 47.40s send: schedule -->
+        <audio data-hf-id="hf-2v9u" id="sfx-tia-send-2" src="assets/audio/sfx/click.mp3" data-start="47.160" data-duration="0.290" data-track-index="1" data-volume="0.62"></audio>
+        <!-- 47.52s question appears -->
+        <audio data-hf-id="hf-273a" id="sfx-tia-bubble-2" src="assets/audio/sfx/pop.mp3" data-start="47.470" data-duration="0.580" data-track-index="1" data-volume="0.45"></audio>
+        <!-- 49.25s Tia: done, confetti -->
+        <audio data-hf-id="hf-ak4p" id="sfx-tia-done" src="assets/audio/sfx/sparkle.mp3" data-start="48.550" data-duration="3.330" data-track-index="1" data-volume="0.42"></audio>
+        <!-- 49.42s event card lands -->
+        <audio data-hf-id="hf-idei" id="sfx-event-card" src="assets/audio/sfx/pop.mp3" data-start="49.370" data-duration="0.580" data-track-index="2" data-volume="0.55"></audio>
+        <!-- 52.05s Sorted. -->
+        <audio data-hf-id="hf-w0k6" id="sfx-recap-sorted" src="assets/audio/sfx/impact.mp3" data-start="51.765" data-duration="0.700" data-track-index="2" data-volume="0.68"></audio>
+        <!-- 53.25s Cleared. -->
+        <audio data-hf-id="hf-7jbj" id="sfx-recap-cleared" src="assets/audio/sfx/impact.mp3" data-start="52.965" data-duration="0.700" data-track-index="1" data-volume="0.68"></audio>
+        <!-- 54.45s Written. -->
+        <audio data-hf-id="hf-2kr0" id="sfx-recap-written" src="assets/audio/sfx/impact.mp3" data-start="54.165" data-duration="0.700" data-track-index="1" data-volume="0.68"></audio>
+        <!-- 55.65s Handled. -->
+        <audio data-hf-id="hf-u3ja" id="sfx-recap-handled" src="assets/audio/sfx/impact.mp3" data-start="55.365" data-duration="0.700" data-track-index="1" data-volume="0.68"></audio>
+        <!-- 59.60s count hits zero, turns blue -->
+        <audio data-hf-id="hf-nj12" id="sfx-zero" src="assets/audio/sfx/chime.mp3" data-start="59.555" data-duration="0.720" data-track-index="1" data-volume="0.65"></audio>
+        <!-- 61.25s TITAN logo arrives -->
+        <audio data-hf-id="hf-ac2i" id="sfx-lockup" src="assets/audio/sfx/sting.mp3" data-start="60.005" data-duration="4.760" data-track-index="0" data-volume="0.50"></audio>
+        <!-- 62.05s feature 1 appears -->
+        <audio data-hf-id="hf-k8j9" id="sfx-feature-1" src="assets/audio/sfx/pop.mp3" data-start="62.000" data-duration="0.580" data-track-index="1" data-volume="0.42"></audio>
+        <!-- 62.23s feature 2 appears -->
+        <audio data-hf-id="hf-dpfs" id="sfx-feature-2" src="assets/audio/sfx/pop.mp3" data-start="62.180" data-duration="0.580" data-track-index="2" data-volume="0.42"></audio>
+        <!-- 62.41s feature 3 appears -->
+        <audio data-hf-id="hf-bj2c" id="sfx-feature-3" src="assets/audio/sfx/pop.mp3" data-start="62.360" data-duration="0.580" data-track-index="3" data-volume="0.42"></audio>
+        <!-- 62.59s feature 4 appears -->
+        <audio data-hf-id="hf-gv9s" id="sfx-feature-4" src="assets/audio/sfx/pop.mp3" data-start="62.540" data-duration="0.580" data-track-index="4" data-volume="0.42"></audio>
+        <!-- 68.45s titan.email appears -->
+        <audio data-hf-id="hf-n3ox" id="sfx-end-url" src="assets/audio/sfx/chime.mp3" data-start="68.405" data-duration="0.720" data-track-index="0" data-volume="0.42"></audio>
+      </div>
+      <script>
+        window.__timelines["sound-effects"] = gsap.timeline({ paused: true });
+      </script>
+    </template>
+  </body>
+</html>

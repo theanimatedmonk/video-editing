@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #hook {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #hook .glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 45% 40% at 50% 46%, rgba(47, 107, 255, 0.07) 0%, transparent 70%);
+        }
+        #hook .counter {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 200px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 26px;
+        }
+        #hook .num {
+          position: relative;
+          font-size: 250px;
+          font-weight: 800;
+          letter-spacing: -0.05em;
+          line-height: 0.9;
+          color: #1d1d1f;
+          font-variant-numeric: tabular-nums;
+        }
+        #hook .cap {
+          font-size: 20px;
+          letter-spacing: 0.42em;
+          color: #6e6e73;
+          font-weight: 500;
+          margin-left: 0.42em;
+        }
+        #hook .line {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 640px;
+          text-align: center;
+          font-size: 64px;
+          font-weight: 700;
+          letter-spacing: -0.025em;
+          color: #1d1d1f;
+        }
+        #hook .should {
+          position: absolute;
+          left: 120px;
+          top: 830px;
+          font-size: 76px;
+          font-weight: 700;
+          letter-spacing: -0.03em;
+          color: #1d1d1f;
+          text-shadow: 0 0 30px rgba(255, 255, 255, 0.95), 0 0 12px rgba(255, 255, 255, 0.9);
+        }
+        #hook .toasts {
+          position: absolute;
+          right: 60px;
+          top: 44px;
+          width: 460px;
+          height: 150px;
+        }
+        /* Solid cards, so the ones underneath only show as edges below the newest */
+        #hook .toasts .t-notif {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 460px;
+          align-items: center;
+          gap: 14px;
+          padding: 16px 18px;
+          background: #ffffff;
+          transform-origin: 50% 100%;
+          box-shadow: 0 14px 34px rgba(20, 24, 40, 0.14), 0 0 0 1px rgba(20, 24, 40, 0.06);
+        }
+        #hook .t-notif .who {
+          width: 48px;
+          height: 48px;
+          flex: none;
+          border-radius: 50%;
+          object-fit: cover;
+          font-size: 16px;
+        }
+        #hook .t-notif .txt {
+          min-width: 0;
+        }
+        #hook .t-notif b {
+          display: block;
+          font-size: 17px;
+          color: #1d1d1f;
+        }
+        #hook .t-notif .sub {
+          margin-top: 2px;
+          font-size: 15px;
+          color: #515154;
+          white-space: nowrap;
+        }
+        #hook .t-notif .when {
+          margin-left: auto;
+          align-self: flex-start;
+          font-size: 13px;
+          color: #6e6e73;
+        }
+
+        /* the flood of email */
+        #hook .flood {
+          position: absolute;
+          inset: 0;
+          perspective: 1600px;
+          perspective-origin: 50% 30%;
+        }
+        #hook .plane {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          transform-origin: 50% 75%;
+          transform-style: preserve-3d;
+        }
+        #hook .mrow {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          width: 760px;
+          height: 54px;
+          padding: 0 18px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.96);
+          border: 1px solid rgba(20, 24, 40, 0.06);
+          box-shadow: 0 14px 34px rgba(20, 24, 40, 0.1);
+          font-size: 15px;
+          white-space: nowrap;
+          color: #1d1d1f;
+        }
+        #hook .mrow b {
+          font-weight: 600;
+          width: 150px;
+          flex: none;
+        }
+        #hook .mrow i {
+          font-style: normal;
+          color: #6e6e73;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        #hook .mrow em {
+          margin-left: auto;
+          font-style: normal;
+          font-size: 12px;
+          color: #6e6e73;
+        }
+
+        /* The Titan AI reveal (a Rive animation with a clear background) */
+        #hook-logo-canvas {
+          position: absolute;
+          left: 510px;
+          top: 90px;
+          width: 900px;
+          height: 900px;
+        }
+
+        /* The burning number: glow and flames behind the solid digits */
+        #hook .num span {
+          display: block;
+          white-space: nowrap;
+        }
+        #hook .num .n-glow,
+        #hook .num .n-fire {
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+          pointer-events: none;
+        }
+        #hook .num .n-glow {
+          color: #ff3a00;
+          filter: blur(22px);
+        }
+        #hook .num .n-fire {
+          color: transparent;
+          background: linear-gradient(to top, #ffe27a 0%, #ffa11a 34%, #ff4d00 62%, rgba(255, 40, 0, 0.45) 84%, rgba(255, 40, 0, 0) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          transform-origin: 50% 100%;
+          transform: scale(1.01, 1.16);
+          filter: url(#hook-burn);
+        }
+        #hook .num .n-main {
+          position: relative;
+        }
+      </style>
+
+      <!-- Opening: the unread count climbs, email floods in, then the Titan AI mark. -->
+      <div data-hf-id="hf-kdm6" id="hook" data-composition-id="scene-hook" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-0q76" class="t-ui" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-2s7n" class="glow"></div>
+
+          <div data-hf-id="hf-m3p8" class="flood"><div data-hf-id="hf-2ity" class="plane"></div></div>
+
+          <div data-hf-id="hf-el44" class="counter">
+            <div data-hf-id="hf-q2e6" class="num"><span data-hf-id="hf-cb47" class="n-glow">19</span><span data-hf-id="hf-gm0g" class="n-fire">19</span><span data-hf-id="hf-vmc3" class="n-main">19</span></div>
+            <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute"><defs data-hf-id="hf-mh0t"><filter data-hf-id="hf-ysto" id="hook-burn" x="-15%" y="-70%" width="130%" height="190%"><feturbulence data-hf-id="hf-6d94" id="hook-burn-noise" type="fractalNoise" baseFrequency="0.024 0.085" numOctaves="4" seed="1" result="n" /><fedisplacementmap data-hf-id="hf-36o7" in="SourceGraphic" in2="n" scale="34" xChannelSelector="R" yChannelSelector="G" /><fegaussianblur data-hf-id="hf-ysbj" stdDeviation="1" /></filter></defs></svg>
+            <div data-hf-id="hf-453r" class="cap">UNREAD</div>
+          </div>
+
+          <div data-hf-id="hf-kpnw" class="toasts">
+          </div>
+
+          <div data-hf-id="hf-74p1" class="line">Your inbox never sleeps.</div>
+          <div data-hf-id="hf-bewq" class="should line2">Your inbox never sleeps.</div>
+          <div data-hf-id="hf-28qn" class="should">You should.</div>
+          <canvas data-hf-id="hf-1nf4" id="hook-logo-canvas" class="clip" width="900" height="900" data-start="6.85" data-duration="3" data-track-index="0"></canvas>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("hook");
+          const q = (s) => root.querySelectorAll(s);
+          const one = (s) => root.querySelector(s);
+
+          // The flood: a fixed set of email rows on a tilted plane.
+          const mail = [
+            ["Divya Rao", "Re: Launch date · Can we lock Thursday?"], ["Billing", "Your invoice #8812 is ready · Amount due $1,240.00"],
+            ["Lena Fischer", "Re: Onboarding feedback · Here's the summary"], ["Support", "Your ticket has been updated · An agent replied"],
+            ["Canvas Weekly", "Last chance: 40% off Pro · Offer ends at midnight"], ["Rohan Mehta", "Offsite agenda · Draft attached"],
+            ["Orbit CI", "Build passed on main · All 412 checks passed"], ["Grace Liu", "Re: Pricing page copy · Tightened the headline"],
+            ["Helpdesk", "Ticket #20831 assigned to you · Customer reports login loop"], ["Priya Shah", "Contract draft v3 · Signed and attached"],
+            ["Team Updates", "Weekly digest: 14 new posts · Catch up on what your team shared"], ["Ana Costa", "Quick favour? · Could you intro me to your design lead?"],
+            ["HR Team", "Benefits enrollment closes Friday · Make your selections"], ["Launchpad Daily", "Today's top 10 tools · Fresh launches picked for you"],
+            ["Fatima Noor", "Re: Onboarding schedule · Moved the kickoff"], ["Drive", "Leo Martin shared a file · Q4 forecast.xlsx"],
+            ["Sana Iyer", "Re: Partnership intro · Would Tuesday work?"], ["Payroll", "Your October payslip is ready · View it in the portal"],
+            ["Daniel Reyes", "Re: Contract questions · Two clauses we should look at"], ["Calendar", "Invitation: Design review · Thu 2:00 PM"],
+            ["Anuj Gupta", "Re: Q4 pricing proposal · Sent the revised numbers"], ["Vikram Nair", "Re: Hiring plan · Can you review before Friday?"],
+            ["Northwind Pay", "Payment received: $4,820.00 · Invoice #4821 was paid"], ["Meera Kapoor", "Hiring plan review · Sign off on the Q1 headcount?"],
+          ];
+          // People have a photo; everyone else keeps a letter avatar.
+          const PHOTOS = {"Divya Rao": "women-44", "Anuj Gupta": "men-32", "Sana Iyer": "women-68", "Rohan Mehta": "men-75", "Priya Shah": "women-65", "Arjun Das": "men-46", "Meera Kapoor": "women-90", "Tom Becker": "men-61", "Nikhil Joshi": "men-11", "Lena Fischer": "women-79", "Rachel Kim": "women-17", "Omar Haddad": "men-22", "Grace Liu": "women-33", "Daniel Reyes": "men-85", "Fatima Noor": "women-50", "Leo Martin": "men-54", "Ana Costa": "women-12", "Vikram Nair": "men-41"};
+          const plane = one(".plane");
+          // Half again as many cards, reusing the list, so the pile gets tall.
+          const pile = mail.concat(mail.slice(0, 12));
+          pile.forEach(([who, what], i) => {
+            const row = document.createElement("div");
+            row.className = "mrow";
+            const face = PHOTOS[who];
+            const mark = face ? `<img src="assets/avatars/${face}.jpg" alt="">` : who.split(" ").map((w) => w[0]).join("").slice(0, 2);
+            row.innerHTML = `<span class="t-avatar sm av-${["slate", "amber", "blue", "teal", "pink", "violet", "coral", "green"][i % 8]}">${mark}</span><b>${who}</b><i>${what}</i><em>${["now", "1m", "2m", "4m", "9m"][i % 5]}</em>`;
+            // Each card lands on the one before: a slightly messy, growing pile.
+            row.style.left = `${640 + ((i * 53) % 9 - 4) * 11}px`;
+            row.style.top = `${770 - i * 14}px`;
+            row.style.zIndex = String(i + 1);
+            plane.append(row);
+          });
+          const rows = Array.from(q(".mrow"));
+
+          const num = one(".num");
+          const numLayers = Array.from(q(".num span"));
+          const fmt = (n) => Math.round(n).toLocaleString("en-US");
+          let shown = 0;
+          const counter = { get v() { return shown; }, set v(n) { shown = n; const text = fmt(n); numLayers.forEach((el) => { el.textContent = text; }); } };
+
+          const tl = gsap.timeline({ paused: true });
+
+          // 0: the count climbs while mail keeps landing.
+          tl.fromTo(one(".counter"), { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo(counter, { v: 19 }, { v: 1284, duration: 2.4, ease: "power2.in" }, 0.25);
+          // Past a few hundred it's too much: the number heats up to red.
+          tl.fromTo(num, { color: "#1d1d1f" }, { color: "#a31515", duration: 0.75, ease: "power1.in" }, 1.75);
+          // Mail keeps landing top right, faster and faster, each card over the last.
+          // People have a photo; teams and services have a letter avatar.
+          const INCOMING = [
+            ["Divya Rao", "Re: Launch date", "women-44"],
+            ["Anuj Gupta", "Re: Q4 pricing proposal", "men-32"],
+            ["Orbit CI", "Build passed on main", "amber"],
+            ["Sana Iyer", "Re: Partnership intro", "women-68"],
+            ["Rohan Mehta", "Sprint review notes", "men-75"],
+            ["HR Team", "Benefits enrollment closes Friday", "teal"],
+            ["Priya Shah", "Contract draft v3", "women-65"],
+            ["Arjun Das", "Quick question on invoice #4821", "men-46"],
+            ["Billing", "Your invoice #8812 is ready", "slate"],
+            ["Meera Kapoor", "Hiring plan review", "women-90"],
+            ["Canvas Weekly", "Ten layouts worth stealing", "violet"],
+          ];
+          const stack = one(".toasts");
+          const toasts = INCOMING.map(([who, what, face], i) => {
+            const card = document.createElement("div");
+            card.className = "t-notif";
+            card.style.zIndex = String(i + 1);
+            const initials = who.split(" ").map((w) => w[0]).join("").slice(0, 2);
+            const pic = face.includes("-")
+              ? `<img class="who" src="assets/avatars/${face}.jpg" alt="">`
+              : `<span class="t-avatar who av-${face}">${initials}</span>`;
+            card.innerHTML = `${pic}<div class="txt"><b>${who}</b><div class="sub">${what}</div></div><span class="when">now</span>`;
+            stack.append(card);
+            return card;
+          });
+          // Every arrival and every landing kicks the screen (see the shake below).
+          const impacts = [];
+          const SHAKE_FROM = 1.35; // seconds; the count is about 300 by now
+          let arrive = 0.15;
+          toasts.forEach((t, i) => {
+            tl.fromTo(t, { y: -46, scale: 1.04 }, { y: 0, scale: 1, duration: 0.42, ease: "power3.out" }, arrive);
+            // Solid almost at once, so the card below never shows through it.
+            tl.fromTo(t, { opacity: 0 }, { opacity: 1, duration: 0.07, ease: "none" }, arrive);
+            // Everything already there slides back one step.
+            toasts.slice(Math.max(0, i - 4), i).forEach((older, k, list) => {
+              const depth = list.length - k;
+              tl.to(older, { y: depth * 13, scale: 1 - depth * 0.045, opacity: depth > 3 ? 0 : 1, duration: 0.36, ease: "power3.out" }, arrive);
+            });
+            // Quiet at first: mail only starts to kick the screen once the count has got big.
+            if (arrive >= SHAKE_FROM) impacts.push([arrive, 9 + i * 1.6]);
+            arrive += Math.max(0.42 * Math.pow(0.9, i), 0.12);
+          });
+
+          // 2.0: the line.
+          tl.fromTo(one(".line"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 2.0);
+
+          // 3.0: the count gives way to a flood of email.
+          tl.to(one(".counter"), { opacity: 0, scale: 1.15, filter: "blur(10px)", duration: 0.5, ease: "power2.in" }, 3.0);
+          tl.to(one(".toasts"), { opacity: 0, x: 80, duration: 0.4, ease: "power2.in" }, 3.0);
+          // Cards drop in faster and faster and squash into a pile.
+          tl.fromTo(plane, { rotationX: 24, scale: 1.12, y: 40 }, { rotationX: 16, scale: 1.3, y: -20, duration: 3.6, ease: "sine.inOut" }, 3.0);
+          let land = 3.2;
+          rows.forEach((row, i) => {
+            const tilt = ((i * 37) % 7 - 3) * 0.9;
+            tl.fromTo(row, { y: -1250, rotation: tilt * 6, scaleX: 1, scaleY: 1, transformOrigin: "50% 100%" }, { y: 0, rotation: tilt, duration: 0.42, ease: "power3.in" }, land - 0.42);
+            tl.fromTo(row, { scaleY: 0.66, scaleX: 1.08 }, { scaleY: 1, scaleX: 1, duration: 0.55, ease: "elastic.out(1, 0.42)", immediateRender: false }, land);
+            if (i > 0) tl.fromTo(rows[i - 1], { scaleY: 0.86 }, { scaleY: 1, duration: 0.4, ease: "elastic.out(1, 0.5)", immediateRender: false }, land);
+            if (i > 1) tl.fromTo(rows[i - 2], { scaleY: 0.94 }, { scaleY: 1, duration: 0.35, ease: "elastic.out(1, 0.5)", immediateRender: false }, land + 0.02);
+            impacts.push([land, 5 + Math.min(i, 20) * 0.28]);
+            land += Math.max(0.2 * Math.pow(0.86, i), 0.04);
+          });
+          tl.to(one(".line"), { opacity: 0, y: -12, duration: 0.3, ease: "power2.in" }, 3.1);
+          tl.fromTo(one(".line2"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.35);
+          tl.to(one(".line2"), { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 4.7);
+          tl.fromTo(one(".should:not(.line2)"), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 4.95);
+
+          // 6.6: everything clears for the mark.
+          tl.to([one(".flood"), one(".should:not(.line2)")], { opacity: 0, filter: "blur(12px)", duration: 0.45, ease: "power2.in" }, 6.6);
+
+          // The shake and the fire, worked out fresh from the time so any frame can be asked for.
+          const screen = one(".t-ui");
+          const noise = one("#hook-burn-noise");
+          const glow = one(".n-glow");
+          const fire = one(".n-fire");
+          const clamp01 = (v) => Math.min(Math.max(v, 0), 1);
+          const fx = {
+            value: 0,
+            get t() {
+              return this.value;
+            },
+            set t(t) {
+              this.value = t;
+              // A rumble that builds with the count, plus a kick for each impact.
+              const rumble = Math.pow(clamp01((t - SHAKE_FROM) / 1.45), 1.4) * 18;
+              let amp = t < 3.0 ? rumble : rumble * clamp01((3.35 - t) / 0.35);
+              impacts.forEach(([at, size]) => {
+                if (t >= at) amp += size * Math.exp(-(t - at) * 10);
+              });
+              amp = Math.min(amp, 36);
+              const x = amp * (Math.sin(t * 91) + 0.55 * Math.sin(t * 143 + 1.3));
+              const y = amp * 0.8 * (Math.sin(t * 107 + 0.7) + 0.55 * Math.sin(t * 167 + 2.1));
+              const turn = amp * 0.045 * Math.sin(t * 79 + 0.4);
+              screen.style.transform = amp < 0.05 ? "" : `translate(${x.toFixed(2)}px, ${y.toFixed(2)}px) rotate(${turn.toFixed(3)}deg)`;
+              // The fire catches as the number turns red, and flickers.
+              const heat = clamp01((t - 1.7) / 0.8);
+              const flicker = 0.78 + 0.22 * Math.sin(t * 61) * Math.sin(t * 37 + 1);
+              glow.style.opacity = heat * flicker >= 1 ? "1" : (heat * flicker).toFixed(3);
+              fire.style.opacity = (heat * flicker).toFixed(3);
+              if (heat > 0 && t < 3.2) noise.setAttribute("seed", String(1 + (Math.floor(t * 20) % 50)));
+            },
+          };
+          tl.fromTo(fx, { t: 0 }, { t: 7, duration: 7, ease: "none" }, 0);
+
+          // The Titan AI reveal: the Rive animation, sped up to fit its slot and drawn from the video's clock.
+          const REVEAL_SPEED = 2;
+          const logoCanvas = one("#hook-logo-canvas");
+          let logo = null;
+          const logoReady = (window.TiaBlob
+            ? window.TiaBlob.create(logoCanvas, { src: "assets/logo/titan-ai-reveal.riv", artboard: "Logo", stateMachine: "Logo", drawSize: 1400 }).then((b) => {
+                logo = b;
+              })
+            : Promise.reject(new Error("TiaBlob missing"))
+          ).catch((e) => console.warn("[hook] logo unavailable:", e.message));
+          if (window.__hyperframes && window.__hyperframes.registerFrameSource) {
+            window.__hyperframes.registerFrameSource({
+              element: logoCanvas,
+              ready: logoReady,
+              render: (time) => {
+                if (logo) logo.t = time * REVEAL_SPEED;
+              },
+            });
+          }
+
+          window.__timelines["scene-hook"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

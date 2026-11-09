@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #inbox-labels {
+          position: absolute;
+          inset: 0;
+        }
+        #inbox-labels .t-window {
+          border-radius: 0;
+          border: 0;
+        }
+        #inbox-labels .t-sidebar {
+          width: 230px;
+        }
+        #inbox-labels .t-row {
+          grid-template-columns: 220px 170px 1fr auto;
+          height: 62px;
+          overflow: hidden;
+        }
+        #inbox-labels .t-row.r-new {
+          height: 0;
+          border-bottom-width: 0;
+        }
+        #inbox-labels .head-swap {
+          position: relative;
+          height: 54px;
+          border-bottom: 1px solid var(--border);
+          flex: none;
+        }
+        #inbox-labels .all-mail {
+          position: absolute;
+          left: 24px;
+          top: 0;
+          height: 54px;
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          font-weight: 600;
+        }
+        #inbox-labels .t-tabs {
+          position: absolute;
+          inset: 0;
+          border-bottom: 0;
+        }
+        #inbox-labels .t-tab svg {
+          width: 12px;
+          height: 12px;
+          fill: var(--c);
+        }
+        #inbox-labels .t-list {
+          position: relative;
+        }
+        #inbox-labels .spark-dot {
+          position: absolute;
+          margin: -2px 0 0 -2px;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 8;
+        }
+        #inbox-labels .lbl-slot {
+          display: flex;
+          align-items: center;
+        }
+        #inbox-labels .t-row .flash {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--c) 22%, transparent) 30%, transparent 70%);
+          opacity: 0;
+          pointer-events: none;
+        }
+        #inbox-labels .t-row {
+          position: relative;
+        }
+      </style>
+
+      <!-- Labelled inbox (MacBook, full screen): plain "All mail" list, then AI labels land row by row, then the Respond tab filters it. -->
+      <div data-hf-id="hf-u4k2" id="inbox-labels" data-composition-id="screen-inbox-labels" data-width="1512" data-height="950">
+        <div data-hf-id="hf-o8ei" class="t-ui sk" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-yjcp" class="t-window">
+            <aside data-hf-id="hf-3t6q" class="t-sidebar">
+              <div data-hf-id="hf-g3uc" class="t-compose-btn">
+                <svg data-hf-id="hf-owiu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-ox9p" d="M4 20h4L19 9l-4-4L4 16z" /><path data-hf-id="hf-qqya" d="m14 6 4 4" /></svg>
+                Compose
+              </div>
+              <div data-hf-id="hf-wf8m" class="t-nav">
+                <span data-hf-id="hf-6jsn" class="t-ai-glyph"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg></span>
+                AI Inbox
+              </div>
+              <div data-hf-id="hf-3dw5" class="t-nav is-active">
+                <svg data-hf-id="hf-8vfu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-62o9" d="M3 13h5l2 3h4l2-3h5" /><path data-hf-id="hf-aw5i" d="M5 5h14l2 8v6H3v-6z" /></svg>
+                Inbox <span data-hf-id="hf-kxli" class="t-count">1,284</span>
+              </div>
+              <div data-hf-id="hf-j7nv" class="t-nav"><span data-hf-id="hf-5ax5" class="t-nav-dot"></span>Starred</div>
+              <div data-hf-id="hf-07oq" class="t-nav"><span data-hf-id="hf-movx" class="t-nav-dot"></span>Sent</div>
+              <div data-hf-id="hf-cw4c" class="t-nav"><span data-hf-id="hf-nvt0" class="t-nav-dot"></span>Drafts <span data-hf-id="hf-4lta" class="t-count">3</span></div>
+              <div data-hf-id="hf-njju" class="t-nav"><span data-hf-id="hf-nhhz" class="t-nav-dot"></span>Archive</div>
+            </aside>
+
+            <div data-hf-id="hf-e3jq" class="t-main">
+              <div data-hf-id="hf-f0zl" class="t-topbar">
+                <span data-hf-id="hf-q2ha" class="t-title">Inbox</span>
+                <span data-hf-id="hf-t5r8" class="t-subcount">1,284</span>
+                <div data-hf-id="hf-1oag" class="t-search">
+                  <svg data-hf-id="hf-99qv" class="t-ico" viewBox="0 0 24 24"><circle data-hf-id="hf-r9ft" cx="11" cy="11" r="7" /><path data-hf-id="hf-bedd" d="m20 20-4-4" /></svg>
+                  Search mail
+                </div>
+              </div>
+
+              <div data-hf-id="hf-cgqq" class="head-swap">
+                <div data-hf-id="hf-y2j5" class="all-mail">All mail</div>
+                <div data-hf-id="hf-ac1l" class="t-tabs">
+                  <div data-hf-id="hf-36h8" class="t-tab is-active lbl-respond"><svg data-hf-id="hf-uirf" viewBox="0 0 12 12"><path data-hf-id="hf-skhs" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond <span data-hf-id="hf-31kj" class="t-n" style="color: var(--l-respond)">6</span></div>
+                  <div data-hf-id="hf-58ld" class="t-tab lbl-awaiting"><svg data-hf-id="hf-tni3" viewBox="0 0 12 12"><path data-hf-id="hf-335k" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Awaiting Reply <span data-hf-id="hf-ec2x" class="t-n" style="color: var(--l-awaiting)">1</span></div>
+                  <div data-hf-id="hf-sfzp" class="t-tab lbl-done"><svg data-hf-id="hf-t972" viewBox="0 0 12 12"><path data-hf-id="hf-1w8h" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Done <span data-hf-id="hf-667s" class="t-n" style="color: var(--l-done)">13</span></div>
+                  <div data-hf-id="hf-54l1" class="t-tab lbl-fyi"><svg data-hf-id="hf-suw1" viewBox="0 0 12 12"><path data-hf-id="hf-2aji" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>FYI <span data-hf-id="hf-siuy" class="t-n" style="color: var(--l-fyi)">4</span></div>
+                  <div data-hf-id="hf-y9t3" class="t-tab lbl-notif"><svg data-hf-id="hf-sgl0" viewBox="0 0 12 12"><path data-hf-id="hf-13mf" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Notifications <span data-hf-id="hf-mc5r" class="t-n" style="color: var(--l-notif)">27</span></div>
+                  <div data-hf-id="hf-dc6c" class="t-tab lbl-promo"><svg data-hf-id="hf-s29z" viewBox="0 0 12 12"><path data-hf-id="hf-1hxg" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Promotions <span data-hf-id="hf-wf23" class="t-n" style="color: var(--l-promo)">19</span></div>
+                </div>
+              </div>
+
+              <div data-hf-id="hf-o8jl" class="t-list">
+                <div data-hf-id="hf-6kwf" class="t-row r-keep lbl-respond"><i data-hf-id="hf-do2a" class="flash"></i>
+                  <div data-hf-id="hf-1vfw" class="t-from"><span data-hf-id="hf-jkvi" class="t-avatar av-slate"><img data-hf-id="hf-qc5d" src="assets/avatars/women-44.jpg" alt=""></span>Divya Rao</div>
+                  <div data-hf-id="hf-f61v" class="lbl-slot"><span data-hf-id="hf-y4j9" class="t-chip lbl-respond"><svg data-hf-id="hf-rnyy" viewBox="0 0 12 12"><path data-hf-id="hf-0b0d" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-8mep" class="t-msg"><b data-hf-id="hf-hfoj">Re: Launch date</b>Can we lock Thursday? Marketing needs the slot by noon.</div>
+                  <div data-hf-id="hf-dhr0" class="t-time">9:41 AM</div>
+                </div>
+                <div data-hf-id="hf-zm4a" class="t-row r-drop lbl-awaiting"><i data-hf-id="hf-17bq" class="flash"></i>
+                  <div data-hf-id="hf-dt7e" class="t-from"><span data-hf-id="hf-mun4" class="t-avatar av-slate"><img data-hf-id="hf-mia8" src="assets/avatars/men-32.jpg" alt=""></span>Anuj Gupta</div>
+                  <div data-hf-id="hf-zk2r" class="lbl-slot"><span data-hf-id="hf-i3kl" class="t-chip lbl-awaiting"><svg data-hf-id="hf-r9nx" viewBox="0 0 12 12"><path data-hf-id="hf-0pbe" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Awaiting Reply</span></div>
+                  <div data-hf-id="hf-p8u3" class="t-msg"><b data-hf-id="hf-rj4x">Re: Q4 pricing proposal</b>You: Sent the revised numbers, let me know what finance thinks.</div>
+                  <div data-hf-id="hf-iyjk" class="t-time">9:12 AM</div>
+                </div>
+                <div data-hf-id="hf-ww40" class="t-row r-drop lbl-done"><i data-hf-id="hf-1lmr" class="flash"></i>
+                  <div data-hf-id="hf-41p6" class="t-from"><span data-hf-id="hf-866x" class="t-avatar av-coral"><img data-hf-id="hf-lqw2" src="assets/avatars/women-65.jpg" alt=""></span>Priya Shah</div>
+                  <div data-hf-id="hf-z5rq" class="lbl-slot"><span data-hf-id="hf-godl" class="t-chip lbl-done"><svg data-hf-id="hf-x89c" viewBox="0 0 12 12"><path data-hf-id="hf-5var" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Done</span></div>
+                  <div data-hf-id="hf-pvwe" class="t-msg"><b data-hf-id="hf-lfw3">Contract draft v3</b>Signed and attached. Thanks for the quick turnaround!</div>
+                  <div data-hf-id="hf-c6j6" class="t-time">8:57 AM</div>
+                </div>
+                <div data-hf-id="hf-8ieg" class="t-row r-drop lbl-fyi"><i data-hf-id="hf-1zxs" class="flash"></i>
+                  <div data-hf-id="hf-xlvo" class="t-from"><span data-hf-id="hf-slhh" class="t-avatar av-slate"><img data-hf-id="hf-ejxr" src="assets/avatars/men-75.jpg" alt=""></span>Rohan Mehta</div>
+                  <div data-hf-id="hf-yrgp" class="lbl-slot"><span data-hf-id="hf-higp" class="t-chip lbl-fyi"><svg data-hf-id="hf-wtyb" viewBox="0 0 12 12"><path data-hf-id="hf-69ls" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>FYI</span></div>
+                  <div data-hf-id="hf-64up" class="t-msg"><b data-hf-id="hf-p9oa">Sprint review notes</b>Notes from today, no action needed from you.</div>
+                  <div data-hf-id="hf-hrnr" class="t-time">8:30 AM</div>
+                </div>
+                <div data-hf-id="hf-j9gm" class="t-row r-drop lbl-notif"><i data-hf-id="hf-z7sl" class="flash"></i>
+                  <div data-hf-id="hf-ckj5" class="t-from"><span data-hf-id="hf-hk8g" class="t-avatar av-amber">OC</span>Orbit CI</div>
+                  <div data-hf-id="hf-yd5o" class="lbl-slot"><span data-hf-id="hf-01ur" class="t-chip lbl-notif"><svg data-hf-id="hf-eamp" viewBox="0 0 12 12"><path data-hf-id="hf-u5g8" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Notifications</span></div>
+                  <div data-hf-id="hf-m1b3" class="t-msg"><b data-hf-id="hf-r9in">Build passed on main</b>All 412 checks passed in 6m 12s.</div>
+                  <div data-hf-id="hf-rtat" class="t-time">8:14 AM</div>
+                </div>
+                <div data-hf-id="hf-oz0t" class="t-row r-drop lbl-promo"><i data-hf-id="hf-zm3m" class="flash"></i>
+                  <div data-hf-id="hf-51mc" class="t-from"><span data-hf-id="hf-uks1" class="t-avatar av-teal">CW</span>Canvas Weekly</div>
+                  <div data-hf-id="hf-xyun" class="lbl-slot"><span data-hf-id="hf-ez5k" class="t-chip lbl-promo"><svg data-hf-id="hf-eoxq" viewBox="0 0 12 12"><path data-hf-id="hf-tr57" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Promotions</span></div>
+                  <div data-hf-id="hf-v8x8" class="t-msg"><b data-hf-id="hf-2ndw">Ten layouts worth stealing</b>This week: grids, type and a free template pack.</div>
+                  <div data-hf-id="hf-z1qc" class="t-time">7:50 AM</div>
+                </div>
+                <div data-hf-id="hf-g4tr" class="t-row r-keep lbl-respond"><i data-hf-id="hf-00en" class="flash"></i>
+                  <div data-hf-id="hf-q4w5" class="t-from"><span data-hf-id="hf-mtbe" class="t-avatar av-amber"><img data-hf-id="hf-2b57" src="assets/avatars/women-68.jpg" alt=""></span>Sana Iyer</div>
+                  <div data-hf-id="hf-xkjm" class="lbl-slot"><span data-hf-id="hf-bq95" class="t-chip lbl-respond"><svg data-hf-id="hf-f38r" viewBox="0 0 12 12"><path data-hf-id="hf-tcu6" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-glkx" class="t-msg"><b data-hf-id="hf-b5zo">Re: Partnership intro</b>Would Tuesday work for a quick call?</div>
+                  <div data-hf-id="hf-5fa5" class="t-time">7:42 AM</div>
+                </div>
+                <div data-hf-id="hf-zvhm" class="t-row r-drop lbl-notif"><i data-hf-id="hf-0epo" class="flash"></i>
+                  <div data-hf-id="hf-xda8" class="t-from"><span data-hf-id="hf-0u42" class="t-avatar av-slate">NP</span>Northwind Pay</div>
+                  <div data-hf-id="hf-x68l" class="lbl-slot"><span data-hf-id="hf-dnxf" class="t-chip lbl-notif"><svg data-hf-id="hf-fhjs" viewBox="0 0 12 12"><path data-hf-id="hf-syj5" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Notifications</span></div>
+                  <div data-hf-id="hf-v0fk" class="t-msg"><b data-hf-id="hf-zy0a">Payment received: $4,820.00</b>Invoice #4821 from Acme was paid.</div>
+                  <div data-hf-id="hf-lkxj" class="t-time">7:31 AM</div>
+                </div>
+                <div data-hf-id="hf-fqiq" class="t-row r-keep lbl-respond"><i data-hf-id="hf-xmkh" class="flash"></i>
+                  <div data-hf-id="hf-15wb" class="t-from"><span data-hf-id="hf-9nl4" class="t-avatar av-blue"><img data-hf-id="hf-hkp1" src="assets/avatars/men-46.jpg" alt=""></span>Arjun Das</div>
+                  <div data-hf-id="hf-wrxk" class="lbl-slot"><span data-hf-id="hf-cx68" class="t-chip lbl-respond"><svg data-hf-id="hf-cpel" viewBox="0 0 12 12"><path data-hf-id="hf-sk84" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-afhx" class="t-msg"><b data-hf-id="hf-9qau">Quick question on invoice #4821</b>Is the PO number on this one correct?</div>
+                  <div data-hf-id="hf-bvum" class="t-time">Yesterday</div>
+                </div>
+                <div data-hf-id="hf-ppc1" class="t-row r-drop lbl-promo"><i data-hf-id="hf-y0vi" class="flash"></i>
+                  <div data-hf-id="hf-6q4m" class="t-from"><span data-hf-id="hf-eo00" class="t-avatar av-violet">LD</span>Launchpad Daily</div>
+                  <div data-hf-id="hf-wdmj" class="lbl-slot"><span data-hf-id="hf-8e34" class="t-chip lbl-promo"><svg data-hf-id="hf-d3pm" viewBox="0 0 12 12"><path data-hf-id="hf-s5x3" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Promotions</span></div>
+                  <div data-hf-id="hf-2y99" class="t-msg"><b data-hf-id="hf-cx77">Today's top 10 tools</b>Fresh launches picked for you.</div>
+                  <div data-hf-id="hf-t71e" class="t-time">Yesterday</div>
+                </div>
+                <div data-hf-id="hf-m0io" class="t-row r-drop lbl-fyi"><i data-hf-id="hf-0v4i" class="flash"></i>
+                  <div data-hf-id="hf-k425" class="t-from"><span data-hf-id="hf-te6o" class="t-avatar av-green"><img data-hf-id="hf-yau1" src="assets/avatars/women-79.jpg" alt=""></span>Lena Fischer</div>
+                  <div data-hf-id="hf-io4p" class="lbl-slot"><span data-hf-id="hf-ye19" class="t-chip lbl-fyi"><svg data-hf-id="hf-di0n" viewBox="0 0 12 12"><path data-hf-id="hf-rrm2" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>FYI</span></div>
+                  <div data-hf-id="hf-nb6x" class="t-msg"><b data-hf-id="hf-488i">Re: Onboarding feedback</b>Here's the summary from our call.</div>
+                  <div data-hf-id="hf-tlcf" class="t-time">Yesterday</div>
+                </div>
+                <div data-hf-id="hf-shuw" class="t-row r-drop lbl-done"><i data-hf-id="hf-0gth" class="flash"></i>
+                  <div data-hf-id="hf-7aol" class="t-from"><span data-hf-id="hf-u2ka" class="t-avatar av-pink"><img data-hf-id="hf-tyxz" src="assets/avatars/women-33.jpg" alt=""></span>Grace Liu</div>
+                  <div data-hf-id="hf-j2fq" class="lbl-slot"><span data-hf-id="hf-xq3h" class="t-chip lbl-done"><svg data-hf-id="hf-dwbo" viewBox="0 0 12 12"><path data-hf-id="hf-rdb1" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Done</span></div>
+                  <div data-hf-id="hf-np1w" class="t-msg"><b data-hf-id="hf-2ji4">Re: Pricing page copy</b>Tightened the headline, take a look.</div>
+                  <div data-hf-id="hf-tzng" class="t-time">Yesterday</div>
+                </div>
+                <!-- Only shown once the Respond tab filters the list -->
+                <div data-hf-id="hf-v0ke" class="t-row r-new lbl-respond">
+                  <div data-hf-id="hf-ppwh" class="t-from"><span data-hf-id="hf-qq1p" class="t-avatar av-pink"><img data-hf-id="hf-gkpm" src="assets/avatars/women-90.jpg" alt=""></span>Meera Kapoor</div>
+                  <div data-hf-id="hf-jgqr" class="lbl-slot"><span data-hf-id="hf-civ7" class="t-chip lbl-respond"><svg data-hf-id="hf-hh2x" viewBox="0 0 12 12"><path data-hf-id="hf-xbwg" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-b4jr" class="t-msg"><b data-hf-id="hf-lk6d">Hiring plan review</b>Can you sign off on the Q1 headcount?</div>
+                  <div data-hf-id="hf-nxcc" class="t-time">Mon</div>
+                </div>
+                <div data-hf-id="hf-27wi" class="t-row r-new lbl-respond">
+                  <div data-hf-id="hf-te79" class="t-from"><span data-hf-id="hf-bdac" class="t-avatar av-amber"><img data-hf-id="hf-rnow" src="assets/avatars/men-61.jpg" alt=""></span>Tom Becker</div>
+                  <div data-hf-id="hf-jv1s" class="lbl-slot"><span data-hf-id="hf-ajc2" class="t-chip lbl-respond"><svg data-hf-id="hf-hvdy" viewBox="0 0 12 12"><path data-hf-id="hf-wxlf" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-51ht" class="t-msg"><b data-hf-id="hf-36pk">Re: Contract renewal</b>We can hold the current rate if we sign by Friday.</div>
+                  <div data-hf-id="hf-p09w" class="t-time">Mon</div>
+                </div>
+                <div data-hf-id="hf-2m7j" class="t-row r-new lbl-respond">
+                  <div data-hf-id="hf-rd19" class="t-from"><span data-hf-id="hf-oce6" class="t-avatar av-amber"><img data-hf-id="hf-gcfh" src="assets/avatars/men-11.jpg" alt=""></span>Nikhil Joshi</div>
+                  <div data-hf-id="hf-h2wl" class="lbl-slot"><span data-hf-id="hf-a511" class="t-chip lbl-respond"><svg data-hf-id="hf-w53u" viewBox="0 0 12 12"><path data-hf-id="hf-ub0z" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>Respond</span></div>
+                  <div data-hf-id="hf-tjuh" class="t-msg"><b data-hf-id="hf-cbuy">Venue options</b>Three venues shortlisted, which one do you prefer?</div>
+                  <div data-hf-id="hf-xirh" class="t-time">Oct 18</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("inbox-labels");
+          const q = (s) => root.querySelectorAll(s);
+          const labelled = Array.from(q(".t-row:not(.r-new)"));
+          const tl = gsap.timeline({ paused: true });
+
+          // 0: a plain inbox, no labels yet.
+          tl.fromTo(labelled, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.035, ease: "power3.out" }, 0);
+          tl.set(q(".t-row:not(.r-new) .t-chip"), { opacity: 0, scale: 0.5 }, 0);
+          tl.set(q(".t-tab"), { opacity: 0, y: 8 }, 0);
+
+          // Tiny circles burst out around a label as it lands. They live above the rows so nothing clips them.
+          const list = root.querySelector(".t-list");
+          const burst = (row, at, seed) => {
+            const chip = row.querySelector(".t-chip");
+            const cx = chip.offsetLeft + chip.offsetWidth / 2;
+            const cy = row.offsetTop + row.offsetHeight / 2;
+            const halfW = chip.offsetWidth / 2;
+            for (let n = 0; n < 7; n++) {
+              const dot = document.createElement("i");
+              dot.className = "spark-dot";
+              const size = 3 + ((n * 7 + seed * 3) % 3);
+              dot.style.width = dot.style.height = `${size}px`;
+              dot.style.left = `${cx}px`;
+              dot.style.top = `${cy}px`;
+              dot.style.background = getComputedStyle(chip).color;
+              list.append(dot);
+              const a = (n / 7) * Math.PI * 2 + seed * 0.9;
+              const reach = 34 + ((n * 13 + seed * 5) % 30);
+              // Out in a flash, gone almost as fast.
+              tl.fromTo(dot,
+                { x: Math.cos(a) * halfW * 0.6, y: Math.sin(a) * 6, scale: 1.3, opacity: 0 },
+                { x: Math.cos(a) * (halfW + reach), y: Math.sin(a) * (14 + reach * 0.75), scale: 0.8, opacity: 1, duration: 0.2, ease: "expo.out" },
+                at);
+              tl.to(dot, { scale: 0, opacity: 0, duration: 0.08, ease: "none" }, at + 0.2);
+            }
+          };
+
+          // 1.1: each email gets its label, top to bottom.
+          labelled.forEach((row, i) => {
+            const at = 1.1 + i * 0.17;
+            tl.fromTo(row.querySelector(".flash"), { opacity: 0, xPercent: -60 }, { opacity: 1, xPercent: 30, duration: 0.35, ease: "power2.out" }, at);
+            tl.to(row.querySelector(".flash"), { opacity: 0, duration: 0.35, ease: "power2.in" }, at + 0.3);
+            tl.to(row.querySelector(".t-chip"), { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.4)" }, at + 0.08);
+            burst(row, at + 0.1, i);
+          });
+
+          // 3.8: "All mail" gives way to the label tabs.
+          tl.to(q(".all-mail"), { opacity: 0, y: -8, duration: 0.3, ease: "power2.in" }, 3.8);
+          tl.to(q(".t-tab"), { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: "power3.out" }, 3.95);
+
+          // 4.6: the Respond tab filters the list.
+          tl.to(q(".r-drop"), { height: 0, opacity: 0, borderBottomWidth: 0, duration: 0.55, stagger: 0.03, ease: "power3.inOut" }, 4.6);
+          tl.to(q(".r-new"), { height: 62, borderBottomWidth: 1, duration: 0.55, stagger: 0.06, ease: "power3.out" }, 5.05);
+          tl.fromTo(q(".r-new"), { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.06, ease: "power2.out" }, 5.15);
+
+          window.__timelines["screen-inbox-labels"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

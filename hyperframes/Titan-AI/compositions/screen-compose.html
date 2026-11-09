@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #compose {
+          position: absolute;
+          inset: 0;
+        }
+        #compose .desk {
+          position: absolute;
+          inset: 0;
+          background: var(--bg);
+        }
+        #compose .desk-app {
+          position: absolute;
+          inset: 0;
+          opacity: 0.45;
+          filter: blur(2px);
+        }
+        #compose .desk-app .t-window {
+          border-radius: 0;
+          border: 0;
+        }
+        #compose .desk-app .t-row {
+          grid-template-columns: 220px 160px 1fr;
+          height: 62px;
+        }
+        #compose .cw {
+          position: absolute;
+          left: 236px;
+          top: 70px;
+          width: 1040px;
+          height: 810px;
+        }
+        #compose .cw .t-window {
+          flex-direction: column;
+          box-shadow: 0 40px 100px rgba(20, 24, 40, 0.18), 0 0 0 1px var(--border-strong);
+        }
+        #compose .c-head {
+          display: flex;
+          align-items: center;
+          height: 52px;
+          padding: 0 22px;
+          border-bottom: 1px solid var(--border);
+          font-size: 15px;
+          font-weight: 600;
+          flex: none;
+        }
+        #compose .c-win {
+          margin-left: auto;
+          display: flex;
+          gap: 14px;
+          color: var(--muted);
+        }
+        #compose .c-win .t-ico {
+          width: 14px;
+          height: 14px;
+        }
+        #compose .t-field {
+          flex: none;
+          padding: 0 22px;
+        }
+        #compose .c-body {
+          position: relative;
+          flex: 1;
+        }
+        #compose .ver {
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          padding: 26px 22px;
+          font-size: 16px;
+          line-height: 1.6;
+          opacity: 0;
+        }
+        #compose .ver p {
+          margin: 0 0 18px;
+        }
+        #compose .c-quiet {
+          color: var(--text-2);
+        }
+        #compose .t-aibar {
+          position: relative;
+          margin: 0 22px 22px;
+          flex: none;
+        }
+        #compose .bar-state {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          height: 28px;
+          font-size: 15px;
+          color: var(--muted);
+        }
+        #compose-logo-canvas {
+          display: block;
+          flex: none;
+          width: 52px;
+          height: 52px;
+          margin: -12px -14px -12px -14px;
+        }
+        #compose .bar-a,
+        #compose .bar-b,
+        #compose .bar-c {
+          position: absolute;
+          left: 16px;
+          right: 16px;
+          top: 14px;
+        }
+        #compose .bar-b,
+        #compose .bar-c {
+          opacity: 0;
+        }
+        #compose .bar-space {
+          height: 28px;
+        }
+        #compose .bar-space.tall {
+          height: 72px;
+        }
+        #compose .c-typed {
+          color: var(--text);
+        }
+        #compose .c-sendic {
+          margin-left: auto;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: var(--border-strong);
+          color: var(--window);
+          display: grid;
+          place-items: center;
+          flex: none;
+        }
+        #compose .c-sendic.go {
+          background: var(--accent);
+          color: #fff;
+        }
+        #compose .c-sendic .t-ico {
+          width: 12px;
+          height: 12px;
+          stroke-width: 2.6;
+        }
+        #compose .c-opts {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-top: 16px;
+        }
+        #compose .c-left {
+          margin-left: auto;
+          font-size: 12px;
+          color: var(--muted);
+        }
+        #compose .sel-val {
+          position: relative;
+          display: inline-block;
+          height: 18px;
+        }
+        #compose .sel-val span {
+          white-space: nowrap;
+        }
+        #compose .sel-val span + span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+        }
+        #compose .t-menu {
+          bottom: 66px;
+          opacity: 0;
+        }
+        #compose .menu-tone { left: 16px; }
+        #compose .menu-len { left: 138px; }
+        #compose .menu-lang { left: 252px; }
+        #compose .glow {
+          position: absolute;
+          inset: -2px;
+          border-radius: 13px;
+          box-shadow: 0 0 0 2px #8a5cff, 0 0 40px rgba(138, 92, 255, 0.55);
+          opacity: 0;
+          pointer-events: none;
+        }
+      </style>
+
+      <!-- AI Write (MacBook): a New message window. A one-line ask becomes a draft, then tone, length and language change it in place. -->
+      <div data-hf-id="hf-3lci" id="compose" data-composition-id="screen-compose" data-width="1512" data-height="950">
+        <div data-hf-id="hf-o8ei" class="t-ui sk" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-3tbf" class="desk">
+            <div data-hf-id="hf-s699" class="desk-app">
+              <div data-hf-id="hf-yjcp" class="t-window">
+                <aside data-hf-id="hf-3t6q" class="t-sidebar"><div data-hf-id="hf-g3uc" class="t-compose-btn">Compose</div><div data-hf-id="hf-3dw5" class="t-nav is-active">Inbox</div><div data-hf-id="hf-j7nv" class="t-nav">Starred</div><div data-hf-id="hf-07oq" class="t-nav">Sent</div></aside>
+                <div data-hf-id="hf-e3jq" class="t-main">
+                  <div data-hf-id="hf-f0zl" class="t-topbar"><span data-hf-id="hf-q2ha" class="t-title">Inbox</span></div>
+                  <div data-hf-id="hf-tdr7" class="t-row"><div data-hf-id="hf-1vfw" class="t-from"><span data-hf-id="hf-jkvi" class="t-avatar av-slate"><img data-hf-id="hf-qc5d" src="assets/avatars/women-44.jpg" alt=""></span>Divya Rao</div><div data-hf-id="hf-yeow"><span data-hf-id="hf-y4j9" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-j0qy" class="t-msg"><b data-hf-id="hf-hfoj">Re: Launch date</b>Can we lock Thursday?</div></div>
+                  <div data-hf-id="hf-qw2r" class="t-row"><div data-hf-id="hf-q4w5" class="t-from"><span data-hf-id="hf-mtbe" class="t-avatar av-amber"><img data-hf-id="hf-2b57" src="assets/avatars/women-68.jpg" alt=""></span>Sana Iyer</div><div data-hf-id="hf-y7yw"><span data-hf-id="hf-bq95" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-05kc" class="t-msg"><b data-hf-id="hf-b5zo">Re: Partnership intro</b>Would Tuesday work?</div></div>
+                  <div data-hf-id="hf-qhrq" class="t-row"><div data-hf-id="hf-15wb" class="t-from"><span data-hf-id="hf-9nl4" class="t-avatar av-blue"><img data-hf-id="hf-hkp1" src="assets/avatars/men-46.jpg" alt=""></span>Arjun Das</div><div data-hf-id="hf-x11t"><span data-hf-id="hf-cx68" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-pi00" class="t-msg"><b data-hf-id="hf-ar90">Invoice #4821</b>Is the PO number right?</div></div>
+                  <div data-hf-id="hf-q3gp" class="t-row"><div data-hf-id="hf-41p6" class="t-from"><span data-hf-id="hf-866x" class="t-avatar av-coral"><img data-hf-id="hf-lqw2" src="assets/avatars/women-65.jpg" alt=""></span>Priya Shah</div><div data-hf-id="hf-xfcu"><span data-hf-id="hf-godl" class="t-chip lbl-done">Done</span></div><div data-hf-id="hf-p5ef" class="t-msg"><b data-hf-id="hf-lfw3">Contract draft v3</b>Signed and attached.</div></div>
+                  <div data-hf-id="hf-pp5o" class="t-row"><div data-hf-id="hf-ckj5" class="t-from"><span data-hf-id="hf-hk8g" class="t-avatar av-amber">OC</span>Orbit CI</div><div data-hf-id="hf-w8fr"><span data-hf-id="hf-01ur" class="t-chip lbl-notif">Notifications</span></div><div data-hf-id="hf-ewn3" class="t-msg"><b data-hf-id="hf-r9in">Build passed on main</b>All 412 checks passed.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-hf-id="hf-bluu" class="cw">
+            <div data-hf-id="hf-pn4d" class="t-window">
+              <div data-hf-id="hf-fakb" class="c-head">
+                New message
+                <span data-hf-id="hf-t2dd" class="c-win">
+                  <svg data-hf-id="hf-owiu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-8gds" d="M5 12h14" /></svg>
+                  <svg data-hf-id="hf-8vfu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-rt3e" d="M14 4h6v6" /><path data-hf-id="hf-5rqh" d="M10 20H4v-6" /></svg>
+                  <svg data-hf-id="hf-99qv" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-t2we" d="M6 6l12 12M18 6 6 18" /></svg>
+                </span>
+              </div>
+              <div data-hf-id="hf-7h3b" class="t-field">
+                <span data-hf-id="hf-yowy" class="t-k">To</span>
+                <span data-hf-id="hf-jhk8" class="t-recipient"><span data-hf-id="hf-r6wj" class="t-avatar sm av-teal" style="width: 22px; height: 22px; font-size: 9px">AT</span>Acme team</span>
+              </div>
+              <div data-hf-id="hf-n5gn" class="t-field">
+                <span data-hf-id="hf-57md" class="t-k">Subject</span>
+                <span data-hf-id="hf-7afc" class="t-type subj">Launch moves to Thursday</span>
+              </div>
+
+              <div data-hf-id="hf-q0ww" class="c-body">
+                <div data-hf-id="hf-uk95" class="ver v-casual">
+                  <p data-hf-id="hf-kkar">Hi team,</p>
+                  <p data-hf-id="hf-ib3p" class="c-quiet">Quick heads-up: we're moving the launch to Thursday so the final fixes can land properly. Nothing changes on your side, and the rest of the plan stays the same.</p>
+                  <p data-hf-id="hf-awz2" class="c-quiet">Thanks for rolling with it, and shout if the new date causes any trouble.</p>
+                  <p data-hf-id="hf-eez3">Maya</p>
+                </div>
+                <div data-hf-id="hf-mymf" class="ver v-friendly">
+                  <p data-hf-id="hf-urer">Hi team,</p>
+                  <p data-hf-id="hf-y1rj">Small change of plans: the launch is moving to Thursday so we can land the final fixes properly. Nothing changes on your side.</p>
+                  <p data-hf-id="hf-dpmi">Thanks so much for rolling with it, and give me a shout if the new date causes any trouble!</p>
+                  <p data-hf-id="hf-z1of">Warmly,<span data-hf-id="hf-yxcj" style="display: block">Maya</span></p>
+                </div>
+                <div data-hf-id="hf-p9wc" class="ver v-short">
+                  <p data-hf-id="hf-ud3q">Hi team,</p>
+                  <p data-hf-id="hf-0blx">The launch moves to Thursday so we can land the final fixes. Nothing changes on your side. Thanks for rolling with it!</p>
+                  <p data-hf-id="hf-95rj">Maya</p>
+                </div>
+                <div data-hf-id="hf-jyta" class="ver v-spanish">
+                  <p data-hf-id="hf-bv4o">Hola equipo:</p>
+                  <p data-hf-id="hf-1e7f">El lanzamiento pasa al jueves para cerrar los últimos arreglos. Nada cambia por su parte. ¡Gracias por la flexibilidad!</p>
+                  <p data-hf-id="hf-8rgi">Maya</p>
+                </div>
+              </div>
+
+              <!-- AI bar: ask, generating, then refine -->
+              <div data-hf-id="hf-1ejy" class="t-aibar">
+                <div data-hf-id="hf-4bq2" class="bar-space"></div>
+                <div data-hf-id="hf-w71q" class="bar-state bar-a">
+                  <svg data-hf-id="hf-qxse" class="t-spark" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>
+                  <span data-hf-id="hf-qrkq" style="position: relative; flex: 1; height: 24px">
+                    <span data-hf-id="hf-1tna" class="a-hint" style="position: absolute; left: 0; top: 0; white-space: nowrap">Try writing with AI - describe your email</span>
+                    <span data-hf-id="hf-asxy" class="t-type c-typed a-ask" style="position: absolute; left: 0; top: 0">tell the Acme team the launch moved to Thursday</span>
+                  </span>
+                  <span data-hf-id="hf-squd" class="c-sendic a-send"><svg data-hf-id="hf-9o1w" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-436h" d="M12 19V5M5 12l7-7 7 7" /></svg></span>
+                </div>
+                <div data-hf-id="hf-s8xp" class="bar-state bar-b">
+                  <canvas data-hf-id="hf-zy4q" id="compose-logo-canvas" class="clip" width="208" height="208" data-start="0" data-duration="5" data-track-index="0"></canvas>
+                  <span data-hf-id="hf-ia2f" class="t-shimmer gen">Generating…</span>
+                  <span data-hf-id="hf-g3zz" class="c-sendic"><svg data-hf-id="hf-a2cx" class="t-ico" viewBox="0 0 24 24"><rect data-hf-id="hf-s566" x="8" y="8" width="8" height="8" rx="1" /></svg></span>
+                </div>
+                <div data-hf-id="hf-k9s3" class="bar-c">
+                  <div data-hf-id="hf-981r" class="bar-state">
+                    <svg data-hf-id="hf-kb27" class="t-spark" viewBox="0 0 24 24"><path data-hf-id="hf-av1q" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>
+                    Describe your change
+                    <span data-hf-id="hf-ydkv" class="c-sendic"><svg data-hf-id="hf-agny" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-d7n1" d="M12 19V5M5 12l7-7 7 7" /></svg></span>
+                  </div>
+                  <div data-hf-id="hf-2ph2" class="c-opts">
+                    <span data-hf-id="hf-uxf1" class="t-select sel-tone"><svg data-hf-id="hf-auyz" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-6q5w" d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z" /></svg><span data-hf-id="hf-9mpx" class="sel-val"><span data-hf-id="hf-hfkt">Tone</span><span data-hf-id="hf-ille">Friendly</span></span><svg data-hf-id="hf-b9a0" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-zit5" d="m6 9 6 6 6-6" /></svg></span>
+                    <span data-hf-id="hf-dgpq" class="t-select sel-len"><svg data-hf-id="hf-bnl1" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-rc9q" d="M4 12h16M4 6h10M4 18h7" /></svg><span data-hf-id="hf-bgrd" class="sel-val"><span data-hf-id="hf-oyk9">Length</span><span data-hf-id="hf-c0ax">Short</span></span><svg data-hf-id="hf-c1w2" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-ai8d" d="m6 9 6 6 6-6" /></svg></span>
+                    <span data-hf-id="hf-klhl" class="t-select sel-lang">文A <span data-hf-id="hf-cnog" class="sel-val"><span data-hf-id="hf-15ni">Translate to</span><span data-hf-id="hf-lmp6">Español</span></span><svg data-hf-id="hf-y0a6" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-bp5g" d="m6 9 6 6 6-6" /></svg></span>
+                    <span data-hf-id="hf-8fmb" class="c-left">18 suggestions left</span>
+                  </div>
+                </div>
+                <div data-hf-id="hf-r2j2" class="t-menu menu-tone"><div data-hf-id="hf-yy4c" class="t-mi">Professional</div><div data-hf-id="hf-tm9e" class="t-mi">Casual</div><div data-hf-id="hf-zp7j" class="t-mi m-pick">Friendly</div></div>
+                <div data-hf-id="hf-vnmz" class="t-menu menu-len"><div data-hf-id="hf-b776" class="t-mi m-pick">Short</div><div data-hf-id="hf-rvdo" class="t-mi">Medium</div><div data-hf-id="hf-4eot" class="t-mi">Long</div></div>
+                <div data-hf-id="hf-yfui" class="t-menu menu-lang"><div data-hf-id="hf-ezqn" class="t-menu-k">Translate to</div><div data-hf-id="hf-y8ce" class="t-mi">Automatic</div><div data-hf-id="hf-76q9" class="t-mi">English</div><div data-hf-id="hf-1owx" class="t-mi m-pick">Español</div><div data-hf-id="hf-a20w" class="t-mi">Français</div></div>
+                <i data-hf-id="hf-wpt3" class="glow"></i>
+              </div>
+            </div>
+          </div>
+
+          <span data-hf-id="hf-adcq" class="t-cursor"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-ql7t" d="M5 2.5v17.2l4.6-4.3 2.9 6.6 2.8-1.2-2.9-6.5h6.3z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round" /></svg></span>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("compose");
+          const q = (s) => root.querySelectorAll(s);
+          const one = (s) => root.querySelector(s);
+          const cur = one(".t-cursor");
+          const tl = gsap.timeline({ paused: true });
+          const swapVal = (sel, at) => {
+            const v = root.querySelectorAll(sel + " .sel-val span");
+            tl.to(v[0], { opacity: 0, duration: 0.15 }, at);
+            tl.to(v[1], { opacity: 1, duration: 0.2 }, at + 0.1);
+          };
+          const swapBody = (from, to, at) => {
+            tl.to(one(from), { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power2.in" }, at);
+            tl.fromTo(one(to), { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, at + 0.25);
+            tl.fromTo(one(".glow"), { opacity: 0 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 1 }, at);
+          };
+          const pick = (menu, sel, at, x, y) => {
+            tl.to(cur, { x: x, y: 840, duration: 0.45, ease: "power3.inOut" }, at - 0.55);
+            tl.to(one(sel), { scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, at - 0.1);
+            tl.fromTo(one(menu), { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" }, at);
+            tl.to(cur, { y: y, duration: 0.35, ease: "power2.inOut" }, at + 0.15);
+            tl.set(one(menu + " .m-pick"), { attr: { class: "t-mi m-pick is-hover" } }, at + 0.45);
+            tl.to(one(menu), { opacity: 0, duration: 0.18 }, at + 0.7);
+          };
+
+          // 0: the window opens, empty, with the AI bar ready.
+          tl.fromTo(one(".cw"), { opacity: 0, y: 30, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+          tl.set(one(".subj"), { clipPath: "inset(0 100% 0 0)" }, 0);
+          tl.set(one(".a-ask"), { clipPath: "inset(0 100% 0 0)" }, 0);
+          tl.set(cur, { x: 1180, y: 700, opacity: 0 }, 0);
+
+          // 0.6: the ask types in.
+          tl.to(one(".a-hint"), { opacity: 0, duration: 0.15 }, 0.6);
+          tl.to(one(".a-ask"), { clipPath: "inset(0 0% 0 0)", duration: 1.4, ease: "steps(46)" }, 0.65);
+          tl.set(one(".a-send"), { attr: { class: "c-sendic a-send go" } }, 2.0);
+
+          // 2.2: generating, then the draft writes itself.
+          tl.to(one(".bar-a"), { opacity: 0, duration: 0.15 }, 2.2);
+          tl.to(one(".bar-b"), { opacity: 1, duration: 0.15 }, 2.25);
+          tl.fromTo(one(".gen"), { backgroundPosition: "100% 0" }, { backgroundPosition: "-100% 0", duration: 0.8, ease: "none", repeat: 1 }, 2.25);
+          tl.to(one(".subj"), { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "steps(24)" }, 2.4);
+          tl.set(one(".v-casual"), { opacity: 1 }, 2.9);
+          tl.fromTo(q(".v-casual p"), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.25, ease: "power2.out" }, 2.9);
+
+          // 4.0: the bar becomes "Describe your change" with tone, length and language.
+          tl.to(one(".bar-b"), { opacity: 0, duration: 0.15 }, 4.0);
+          tl.to(one(".bar-space"), { height: 72, duration: 0.35, ease: "power3.out" }, 4.0);
+          tl.to(one(".bar-c"), { opacity: 1, duration: 0.3 }, 4.15);
+          tl.to(cur, { opacity: 1, duration: 0.2 }, 4.2);
+
+          // 4.9 Friendly, 6.5 Short, 8.1 Español.
+          pick(".menu-tone", ".sel-tone", 4.9, 330, 766);
+          swapVal(".sel-tone", 5.6);
+          swapBody(".v-casual", ".v-friendly", 5.6);
+          pick(".menu-len", ".sel-len", 6.5, 448, 702);
+          swapVal(".sel-len", 7.2);
+          swapBody(".v-friendly", ".v-short", 7.2);
+          pick(".menu-lang", ".sel-lang", 8.1, 566, 734);
+          swapVal(".sel-lang", 8.8);
+          swapBody(".v-short", ".v-spanish", 8.8);
+          tl.to(cur, { x: 1150, y: 600, opacity: 0, duration: 0.6, ease: "power2.in" }, 9.3);
+
+          // The Titan AI logo in its Processing state while the draft generates.
+          const logoCanvas = one("#compose-logo-canvas");
+          let logo = null;
+          const logoReady = (window.TiaBlob
+            ? window.TiaBlob.create(logoCanvas, { src: "assets/logo/titan-ai-mark.riv", artboard: "Logo", stateMachine: "Logo", drawSize: 1000, crop: window.TiaBlob.LOGO_TILE, triggers: [{ at: 0, name: "idle" }, { at: 0.6, name: "processing" }] }).then((b) => {
+                logo = b;
+              })
+            : Promise.reject(new Error("TiaBlob missing"))
+          ).catch((e) => console.warn("[compose] logo unavailable:", e.message));
+          if (window.__hyperframes && window.__hyperframes.registerFrameSource) {
+            window.__hyperframes.registerFrameSource({
+              element: logoCanvas,
+              ready: logoReady,
+              render: (time) => {
+                if (logo) logo.t = time + 1; // a second ahead, so it is already working when first seen
+              },
+            });
+          }
+
+          window.__timelines["screen-compose"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #brand-kit {
+          position: absolute;
+          inset: 0;
+        }
+        #brand-kit .sk {
+          background: radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in srgb, var(--accent) 22%, var(--bg)) 0%, var(--bg) 70%);
+        }
+        #brand-kit .bk-cell {
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+        }
+        #brand-kit .bk-wordmark {
+          font-size: 64px;
+          font-weight: 300;
+          letter-spacing: 0.02em;
+        }
+        #brand-kit .bk-wordmark b {
+          font-weight: 600;
+        }
+        #brand-kit .bk-logo {
+          display: flex;
+          align-items: center;
+          gap: 22px;
+        }
+        #brand-kit .bk-logo svg {
+          width: 104px;
+          height: 104px;
+          fill: none;
+          stroke: var(--text);
+          stroke-width: 4.5;
+          stroke-linejoin: round;
+          filter: drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 60%, transparent));
+        }
+        #brand-kit .bk-logo span {
+          font-size: 118px;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          line-height: 1;
+          text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 50%, transparent);
+        }
+        #brand-kit .bk-features {
+          display: flex;
+          gap: 36px;
+          justify-content: center;
+          margin-top: 36px;
+        }
+        #brand-kit .bk-tagline {
+          margin-top: 34px;
+          font-size: 40px;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          text-align: center;
+        }
+        #brand-kit .bk-url {
+          margin-top: 18px;
+          font-size: 28px;
+          font-weight: 700;
+          color: var(--accent-text);
+          text-align: center;
+        }
+        #brand-kit .bk-avail {
+          font-size: 18px;
+          color: var(--text-2);
+          text-align: center;
+          margin-top: 6px;
+        }
+        #brand-kit .bk-notifs {
+          position: absolute;
+          right: 90px;
+          top: 70px;
+          width: 420px;
+          height: 230px;
+        }
+        #brand-kit .bk-notifs .t-notif {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        #brand-kit .t-notif b {
+          display: block;
+          font-size: 13px;
+        }
+        #brand-kit .t-notif .n-meta {
+          margin-left: auto;
+          font-size: 11px;
+          color: var(--muted);
+        }
+        #brand-kit .t-notif .n-txt {
+          color: var(--text-2);
+          margin-top: 2px;
+        }
+        #brand-kit .bk-headline {
+          font-size: 72px;
+          font-weight: 800;
+          letter-spacing: -0.035em;
+          line-height: 1.04;
+          margin-top: 26px;
+        }
+        #brand-kit .bk-rule {
+          width: 40px;
+          height: 3px;
+          border-radius: 2px;
+          background: var(--accent);
+          margin-top: 14px;
+        }
+        #brand-kit .t-counter .t-num {
+          font-size: 150px;
+          text-shadow: 0 0 40px color-mix(in srgb, var(--accent) 50%, transparent);
+        }
+        #brand-kit .t-counter .t-cap {
+          font-size: 16px;
+        }
+      </style>
+
+      <!-- Brand pieces: app icon, Titan logo, feature row, tagline, notification cards, section tag + headline, unread counter. -->
+      <div data-hf-id="hf-634v" id="brand-kit" data-composition-id="brand-kit" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-7718" class="t-ui sk" data-theme="dark">
+        <!-- App icon + "TITAN AI" -->
+        <div data-hf-id="hf-pflg" class="bk-cell bk-item" style="left: 110px; top: 90px; align-items: center; gap: 26px">
+          <div data-hf-id="hf-elcx" class="t-appicon"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /><circle data-hf-id="hf-sbrr" cx="12" cy="12" r="1.6" fill="#1f5cf0" /></svg></div>
+          <div data-hf-id="hf-ton1" class="bk-wordmark">TITAN <b data-hf-id="hf-44xr">AI</b></div>
+        </div>
+
+        <!-- Notification card stack -->
+        <div data-hf-id="hf-hneo" class="bk-notifs bk-item">
+          <div data-hf-id="hf-l50v" class="t-notif" style="transform: translate(36px, 56px) scale(0.92); opacity: 0.45">
+            <span data-hf-id="hf-2nmd" class="t-app"><svg data-hf-id="hf-1tol" viewBox="0 0 24 24"><path data-hf-id="hf-5qpk" d="M3 6h18v12H3z" opacity=".001" /><path data-hf-id="hf-faij" d="M4 6l8 6 8-6v12H4z" /></svg></span>
+            <div data-hf-id="hf-yeow"><b data-hf-id="hf-te21">Orbit CI</b><div data-hf-id="hf-zekn" class="n-txt">Build passed on main</div></div><span data-hf-id="hf-irt3" class="n-meta">now</span>
+          </div>
+          <div data-hf-id="hf-vl7c" class="t-notif" style="transform: translate(18px, 28px) scale(0.96); opacity: 0.7">
+            <span data-hf-id="hf-rt55" class="t-app"><svg data-hf-id="hf-30lo" viewBox="0 0 24 24"><path data-hf-id="hf-0la3" d="M4 6l8 6 8-6v12H4z" /></svg></span>
+            <div data-hf-id="hf-y7yw"><b data-hf-id="hf-niiq">Priya Shah</b><div data-hf-id="hf-t07f" class="n-txt">Contract draft v3</div></div><span data-hf-id="hf-k95z" class="n-meta">now</span>
+          </div>
+          <div data-hf-id="hf-luw1" class="t-notif">
+            <span data-hf-id="hf-t028" class="t-app"><svg data-hf-id="hf-2man" viewBox="0 0 24 24"><path data-hf-id="hf-06z2" d="M4 6l8 6 8-6v12H4z" /></svg></span>
+            <div data-hf-id="hf-x11t"><span data-hf-id="hf-rcg9" style="font-size: 11px; color: var(--muted)">Titan Mail</span><b data-hf-id="hf-uves">HR Team</b><div data-hf-id="hf-g0kn" class="n-txt">Benefits enrollment closes Friday</div></div><span data-hf-id="hf-juuy" class="n-meta">now</span>
+          </div>
+        </div>
+
+        <!-- Titan logo, features, tagline, URL -->
+        <div data-hf-id="hf-b0md" class="bk-cell bk-item" style="left: 0; right: 0; top: 330px; align-items: center">
+          <div data-hf-id="hf-xq9v" class="bk-logo">
+            <svg data-hf-id="hf-l6o9" viewBox="0 0 64 64"><path data-hf-id="hf-3lwn" d="M6 8h52l-6 16H38v26l-6 8-6-8V24H12z" /><path data-hf-id="hf-hjba" d="M6 8l20 16M58 8 38 24M32 58V24" /></svg>
+            <span data-hf-id="hf-temd">TITAN</span>
+          </div>
+          <div data-hf-id="hf-iuxf" class="bk-features">
+            <span data-hf-id="hf-tzrv" class="t-feature"><svg data-hf-id="hf-uirf" viewBox="0 0 12 12"><path data-hf-id="hf-skhs" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>AI Labels</span>
+            <span data-hf-id="hf-sz9w" class="t-feature"><svg data-hf-id="hf-3t7q" viewBox="0 0 24 24"><rect data-hf-id="hf-4tln" x="4" y="4" width="16" height="16" rx="4" /></svg>AI Inbox</span>
+            <span data-hf-id="hf-v557" class="t-feature"><svg data-hf-id="hf-3ewp" viewBox="0 0 24 24"><path data-hf-id="hf-b9cr" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>AI Write</span>
+            <span data-hf-id="hf-nblg" class="t-feature"><svg data-hf-id="hf-4lts" viewBox="0 0 24 24"><path data-hf-id="hf-f2qg" d="M4 4h16v12H9l-5 4z" /></svg>Tia</span>
+          </div>
+          <div data-hf-id="hf-bcyv" class="bk-tagline">The AI teammate already in your inbox.</div>
+          <div data-hf-id="hf-euwf" class="bk-url">titan.email</div>
+          <div data-hf-id="hf-p0hq" class="bk-avail">Available now on Titan Mail.</div>
+        </div>
+
+        <!-- Section tag + headline -->
+        <div data-hf-id="hf-xnbl" class="bk-cell bk-item" style="left: 110px; bottom: 90px">
+          <div data-hf-id="hf-rin1" class="t-section-tag">
+            <span data-hf-id="hf-dhqh" class="t-mini"><svg data-hf-id="hf-47ir" viewBox="0 0 24 24"><path data-hf-id="hf-av1q" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg></span>
+            Titan AI <span data-hf-id="hf-ycog" class="t-slash">/</span> <span data-hf-id="hf-w0nz" class="t-sub">AI Labels</span>
+          </div>
+          <div data-hf-id="hf-1qi8" class="bk-rule"></div>
+          <div data-hf-id="hf-1sfi" class="bk-headline"><div data-hf-id="hf-r1e8">Sorted before</div><div data-hf-id="hf-fdf4">you read it.</div></div>
+        </div>
+
+        <!-- Unread counter -->
+        <div data-hf-id="hf-4gi6" class="bk-cell bk-item" style="right: 130px; bottom: 100px">
+          <div data-hf-id="hf-l5g7" class="t-counter">
+            <div data-hf-id="hf-zli8" class="t-num">1,284</div>
+            <div data-hf-id="hf-g14o" class="t-cap">UNREAD</div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("brand-kit");
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(root.querySelectorAll(".bk-item"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: "power3.out" }, 0.1);
+          window.__timelines["brand-kit"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

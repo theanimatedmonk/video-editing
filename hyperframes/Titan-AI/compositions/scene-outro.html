@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #outro {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #outro .glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse 45% 40% at 50% 46%, rgba(47, 107, 255, 0.07) 0%, transparent 70%);
+        }
+        #outro .counter {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 250px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 26px;
+        }
+        #outro .num {
+          font-size: 260px;
+          font-weight: 800;
+          letter-spacing: -0.05em;
+          line-height: 0.9;
+          color: #1d1d1f;
+          font-variant-numeric: tabular-nums;
+        }
+        #outro .cap {
+          font-size: 20px;
+          letter-spacing: 0.42em;
+          margin-left: 0.42em;
+          color: #6e6e73;
+          font-weight: 500;
+        }
+        #outro .clear {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 34px;
+          font-size: 28px;
+          font-weight: 600;
+          color: #1d1d1f;
+        }
+        #outro .clear i {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: rgba(76, 195, 138, 0.18);
+          color: #4cc38a;
+        }
+        #outro .clear svg {
+          width: 20px;
+          height: 20px;
+        }
+        #outro .lockup {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 372px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        #outro .mark {
+          display: flex;
+          align-items: center;
+          gap: 26px;
+
+        }
+        #outro .mark .logo {
+          display: block;
+          width: 520px;
+          height: auto;
+        }
+        #outro .features {
+          display: flex;
+          gap: 46px;
+          margin-top: 60px;
+        }
+        #outro .t-feature {
+          color: #1d1d1f;
+          font-size: 30px;
+        }
+        /* All four icons share one 24px box, so they read the same size */
+        #outro .t-feature svg {
+          width: 24px;
+          height: 24px;
+        }
+        #outro .f-blob {
+          position: relative;
+          display: block;
+          flex: none;
+          width: 24px;
+          height: 24px;
+        }
+        #outro .f-blob canvas {
+          position: absolute;
+          left: -5px;
+          top: -10px;
+          width: 34px;
+          height: 34px;
+        }
+        #outro .tag {
+          margin-top: 54px;
+          font-size: 52px;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: #1d1d1f;
+        }
+        #outro .end {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 548px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 14px;
+        }
+        #outro .url {
+          font-size: 50px;
+          font-weight: 700;
+          color: #2563eb;
+        }
+        #outro .avail {
+          font-size: 24px;
+          color: #6e6e73;
+        }
+      </style>
+
+      <!-- Closing: the count runs down to zero, then the Titan lockup and the link. -->
+      <div data-hf-id="hf-2mr8" id="outro" data-composition-id="scene-outro" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-0q76" class="t-ui" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-2s7n" class="glow"></div>
+
+          <div data-hf-id="hf-el44" class="counter">
+            <div data-hf-id="hf-17rf" class="num">1,284</div>
+            <div data-hf-id="hf-453r" class="cap">UNREAD</div>
+            <div data-hf-id="hf-yf2v" class="clear"><i data-hf-id="hf-wt6k"><svg data-hf-id="hf-yc2n" class="t-ico" viewBox="0 0 24 24" style="stroke-width: 2.6"><path data-hf-id="hf-gznq" d="m5 12 5 5 9-10" /></svg></i>All clear</div>
+          </div>
+
+          <div data-hf-id="hf-6jvi" class="lockup">
+            <div data-hf-id="hf-9gvv" class="mark">
+              <img data-hf-id="hf-e8tt" class="logo" src="assets/logo/titan-logo.svg" alt="Titan">
+            </div>
+            <div data-hf-id="hf-td85" class="features">
+              <span data-hf-id="hf-tzrv" class="t-feature"><svg data-hf-id="hf-uirf" viewBox="0 0 12 12"><path data-hf-id="hf-skhs" d="M6 1a5 5 0 1 0 5 5H6z" /></svg>AI Labels</span>
+              <span data-hf-id="hf-sz9w" class="t-feature"><svg data-hf-id="hf-zefi" class="f-mail" viewBox="0 0 24 24"><path data-hf-id="hf-u346" d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" /><path data-hf-id="hf-fbfr" d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" /></svg>AI Inbox</span>
+              <span data-hf-id="hf-v557" class="t-feature"><svg data-hf-id="hf-1tol" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>AI Write</span>
+              <span data-hf-id="hf-nblg" class="t-feature"><span data-hf-id="hf-q2a3" class="f-blob"><canvas data-hf-id="hf-ckof" id="outro-blob-canvas" class="clip" width="96" height="96" data-start="0" data-duration="14" data-track-index="0"></canvas></span>Tia</span>
+            </div>
+            <div data-hf-id="hf-rg43" class="tag">The AI teammate already in your inbox.</div>
+          </div>
+
+          <div data-hf-id="hf-zh6v" class="end">
+            <div data-hf-id="hf-ukz5" class="url">titan.email</div>
+            <div data-hf-id="hf-nh0w" class="avail">Available now on Titan Mail.</div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("outro");
+          const q = (s) => root.querySelectorAll(s);
+          const one = (s) => root.querySelector(s);
+          const num = one(".num");
+          let shown = 0;
+          const counter = { get v() { return shown; }, set v(n) { shown = n; num.textContent = Math.round(n).toLocaleString("en-US"); } };
+          const tl = gsap.timeline({ paused: true });
+
+          // 0: the count runs down to zero.
+          tl.fromTo(one(".counter"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" }, 0);
+          // It starts where the opening left it, red, and clears down to a blue zero.
+          tl.fromTo(counter, { v: 1284 }, { v: 0, duration: 2.5, ease: "power2.inOut" }, 0.1);
+          tl.fromTo(num, { color: "#a31515" }, { color: "#1d1d1f", duration: 0.9, ease: "sine.inOut" }, 0.5);
+          tl.to(num, { color: "#2563eb", duration: 0.5, ease: "sine.out" }, 2.25);
+          tl.fromTo(one(".clear"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.7);
+          tl.to(one(".counter"), { opacity: 0, scale: 1.08, filter: "blur(10px)", duration: 0.45, ease: "power2.in" }, 3.6);
+
+          // 4.0: the Titan lockup.
+          tl.fromTo(one(".mark"), { opacity: 0, scale: 0.86, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.9, ease: "expo.out" }, 4.0);
+          tl.fromTo(q(".t-feature"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.18, ease: "power3.out" }, 5.0);
+          tl.fromTo(one(".tag"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 6.0);
+
+          // 10.8: down to the mark and the link.
+          tl.to([one(".features"), one(".tag")], { opacity: 0, y: -10, duration: 0.4, ease: "power2.in" }, 10.8);
+          tl.to(one(".mark"), { scale: 0.62, y: 28, duration: 0.8, ease: "power3.inOut" }, 10.9);
+          tl.fromTo(q(".end > *"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power3.out" }, 11.4);
+
+          // Tia's blob in the feature row: a frame source, like in the Tia screen.
+          const canvas = one("#outro-blob-canvas");
+          let blob = null;
+          const loaded = (window.TiaBlob
+            ? window.TiaBlob.create(canvas, { src: "assets/tia/blob.riv", states: [{ at: 0, state: 0 }] }).then((b) => {
+                blob = b;
+              })
+            : Promise.reject(new Error("TiaBlob missing"))
+          ).catch((e) => console.warn("[outro] blob unavailable:", e.message));
+          if (window.__hyperframes && window.__hyperframes.registerFrameSource) {
+            window.__hyperframes.registerFrameSource({
+              element: canvas,
+              ready: loaded,
+              render: (time) => {
+                if (blob) blob.t = time;
+              },
+            });
+          }
+
+          window.__timelines["scene-outro"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "Untitled",
+  "createdAt": "2026-11-08T18:09:03.186Z",
+  "engine": "claude",
+  "createdBy": "hyperframes-desktop",
+  "skillVersions": {
+    "hyperframes-core": "4a335aa6a1daf7bea766d9bbacc0cb6d43b1ad46",
+    "hyperframes-studio": "4a335aa6a1daf7bea766d9bbacc0cb6d43b1ad46"
+  }
+}

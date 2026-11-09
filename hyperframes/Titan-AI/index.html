@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./assets/vendor/three/three.module.js",
+          "three/addons/": "./assets/vendor/three/addons/",
+          "mp4-muxer": "./assets/vendor/mp4-muxer.js"
+        }
+      }
+    </script>
+    <script src="assets/vendor/rive/rive.js"></script>
+    <script src="assets/ui/tia-blob.js"></script>
+    <link rel="stylesheet" href="assets/ui/titan-ui.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f5f5f7;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #f5f5f7;
+        font-family: "Inter", sans-serif;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 55%, #ececf0 100%);
+      }
+      /* Soft colour drifting across the top of the white background */
+      #bg .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+      }
+      #bg .b-blue {
+        left: -260px;
+        top: -520px;
+        width: 1200px;
+        height: 820px;
+        background: #4d8bff;
+        opacity: 0.32;
+      }
+      #bg .b-purple {
+        left: 900px;
+        top: -560px;
+        width: 1200px;
+        height: 820px;
+        background: #9b6bff;
+        opacity: 0.28;
+      }
+      #bg .b-sky {
+        left: 420px;
+        top: -640px;
+        width: 1000px;
+        height: 700px;
+        background: #7cc0ff;
+        opacity: 0.26;
+      }
+
+      /* The two 3D devices fill the frame; only one shows at a time. */
+      .device {
+        position: absolute !important;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      #parking {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      /* What the MacBook's screen shows: a menu bar strip, then the app. */
+      #mac-desk {
+        position: relative;
+        width: 1512px;
+        height: 982px;
+        background: #f5f5f7;
+      }
+      #mac-desk .menubar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 32px;
+        background: #ececef;
+      }
+      #mac-desk .app {
+        position: absolute;
+        left: 0;
+        top: 32px;
+        width: 1512px;
+        height: 950px;
+      }
+      .scr {
+        position: absolute;
+        inset: 0;
+      }
+      .scr > [data-composition-src] {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      /* What the iPad's screen shows: turned for landscape, a status bar, then the app. */
+      #ipad-desk {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1212px;
+        height: 834px;
+        background: #ffffff;
+        transform-origin: 0 0;
+      }
+      #ipad-desk .status {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 22px;
+        background: #ffffff;
+        color: #1d1d1f;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      #ipad-desk .app {
+        position: absolute;
+        left: 0;
+        top: 24px;
+        width: 1212px;
+        height: 810px;
+        background: #ffffff;
+      }
+
+      /* Section captions */
+      .f-cap {
+        position: absolute;
+        left: 120px;
+        top: 640px;
+        width: 1000px;
+      }
+      .f-cap .t-section-tag {
+        color: #1d1d1f;
+        font-size: 21px;
+      }
+      /* The tile fills half of its canvas; the rest is room for its glow */
+      .f-cap .t-section-tag .t-mini {
+        position: relative;
+        width: 30px;
+        height: 30px;
+        background: none;
+      }
+      .f-cap .t-section-tag .t-mini canvas {
+        position: absolute;
+        left: -15px;
+        top: -15px;
+        width: 60px;
+        height: 60px;
+      }
+      .titan-mark {
+        display: block;
+      }
+      .titan-mark-live {
+        position: absolute;
+        left: -45px;
+        top: -45px;
+        width: 180px;
+        height: 180px;
+      }
+      .f-cap .t-section-tag .t-sub {
+        color: #2563eb;
+      }
+      .f-cap .rule {
+        display: block;
+        width: 64px;
+        height: 3px;
+        margin: 18px 0 26px;
+        border-radius: 2px;
+        background: #2563eb;
+      }
+      .f-cap .head {
+        font-size: 80px;
+        font-weight: 800;
+        letter-spacing: -0.035em;
+        line-height: 1.04;
+        color: #1d1d1f;
+      }
+      .f-cap .head span {
+        display: block;
+      }
+
+      /* AI Write: the ask, typed big beside the MacBook */
+      #ask {
+        position: absolute;
+        left: 120px;
+        top: 360px;
+        width: 760px;
+        font-size: 62px;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        line-height: 1.18;
+        color: #1d1d1f;
+      }
+      #ask .ln {
+        display: block;
+        white-space: nowrap;
+      }
+      #ask svg {
+        width: 46px;
+        height: 46px;
+        fill: #2563eb;
+        margin-right: 14px;
+        vertical-align: -4px;
+      }
+
+      /* Tone / length / language words */
+      .f-word {
+        position: absolute;
+        left: 120px;
+        top: 450px;
+        font-size: 170px;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        background: linear-gradient(90deg, #2563eb 0%, #7c4dff 60%, #b44dff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding-bottom: 20px;
+      }
+
+      /* ⌘ ; to open Tia */
+      #keys {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 430px;
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+      }
+      #keys .key {
+        width: 150px;
+        height: 150px;
+        border-radius: 30px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(180deg, #ffffff 0%, #f0f0f3 100%);
+        box-shadow: inset 0 -3px 0 rgba(20, 24, 40, 0.06), 0 20px 50px rgba(20, 24, 40, 0.16), 0 0 0 1px rgba(20, 24, 40, 0.08);
+        color: #1d1d1f;
+        font-size: 74px;
+        font-weight: 500;
+      }
+
+      /* Recap: one word per feature */
+      .f-recap {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 490px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 26px;
+      }
+      .f-recap i {
+        position: relative;
+        width: 90px;
+        height: 90px;
+      }
+      .f-recap b {
+        font-size: 200px;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        color: #1d1d1f;
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.95), 0 0 14px rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-ltbq" id="root" data-composition-id="main" data-start="0" data-duration="71" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-2xc0" id="bg"><i data-hf-id="hf-lcuk" class="blob b-blue"></i><i data-hf-id="hf-9gm6" class="blob b-purple"></i><i data-hf-id="hf-icmn" class="blob b-sky"></i></div>
+
+      <!-- 3D devices (drawn by the script at the bottom) -->
+      <div data-hf-id="hf-dcfx" id="mac" class="device"></div>
+      <div data-hf-id="hf-fqds" id="ipad" class="device"></div>
+
+      <!-- Screens for the devices: moved onto the MacBook and iPad glass when the page loads -->
+      <div data-hf-id="hf-grin" id="parking">
+        <div data-hf-id="hf-3ky0" id="mac-desk">
+          <div data-hf-id="hf-7y28" class="menubar"></div>
+          <div data-hf-id="hf-gk5l" class="app">
+            <div data-hf-id="hf-r103" id="w-labels" class="scr">
+              <div data-hf-id="hf-7ojo" id="labels-host" class="clip" data-composition-id="screen-inbox-labels" data-composition-src="compositions/screen-inbox-labels.html" data-start="10" data-duration="47.5" data-track-index="2" data-width="1512" data-height="950" style="width: 1512px; height: 950px"></div>
+            </div>
+            <div data-hf-id="hf-t54u" id="w-compose" class="scr">
+              <div data-hf-id="hf-57yu" id="compose-host" class="clip" data-composition-id="screen-compose" data-composition-src="compositions/screen-compose.html" data-start="28" data-duration="29.5" data-track-index="3" data-width="1512" data-height="950" style="width: 1512px; height: 950px"></div>
+            </div>
+          </div>
+        </div>
+        <div data-hf-id="hf-jfbd" id="ipad-desk">
+          <div data-hf-id="hf-8kim" class="status"><span data-hf-id="hf-zwmt">9:41</span><span data-hf-id="hf-k7an">100%</span></div>
+          <div data-hf-id="hf-8l4t" class="app">
+            <div data-hf-id="hf-chyw" id="w-ai" class="scr">
+              <div data-hf-id="hf-tcl2" id="ai-inbox-host" class="clip" data-composition-id="screen-ai-inbox" data-composition-src="compositions/screen-ai-inbox.html" data-start="18" data-duration="39.5" data-track-index="4" data-width="1210" data-height="810" style="width: 1210px; height: 810px"></div>
+            </div>
+            <div data-hf-id="hf-2r6g" id="w-tia" class="scr">
+              <div data-hf-id="hf-exfc" id="tia-host" class="clip" data-composition-id="screen-tia" data-composition-src="compositions/screen-tia.html" data-start="39" data-duration="18.6" data-track-index="5" data-width="1210" data-height="810" style="width: 1210px; height: 810px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opening: count, flood of email, Titan AI mark -->
+      <div data-hf-id="hf-k6af" id="w-hook" class="scr">
+        <div data-hf-id="hf-5rv1" id="hook-host" class="clip" data-composition-id="scene-hook" data-composition-src="compositions/scene-hook.html" data-start="0" data-duration="9.85" data-track-index="1" data-width="1920" data-height="1080" style="width: 1920px; height: 1080px"></div>
+      </div>
+
+      <!-- Closing: count to zero, Titan lockup, link -->
+      <div data-hf-id="hf-vux7" id="w-outro" class="scr">
+        <div data-hf-id="hf-jy33" id="outro-host" class="clip" data-composition-id="scene-outro" data-composition-src="compositions/scene-outro.html" data-start="57" data-duration="14" data-track-index="1" data-width="1920" data-height="1080" style="width: 1920px; height: 1080px"></div>
+      </div>
+
+      <!-- Captions and on-screen words -->
+      <div data-hf-id="hf-t42r" id="cap-labels" class="f-cap clip" data-start="16" data-duration="2.3" data-track-index="6">
+        <div data-hf-id="hf-rin1" class="t-section-tag"><span data-hf-id="hf-dhqh" class="t-mini"><canvas data-hf-id="hf-pq0o" class="titan-mark" width="180" height="180"></canvas></span>Titan AI <span data-hf-id="hf-ycog" class="t-slash">/</span> <span data-hf-id="hf-w0nz" class="t-sub">AI Labels</span></div>
+        <i data-hf-id="hf-05s6" class="rule"></i>
+        <div data-hf-id="hf-z992" class="head"><span data-hf-id="hf-revb">Sorted before</span><span data-hf-id="hf-iwgd">you read it.</span></div>
+      </div>
+      <div data-hf-id="hf-zfze" id="cap-ai" class="f-cap clip" data-start="24.6" data-duration="3.5" data-track-index="6">
+        <div data-hf-id="hf-9a9d" class="t-section-tag"><span data-hf-id="hf-7zlp" class="t-mini"><canvas data-hf-id="hf-tzv4" class="titan-mark" width="180" height="180"></canvas></span>Titan AI <span data-hf-id="hf-gpe0" class="t-slash">/</span> <span data-hf-id="hf-qtiw" class="t-sub">AI Inbox</span></div>
+        <i data-hf-id="hf-mc0a" class="rule"></i>
+        <div data-hf-id="hf-gwvu" class="head"><span data-hf-id="hf-1rzs">Know what needs you.</span><span data-hf-id="hf-7fob">Clear it fast.</span></div>
+      </div>
+      <div data-hf-id="hf-ggp3" id="ask" class="clip" data-start="28.2" data-duration="2.4" data-track-index="6">
+        <span data-hf-id="hf-smev" class="ln"><svg data-hf-id="hf-30lo" viewBox="0 0 24 24"><path data-hf-id="hf-av1q" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg><span data-hf-id="hf-9qnr" class="t-type">tell the Acme team</span></span>
+        <span data-hf-id="hf-oupj" class="ln"><span data-hf-id="hf-c7na" class="t-type">the launch moved to</span></span>
+        <span data-hf-id="hf-ogei" class="ln"><span data-hf-id="hf-ap3a" class="t-type">Thursday</span></span>
+      </div>
+      <div data-hf-id="hf-y0sb" id="w-friendly" class="f-word clip" data-start="33.4" data-duration="1.75" data-track-index="7">Friendly.</div>
+      <div data-hf-id="hf-mxx7" id="w-short" class="f-word clip" data-start="35.15" data-duration="1.6" data-track-index="7">Short.</div>
+      <div data-hf-id="hf-jjj3" id="w-espanol" class="f-word clip" data-start="36.75" data-duration="1.2" data-track-index="7">Español.</div>
+      <div data-hf-id="hf-h8l3" id="cap-write" class="f-cap clip" data-start="37.9" data-duration="1.2" data-track-index="6">
+        <div data-hf-id="hf-ah6g" class="t-section-tag"><span data-hf-id="hf-96is" class="t-mini"><canvas data-hf-id="hf-ssy1" class="titan-mark" width="180" height="180"></canvas></span>Titan AI <span data-hf-id="hf-figx" class="t-slash">/</span> <span data-hf-id="hf-amvr" class="t-sub">AI Write</span></div>
+        <i data-hf-id="hf-mqbb" class="rule"></i>
+        <div data-hf-id="hf-hb6v" class="head"><span data-hf-id="hf-ix0l">Describe it.</span><span data-hf-id="hf-tt7x">It's written.</span></div>
+      </div>
+      <div data-hf-id="hf-6bcg" id="keys" class="clip" data-start="38.9" data-duration="0.9" data-track-index="7">
+        <div data-hf-id="hf-p1d3" class="key">⌘</div>
+        <div data-hf-id="hf-ayai" class="key">;</div>
+      </div>
+      <div data-hf-id="hf-xq5t" id="cap-tia" class="f-cap clip" data-start="50.2" data-duration="1.8" data-track-index="6">
+        <div data-hf-id="hf-a2vf" class="t-section-tag"><span data-hf-id="hf-8s7r" class="t-mini"><canvas data-hf-id="hf-t792" class="titan-mark" width="180" height="180"></canvas></span>Titan AI <span data-hf-id="hf-fwry" class="t-slash">/</span> <span data-hf-id="hf-00fc" class="t-sub">Tia</span></div>
+        <i data-hf-id="hf-n4mc" class="rule"></i>
+        <div data-hf-id="hf-hphw" class="head"><span data-hf-id="hf-lxlk">Ask.</span><span data-hf-id="hf-61l6">It's handled.</span></div>
+      </div>
+      <div data-hf-id="hf-v21n" id="r-sorted" class="f-recap clip" data-start="52" data-duration="1.3" data-track-index="7"><i data-hf-id="hf-wt6k"><canvas data-hf-id="hf-elsc" class="titan-mark-live" width="400" height="400"></canvas></i><b data-hf-id="hf-o2nm">Sorted.</b></div>
+      <div data-hf-id="hf-vsvd" id="r-cleared" class="f-recap clip" data-start="53.2" data-duration="1.3" data-track-index="7"><i data-hf-id="hf-zeb8"><canvas data-hf-id="hf-5sys" class="titan-mark-live" width="400" height="400"></canvas></i><b data-hf-id="hf-bqlj">Cleared.</b></div>
+      <div data-hf-id="hf-n5e1" id="r-written" class="f-recap clip" data-start="54.4" data-duration="1.3" data-track-index="7"><i data-hf-id="hf-y7e5"><canvas data-hf-id="hf-4m1p" class="titan-mark-live" width="400" height="400"></canvas></i><b data-hf-id="hf-k88a">Written.</b></div>
+      <div data-hf-id="hf-kswj" id="r-handled" class="f-recap clip" data-start="55.6" data-duration="1.5" data-track-index="7"><i data-hf-id="hf-ylp6"><canvas data-hf-id="hf-50cq" class="titan-mark-live" width="400" height="400"></canvas></i><b data-hf-id="hf-yiu9">Handled.</b></div>
+      <!-- Sound effects, timed to what happens on screen -->
+      <div data-hf-id="hf-or54" id="sfx-host" class="clip" data-composition-id="sound-effects" data-composition-src="compositions/sound-effects.html" data-start="0" data-duration="71" data-track-index="11" data-width="1920" data-height="1080"></div>
+
+
+      <!-- Background music, from the sound library -->
+      <audio data-hf-id="hf-0qpn" id="music" src="assets/audio/titan-bg-music-hiphop.m4a" data-start="0" data-duration="71" data-track-index="10" data-volume="0.42"></audio>
+    </div>
+
+    <script type="module">
+      import { createDevice } from "./assets/ui/device-rig.js";
+
+      // Camera moves for each device. Times are seconds in the video.
+      // az/el orbit the camera, dist is how far away, tx/ty aim it (negative tx puts the device on the right).
+      const MAC_KEYS = [
+        // AI Labels: the lid opens, the camera eases onto the screen, then settles beside the caption
+        { at: 0, az: 0, el: 16, dist: 40, tx: 0, ty: 0.5, lid: 0 },
+        { at: 9.6, az: 0, el: 16, dist: 40, lid: 0 },
+        { at: 10.5, el: 10, dist: 37, lid: 110, ease: "power2.inOut" },
+        { at: 11.3, az: 0, el: 8, dist: 19, tx: 0, ty: 3, ease: "power2.inOut" },
+        { at: 15.4, dist: 17.8, ease: "sine.inOut" },
+        { at: 16.5, az: -12, el: 8, dist: 38, tx: -7, ty: 0.5, ease: "power2.inOut" },
+        { at: 18.6, az: -9, dist: 37, ease: "sine.inOut" },
+        // AI Write: beside the ask, onto the draft, beside the words, beside the caption
+        { at: 27.5, az: 10, el: 8, dist: 38, tx: -6, ty: 0.5, cut: true },
+        { at: 29.9, az: 7, dist: 36, ease: "sine.inOut" },
+        { at: 30.9, az: 0, el: 8, dist: 18.5, tx: 0, ty: 3, ease: "power2.inOut" },
+        { at: 33.3, dist: 17.5, ease: "sine.inOut" },
+        { at: 34.1, az: -8, el: 8, dist: 27, tx: -5.5, ty: 2.5, ease: "power2.inOut" },
+        { at: 37.5, az: -6, dist: 26, ease: "sine.inOut" },
+        { at: 38.6, az: -12, el: 8, dist: 38, tx: -7, ty: 0.5, ease: "power2.inOut" },
+        { at: 39.4, az: -10, dist: 37, ease: "sine.out" },
+        // Recap: straight-on, slow push
+        { at: 51.7, az: 0, el: 8, dist: 22, tx: 0, ty: 3, cut: true },
+        { at: 53.5, dist: 20, ease: "sine.inOut" },
+        { at: 54.1, az: 0, el: 8, dist: 22, tx: 0, ty: 3, cut: true },
+        { at: 55.9, dist: 20, ease: "sine.inOut" },
+      ];
+      const IPAD_KEYS = [
+        // AI Inbox: turns to face the camera, holds straight-on, then settles beside the caption
+        { at: 0, az: -22, el: 6, dist: 30, tx: 0, ty: 0, rz: 90 },
+        { at: 17.8, az: -22, el: 6, dist: 30 },
+        { at: 19.6, az: 0, el: 0, dist: 21, ease: "power2.inOut" },
+        { at: 24.4, dist: 19.5, ease: "sine.inOut" },
+        { at: 25.4, az: -10, el: 4, dist: 36, tx: -8, ty: 0, ease: "power2.inOut" },
+        { at: 28.6, az: -7, dist: 35, ease: "sine.inOut" },
+        // Tia: the whole iPad, into the assistant, back out, then beside the caption
+        { at: 38.5, az: 0, el: 0, dist: 27, tx: 0, ty: 0, cut: true },
+        { at: 39.6, dist: 26, ease: "sine.inOut" },
+        { at: 40.6, dist: 12, tx: 3.2, ease: "power2.inOut" },
+        { at: 41.05, dist: 11.7, ease: "sine.inOut" },
+        { at: 41.7, dist: 14, tx: 3.0, ty: -1.6, ease: "power2.inOut" },
+        { at: 42.55, dist: 13.5, ease: "sine.inOut" },
+        { at: 43.3, dist: 9.5, tx: 3.0, ty: 1.7, ease: "power2.inOut" },
+        { at: 45.6, dist: 9.2, ease: "sine.inOut" },
+        { at: 46.4, dist: 14, tx: 3.0, ty: -1.6, ease: "power2.inOut" },
+        { at: 47.35, dist: 13.5, ease: "sine.inOut" },
+        { at: 48.1, dist: 9.5, tx: 3.0, ty: 1.7, ease: "power2.inOut" },
+        { at: 49.9, dist: 9.2, ease: "sine.inOut" },
+        { at: 50.8, az: -10, el: 4, dist: 36, tx: -8, ty: 0, ease: "power2.inOut" },
+        { at: 52.3, az: -7, dist: 35, ease: "sine.inOut" },
+        // Recap: straight-on, slow push
+        { at: 52.9, az: 0, el: 0, dist: 20, tx: 0, ty: 0, cut: true },
+        { at: 54.7, dist: 18.5, ease: "sine.inOut" },
+        { at: 55.3, az: 0, el: 0, dist: 20, tx: 0, ty: 0, cut: true },
+        { at: 57.6, dist: 18.5, ease: "sine.inOut" },
+      ];
+
+      // A white Apple-style studio, silver devices.
+      const STUDIO = { backdrop: "Custom", inner: "#ffffff", outer: "#e6e7ec", shadow: 0.5, reflections: 1, exposure: 1 };
+
+      const mac = createDevice(document.getElementById("mac"), { model: "macbookPro14", finish: "Silver", keys: MAC_KEYS, look: STUDIO, clearBackdrop: true });
+      const ipad = createDevice(document.getElementById("ipad"), { model: "ipadPro11", finish: "Silver", keys: IPAD_KEYS, look: STUDIO, clearBackdrop: true });
+
+      // Put the screens on the glass. The iPad's is turned to read in landscape.
+      mac.screen.append(document.getElementById("mac-desk"));
+      const ipadDesk = document.getElementById("ipad-desk");
+      const vp = ipad.viewport;
+      ipadDesk.style.width = `${vp.height}px`;
+      ipadDesk.style.height = `${vp.width}px`;
+      ipadDesk.style.transform = `translate(${vp.width}px, 0) rotate(90deg)`;
+      ipad.screen.append(ipadDesk);
+
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelector(s);
+
+      // Cameras follow the video clock.
+      tl.fromTo(mac, { t: 0 }, { t: 71, duration: 71, ease: "none" }, 0);
+      tl.fromTo(ipad, { t: 0 }, { t: 71, duration: 71, ease: "none" }, 0);
+
+      // Which device is on screen. Every change is a soft fade with the cameras still moving:
+      // one device leaves, the clean studio shows for a breath, and the next arrives.
+      const showFor = (el, spans) => {
+        tl.set(el, { opacity: 0 }, 0);
+        spans.forEach(([a, b, fadeIn, fadeOut]) => {
+          tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: fadeIn, ease: "sine.inOut", immediateRender: false }, a);
+          tl.to(el, { opacity: 0, duration: fadeOut, ease: "sine.inOut" }, b - fadeOut);
+        });
+      };
+      showFor($("#mac"), [[9.7, 18.15, 0.5, 0.5], [27.95, 39.15, 0.5, 0.45], [52.0, 53.3, 0.4, 0.3], [54.4, 55.7, 0.35, 0.3]]);
+      showFor($("#ipad"), [[18.05, 28.05, 0.5, 0.5], [39.05, 52.1, 0.45, 0.35], [53.2, 54.5, 0.35, 0.3], [55.6, 57.2, 0.35, 0.4]]);
+
+      // Which screen each device shows. Swaps happen while that device is out of view,
+      // and each screen fades up as it starts, so nothing pops on.
+      const fadeUp = (sel, at) => tl.fromTo($(sel), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.out", immediateRender: false }, at);
+      tl.set(["#w-labels", "#w-compose", "#w-ai", "#w-tia"], { opacity: 0 }, 0);
+      fadeUp("#w-labels", 10.0);
+      fadeUp("#w-ai", 18.0);
+      tl.set($("#w-labels"), { opacity: 0 }, 27.5);
+      fadeUp("#w-compose", 28.0);
+      tl.set($("#w-ai"), { opacity: 0 }, 38.5);
+      fadeUp("#w-tia", 39.0);
+      // Recap
+      tl.set($("#w-compose"), { opacity: 0 }, 51.5);
+      tl.set($("#w-labels"), { opacity: 1 }, 51.5);
+      tl.set($("#w-tia"), { opacity: 0 }, 52.6);
+      tl.set($("#w-ai"), { opacity: 1 }, 52.6);
+      tl.set($("#w-labels"), { opacity: 0 }, 53.6);
+      tl.set($("#w-compose"), { opacity: 1 }, 53.6);
+      tl.set($("#w-ai"), { opacity: 0 }, 55.0);
+      tl.set($("#w-tia"), { opacity: 1 }, 55.0);
+
+      // Recap: the devices sit soft behind the words. Each is softened while it's out of view.
+      tl.set([$("#mac"), $("#ipad")], { filter: "blur(0px) brightness(1)" }, 0);
+      tl.set($("#mac"), { filter: "blur(4px) brightness(1.06) saturate(0.9)" }, 51.6);
+      tl.set($("#ipad"), { filter: "blur(4px) brightness(1.06) saturate(0.9)" }, 52.6);
+
+      // Opening dissolves into the MacBook; the recap dissolves into the closing.
+      tl.to($("#w-hook"), { opacity: 0, scale: 1.03, duration: 0.45, ease: "sine.inOut" }, 9.35);
+      tl.fromTo($("#w-outro"), { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.inOut" }, 57.0);
+
+      // Captions.
+      const caption = (sel, at, out) => {
+        const c = $(sel);
+        tl.fromTo(c.querySelector(".t-section-tag"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, at);
+        tl.fromTo(c.querySelector(".rule"), { scaleX: 0, transformOrigin: "0 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, at + 0.1);
+        tl.fromTo(c.querySelectorAll(".head span"), { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: "power3.out" }, at + 0.15);
+        if (out) tl.to(c, { opacity: 0, duration: 0.3, ease: "power2.in" }, out);
+      };
+      caption("#cap-labels", 16.1, 17.65);
+      caption("#cap-ai", 25.0, 27.55);
+      caption("#cap-write", 37.9, 38.7);
+      caption("#cap-tia", 50.3, 51.75);
+
+      // AI Write: the ask types beside the MacBook, in step with the screen.
+      const askLines = document.querySelectorAll("#ask .t-type");
+      tl.fromTo($("#ask"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 28.3);
+      tl.fromTo(askLines[0], { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.5, ease: "steps(18)" }, 28.65);
+      tl.fromTo(askLines[1], { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.55, ease: "steps(19)" }, 29.15);
+      tl.fromTo(askLines[2], { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "steps(8)" }, 29.7);
+      tl.to($("#ask"), { opacity: 0, x: -30, duration: 0.35, ease: "power2.in" }, 30.25);
+
+      ["#w-friendly", "#w-short", "#w-espanol"].forEach((sel) => {
+        const el = $(sel);
+        const start = parseFloat(el.dataset.start);
+        const end = start + parseFloat(el.dataset.duration);
+        tl.fromTo(el, { opacity: 0, x: -24, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, start);
+        tl.to(el, { opacity: 0, x: 24, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, end - 0.25);
+      });
+
+      // ⌘ ; opens Tia.
+      const keys = document.querySelectorAll("#keys .key");
+      tl.fromTo(keys, { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, stagger: 0.08, ease: "back.out(1.8)" }, 38.9);
+      tl.to(keys, { y: 6, scale: 0.95, duration: 0.08, yoyo: true, repeat: 1 }, 39.3);
+      tl.to(keys, { opacity: 0, scale: 1.1, filter: "blur(6px)", duration: 0.25, ease: "power2.in" }, 39.55);
+
+      // Recap words.
+      ["#r-sorted", "#r-cleared", "#r-written", "#r-handled"].forEach((sel) => {
+        const el = $(sel);
+        tl.fromTo(el.querySelector("i"), { opacity: 0, scale: 0.4, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power3.out" }, parseFloat(el.dataset.start));
+        tl.fromTo(el.querySelector("b"), { opacity: 0, scale: 0.96, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, parseFloat(el.dataset.start) + 0.05);
+        // Each word dissolves away as the next arrives.
+        tl.to(el, { opacity: 0, duration: 0.3, ease: "sine.inOut" }, parseFloat(el.dataset.start) + parseFloat(el.dataset.duration) - 0.3);
+      });
+
+      // The background colour drifts slowly the whole time.
+      tl.fromTo("#bg .b-blue", { x: 0, y: 0, scale: 1 }, { x: 320, y: 70, scale: 1.12, duration: 11.8, ease: "sine.inOut", yoyo: true, repeat: 5 }, 0);
+      tl.fromTo("#bg .b-purple", { x: 0, y: 0, scale: 1.08 }, { x: -340, y: 90, scale: 0.94, duration: 14.2, ease: "sine.inOut", yoyo: true, repeat: 4 }, 0);
+      tl.fromTo("#bg .b-sky", { x: 0, y: 0, scale: 0.95 }, { x: 180, y: 110, scale: 1.1, duration: 9.6, ease: "sine.inOut", yoyo: true, repeat: 7 }, 0);
+
+      // The Titan AI mark beside each section title and recap word: the Rive logo in its Idle
+      // state. Idle doesn't move, so one drawing is painted onto all of them.
+      const marks = Array.from(document.querySelectorAll("canvas.titan-mark"));
+      const markSource = document.createElement("canvas");
+      markSource.width = markSource.height = 400;
+      const marksReady = window.TiaBlob
+        .create(markSource, { src: "assets/logo/titan-ai-mark.riv", artboard: "Logo", stateMachine: "Logo", drawSize: 1000, crop: window.TiaBlob.LOGO_TILE, triggers: [{ at: 0, name: "idle" }] })
+        .then((logo) => {
+          logo.t = 0.5;
+          marks.forEach((c) => c.getContext("2d").drawImage(markSource, 0, 0, c.width, c.height));
+        })
+        .catch((e) => console.warn("[main] logo unavailable:", e.message));
+
+      // Above the recap words the mark is in its Processing state, on the video's clock.
+      const liveMarks = Array.from(document.querySelectorAll("canvas.titan-mark-live"));
+      const liveSource = document.createElement("canvas");
+      liveSource.width = liveSource.height = 400;
+      let liveLogo = null;
+      const liveReady = window.TiaBlob
+        .create(liveSource, { src: "assets/logo/titan-ai-mark.riv", artboard: "Logo", stateMachine: "Logo", drawSize: 1000, crop: window.TiaBlob.LOGO_TILE, triggers: [{ at: 0, name: "idle" }, { at: 0.6, name: "processing" }] })
+        .then((logo) => {
+          liveLogo = logo;
+        })
+        .catch((e) => console.warn("[main] logo unavailable:", e.message));
+      const recapClock = {
+        value: 0,
+        get t() {
+          return this.value;
+        },
+        set t(v) {
+          this.value = v;
+          if (!liveLogo) return;
+          liveLogo.t = v;
+          liveMarks.forEach((c) => {
+            const g = c.getContext("2d");
+            g.clearRect(0, 0, c.width, c.height);
+            g.drawImage(liveSource, 0, 0);
+          });
+        },
+      };
+      // It starts a second in, so it is already working when first seen.
+      tl.fromTo(recapClock, { t: 1 }, { t: 6.2, duration: 5.2, ease: "none", immediateRender: false }, 52);
+
+      window.__hyperframes?.registerFrameSource?.({ element: marks[0], ready: Promise.all([marksReady, liveReady]), render: () => {} });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

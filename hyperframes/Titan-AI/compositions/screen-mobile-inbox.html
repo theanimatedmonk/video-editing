@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #mobile-inbox {
+          position: absolute;
+          inset: 0;
+        }
+        #mobile-inbox .sk {
+          background: var(--window);
+          display: flex;
+          flex-direction: column;
+        }
+        #mobile-inbox .m-status {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 62px;
+          padding: 18px 34px 0 40px;
+          font-size: 16px;
+          font-weight: 600;
+          flex: none;
+        }
+        #mobile-inbox .m-status .m-bars {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+        }
+        #mobile-inbox .m-status .m-batt {
+          width: 26px;
+          height: 12px;
+          border-radius: 3px;
+          border: 1.5px solid var(--text);
+          padding: 1.5px;
+        }
+        #mobile-inbox .m-status .m-batt i {
+          display: block;
+          width: 70%;
+          height: 100%;
+          border-radius: 1px;
+          background: var(--text);
+        }
+        #mobile-inbox .m-head {
+          padding: 18px 20px 10px;
+          display: flex;
+          align-items: baseline;
+          gap: 10px;
+        }
+        #mobile-inbox .m-head .t-title {
+          font-size: 32px;
+        }
+        #mobile-inbox .m-search {
+          margin: 0 20px 12px;
+          width: auto;
+        }
+        #mobile-inbox .m-filters {
+          display: flex;
+          gap: 8px;
+          padding: 0 20px 12px;
+          overflow: hidden;
+          flex: none;
+        }
+        #mobile-inbox .m-filters .t-chip {
+          height: 30px;
+          border-radius: 15px;
+          padding: 0 12px;
+        }
+        #mobile-inbox .m-row {
+          display: flex;
+          gap: 12px;
+          padding: 14px 20px;
+          border-bottom: 1px solid var(--border);
+        }
+        #mobile-inbox .m-row .m-top {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 15px;
+          font-weight: 600;
+        }
+        #mobile-inbox .m-row .m-top .t-time {
+          margin-left: auto;
+          font-size: 12px;
+          font-weight: 400;
+          color: var(--muted);
+        }
+        #mobile-inbox .m-row .m-sub {
+          font-size: 14px;
+          font-weight: 500;
+          margin-top: 3px;
+        }
+        #mobile-inbox .m-row .m-pre {
+          font-size: 13.5px;
+          color: var(--muted);
+          margin-top: 2px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 290px;
+        }
+        #mobile-inbox .m-row .t-chip {
+          height: 20px;
+          font-size: 11px;
+          padding: 0 7px;
+        }
+        #mobile-inbox .m-fab {
+          position: absolute;
+          right: 20px;
+          bottom: 40px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          height: 52px;
+          padding: 0 20px 0 16px;
+          border-radius: 26px;
+          background: var(--accent);
+          color: #fff;
+          font-size: 15px;
+          font-weight: 600;
+          box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 45%, transparent);
+        }
+        #mobile-inbox .m-fab svg {
+          width: 18px;
+          height: 18px;
+          fill: #fff;
+        }
+        #mobile-inbox .m-home {
+          position: absolute;
+          left: 50%;
+          bottom: 10px;
+          width: 140px;
+          height: 5px;
+          margin-left: -70px;
+          border-radius: 3px;
+          background: var(--text);
+          opacity: 0.8;
+        }
+      </style>
+
+      <!-- Phone inbox: same labels, stacked for a narrow screen, with an "Ask Tia" button. -->
+      <div data-hf-id="hf-127k" id="mobile-inbox" data-composition-id="screen-mobile-inbox" data-width="402" data-height="872">
+        <div data-hf-id="hf-dtq4" class="t-ui sk" data-theme="light">
+        <div data-hf-id="hf-524o" class="m-status">
+          <span data-hf-id="hf-zwmt">9:41</span>
+          <span data-hf-id="hf-12xp" class="m-bars">
+            <svg data-hf-id="hf-4g7z" class="t-ico" viewBox="0 0 24 24" style="width: 18px"><path data-hf-id="hf-b986" d="M2 9a15 15 0 0 1 20 0M5 13a10 10 0 0 1 14 0M8.5 16.5a5 5 0 0 1 7 0" /></svg>
+            <span data-hf-id="hf-49ds" class="m-batt"><i data-hf-id="hf-wt6k"></i></span>
+          </span>
+        </div>
+        <div data-hf-id="hf-c81k" class="m-head"><span data-hf-id="hf-q2ha" class="t-title">Inbox</span><span data-hf-id="hf-t5r8" class="t-subcount">1,284</span></div>
+        <div data-hf-id="hf-b4n4" class="t-search m-search">
+          <svg data-hf-id="hf-owiu" class="t-ico" viewBox="0 0 24 24"><circle data-hf-id="hf-r9ft" cx="11" cy="11" r="7" /><path data-hf-id="hf-bedd" d="m20 20-4-4" /></svg>
+          Search mail
+        </div>
+        <div data-hf-id="hf-68mz" class="m-filters">
+          <span data-hf-id="hf-10xn" class="t-chip lbl-respond">Respond 6</span>
+          <span data-hf-id="hf-46na" class="t-chip lbl-awaiting">Awaiting 1</span>
+          <span data-hf-id="hf-o7fr" class="t-chip lbl-done">Done 13</span>
+          <span data-hf-id="hf-wfgd" class="t-chip lbl-fyi">FYI 4</span>
+        </div>
+
+        <div data-hf-id="hf-exe6" class="m-row"><span data-hf-id="hf-btdh" class="t-avatar lg av-slate"><img data-hf-id="hf-qc5d" src="assets/avatars/women-44.jpg" alt=""></span><div data-hf-id="hf-yeow"><div data-hf-id="hf-n7uy" class="m-top">Divya Rao <span data-hf-id="hf-y4j9" class="t-chip lbl-respond">Respond</span><span data-hf-id="hf-jvvf" class="t-time">9:41 AM</span></div><div data-hf-id="hf-1elw" class="m-sub">Re: Launch date</div><div data-hf-id="hf-sw82" class="m-pre">Can we lock Thursday? Marketing needs the slot by noon.</div></div></div>
+        <div data-hf-id="hf-z6vm" class="m-row"><span data-hf-id="hf-cr3n" class="t-avatar lg av-slate"><img data-hf-id="hf-mia8" src="assets/avatars/men-32.jpg" alt=""></span><div data-hf-id="hf-y7yw"><div data-hf-id="hf-5wis" class="m-top">Anuj Gupta <span data-hf-id="hf-pd1d" class="t-chip lbl-awaiting">Awaiting</span><span data-hf-id="hf-05rr" class="t-time">9:12 AM</span></div><div data-hf-id="hf-csmm" class="m-sub">Re: Q4 pricing proposal</div><div data-hf-id="hf-kra8" class="m-pre">You: Sent the revised numbers, let me know what finance thinks.</div></div></div>
+        <div data-hf-id="hf-zl6n" class="m-row"><span data-hf-id="hf-uiby" class="t-avatar lg av-coral"><img data-hf-id="hf-lqw2" src="assets/avatars/women-65.jpg" alt=""></span><div data-hf-id="hf-x11t"><div data-hf-id="hf-7t5k" class="m-top">Priya Shah <span data-hf-id="hf-godl" class="t-chip lbl-done">Done</span><span data-hf-id="hf-w3z1" class="t-time">8:57 AM</span></div><div data-hf-id="hf-ddu4" class="m-sub">Contract draft v3</div><div data-hf-id="hf-ok6p" class="m-pre">Signed and attached. Thanks for the quick turnaround!</div></div></div>
+        <div data-hf-id="hf-zzho" class="m-row"><span data-hf-id="hf-dxca" class="t-avatar lg av-slate"><img data-hf-id="hf-ejxr" src="assets/avatars/men-75.jpg" alt=""></span><div data-hf-id="hf-xfcu"><div data-hf-id="hf-oteq" class="m-top">Rohan Mehta <span data-hf-id="hf-higp" class="t-chip lbl-fyi">FYI</span><span data-hf-id="hf-r8qs" class="t-time">8:30 AM</span></div><div data-hf-id="hf-h6gh" class="m-sub">Sprint review notes</div><div data-hf-id="hf-hkco" class="m-pre">Notes from today, no action needed from you.</div></div></div>
+        <div data-hf-id="hf-0dsp" class="m-row"><span data-hf-id="hf-d9k3" class="t-avatar lg av-amber">OC</span><div data-hf-id="hf-w8fr"><div data-hf-id="hf-ge4f" class="m-top">Orbit CI <span data-hf-id="hf-01ur" class="t-chip lbl-notif">Notifications</span><span data-hf-id="hf-boxm" class="t-time">8:14 AM</span></div><div data-hf-id="hf-9e6m" class="m-sub">Build passed on main</div><div data-hf-id="hf-6v12" class="m-pre">All 412 checks passed in 6m 12s.</div></div></div>
+        <div data-hf-id="hf-0s3q" class="m-row"><span data-hf-id="hf-dv0w" class="t-avatar lg av-teal">CW</span><div data-hf-id="hf-wmqs"><div data-hf-id="hf-wapy" class="m-top">Canvas Weekly <span data-hf-id="hf-ez5k" class="t-chip lbl-promo">Promotions</span><span data-hf-id="hf-nvav" class="t-time">7:50 AM</span></div><div data-hf-id="hf-p4zx" class="m-sub">Ten layouts worth stealing</div><div data-hf-id="hf-mkvl" class="m-pre">This week: grids, type and a free template pack.</div></div></div>
+
+        <div data-hf-id="hf-pxqo" class="m-fab"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Ask Tia</div>
+        <div data-hf-id="hf-tkl7" class="m-home"></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("mobile-inbox");
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(root.querySelectorAll(".m-row"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.07, ease: "power3.out" }, 0.2);
+          tl.fromTo(root.querySelector(".m-fab"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 1.0);
+          window.__timelines["screen-mobile-inbox"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

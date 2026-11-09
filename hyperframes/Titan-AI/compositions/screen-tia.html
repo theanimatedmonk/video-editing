@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #tia {
+          position: absolute;
+          inset: 0;
+        }
+        #tia .t-window {
+          border-radius: 0;
+          border: 0;
+        }
+        #tia .t-sidebar {
+          width: 196px;
+          padding: 18px 12px;
+        }
+        #tia .t-nav {
+          font-size: 14px;
+          height: 36px;
+        }
+        #tia .bg-tabs {
+          display: flex;
+          gap: 22px;
+          padding: 16px 22px 8px;
+          font-size: 14px;
+          color: var(--muted);
+        }
+        #tia .bg-tabs b {
+          color: var(--text);
+        }
+        #tia .t-row {
+          grid-template-columns: 170px 110px 1fr;
+          border-bottom: 0;
+          height: 58px;
+          padding: 0 22px;
+          font-size: 14px;
+        }
+        #tia .t-tia {
+          width: 470px;
+          box-shadow: -24px 0 48px rgba(20, 24, 40, 0.08);
+        }
+        #tia .tia-head {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: 56px;
+          padding: 0 18px;
+          border-bottom: 1px solid var(--border);
+          font-size: 17px;
+          font-weight: 700;
+          flex: none;
+        }
+        #tia .tia-role {
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--text-2);
+        }
+        #tia .tia-tools {
+          margin-left: auto;
+          display: flex;
+          gap: 16px;
+          color: var(--muted);
+        }
+        #tia .tia-mid {
+          position: relative;
+          flex: 1;
+          overflow: hidden;
+        }
+        #tia .tia-welcome {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 34px 30px;
+        }
+        /* Tia's blob: big on the welcome screen, then docked above the input with what it's doing */
+        #tia .tia-blob {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 112px;
+          height: 112px;
+          transform-origin: 0 0;
+          z-index: 5;
+        }
+        #tia .tia-blob canvas {
+          display: block;
+          width: 112px;
+          height: 112px;
+        }
+        #tia .tia-chat > .tia-status {
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 1;
+          z-index: 6;
+          font-size: 15px;
+          font-weight: 600;
+          color: var(--text-2);
+        }
+        #tia .tia-status span {
+          position: absolute;
+          white-space: nowrap;
+          opacity: 0;
+        }
+        /* The blob stands where Tia's reply icon goes */
+        #tia .tia-msg > .t-tia-mark {
+          width: 56px;
+          height: 56px;
+          visibility: hidden;
+        }
+        #tia .c-read,
+        #tia .c-cal {
+          display: none;
+        }
+        #tia .tia-orb {
+          width: 104px;
+          height: 104px;
+          border-radius: 22px;
+          display: grid;
+          place-items: center;
+          background: none;
+          box-shadow: none;
+          margin-bottom: 26px;
+        }
+        #tia .tia-orb > * {
+          visibility: hidden;
+        }
+        #tia .tia-orb .t-tia-mark {
+          width: 42px;
+          height: 42px;
+          border-radius: 11px;
+        }
+        #tia .tia-orb .t-tia-mark svg {
+          width: 24px;
+          height: 24px;
+        }
+        #tia .tia-try {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: 100%;
+          margin-top: 30px;
+          text-align: left;
+        }
+        #tia .tia-try-k {
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          color: var(--muted);
+          font-weight: 600;
+          margin-bottom: 4px;
+        }
+        #tia .tia-chat {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          padding: 18px;
+        }
+        #tia .tia-chat > * {
+          opacity: 0;
+        }
+        #tia .tia-msg {
+          display: flex;
+          gap: 12px;
+          font-size: 14.5px;
+          line-height: 1.55;
+        }
+        #tia .tia-msg ul {
+          margin: 8px 0;
+          padding-left: 18px;
+        }
+        #tia .tia-msg li {
+          margin-bottom: 6px;
+        }
+        #tia .tia-src {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          height: 26px;
+          padding: 0 10px;
+          border-radius: 13px;
+          border: 1px solid var(--border);
+          font-size: 12px;
+          color: var(--text-2);
+          margin: 6px 0 2px;
+        }
+        #tia .tia-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          padding-left: 68px;
+        }
+        #tia .tia-foot {
+          padding: 0 14px 14px;
+          flex: none;
+        }
+        #tia .t-input {
+          position: relative;
+          color: var(--muted);
+        }
+        #tia .in-ph,
+        #tia .in-typed {
+          position: absolute;
+          left: 14px;
+          top: 15px;
+          white-space: nowrap;
+        }
+        #tia .in-typed {
+          color: var(--text);
+        }
+        #tia .tia-credits {
+          display: flex;
+          margin-top: 10px;
+          font-size: 12px;
+          color: var(--muted);
+        }
+        #tia .tia-credits b {
+          color: var(--text);
+          font-weight: 600;
+          margin-left: 6px;
+        }
+        #tia .tia-credits a {
+          margin-left: auto;
+          color: var(--accent-text);
+        }
+        #tia .tia-chat > .slot {
+          position: relative;
+          opacity: 1;
+        }
+        #tia .slot > .thinking {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        #tia .slot > * {
+          opacity: 0;
+        }
+        #tia .thinking {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          font-size: 14px;
+        }
+      </style>
+
+      <!-- Tia (iPad, landscape): the assistant opens over a dimmed inbox, summarises unread mail, then books a meeting. -->
+      <div data-hf-id="hf-qalq" id="tia" data-composition-id="screen-tia" data-width="1210" data-height="810">
+        <div data-hf-id="hf-o8ei" class="t-ui sk" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-yjcp" class="t-window">
+            <aside data-hf-id="hf-usdc" class="t-sidebar tia-bg">
+              <div data-hf-id="hf-w48o" class="t-compose-btn" style="height: 40px; font-size: 14px">Compose</div>
+              <div data-hf-id="hf-wf8m" class="t-nav"><span data-hf-id="hf-6jsn" class="t-ai-glyph"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg></span>AI Inbox</div>
+              <div data-hf-id="hf-3dw5" class="t-nav is-active">Inbox <span data-hf-id="hf-xc7x" class="t-count">1,278</span></div>
+              <div data-hf-id="hf-j7nv" class="t-nav"><span data-hf-id="hf-5ax5" class="t-nav-dot"></span>Starred</div>
+              <div data-hf-id="hf-07oq" class="t-nav"><span data-hf-id="hf-movx" class="t-nav-dot"></span>Sent</div>
+              <div data-hf-id="hf-cw4c" class="t-nav"><span data-hf-id="hf-nvt0" class="t-nav-dot"></span>Drafts</div>
+            </aside>
+            <div data-hf-id="hf-619g" class="t-main tia-bg">
+              <div data-hf-id="hf-xndn" class="t-topbar" style="border-bottom: 0">
+                <div data-hf-id="hf-fbgg" class="t-search" style="margin-left: 0; width: 340px">Search mail</div>
+              </div>
+              <div data-hf-id="hf-rrea" class="bg-tabs"><b data-hf-id="hf-b3t8">Respond 6</b><span data-hf-id="hf-j1z3">Awaiting Reply</span><span data-hf-id="hf-ele5">Done</span><span data-hf-id="hf-rsg7">FYI</span></div>
+              <div data-hf-id="hf-tdr7" class="t-row"><div data-hf-id="hf-1vfw" class="t-from"><span data-hf-id="hf-jkvi" class="t-avatar av-slate"><img data-hf-id="hf-qc5d" src="assets/avatars/women-44.jpg" alt=""></span>Divya Rao</div><div data-hf-id="hf-yeow"><span data-hf-id="hf-y4j9" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-8mep" class="t-msg"><b data-hf-id="hf-hfoj">Re: Launch date</b>Can we lock Thursday? Marketing needs the slot by noon.</div></div>
+              <div data-hf-id="hf-qw2r" class="t-row"><div data-hf-id="hf-q4w5" class="t-from"><span data-hf-id="hf-mtbe" class="t-avatar av-amber"><img data-hf-id="hf-2b57" src="assets/avatars/women-68.jpg" alt=""></span>Sana Iyer</div><div data-hf-id="hf-y7yw"><span data-hf-id="hf-bq95" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-glkx" class="t-msg"><b data-hf-id="hf-b5zo">Re: Partnership intro</b>Would Tuesday work for a quick call?</div></div>
+              <div data-hf-id="hf-qhrq" class="t-row"><div data-hf-id="hf-15wb" class="t-from"><span data-hf-id="hf-9nl4" class="t-avatar av-blue"><img data-hf-id="hf-hkp1" src="assets/avatars/men-46.jpg" alt=""></span>Arjun Das</div><div data-hf-id="hf-x11t"><span data-hf-id="hf-cx68" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-afhx" class="t-msg"><b data-hf-id="hf-9qau">Quick question on invoice #4821</b>Is the PO number on this one correct?</div></div>
+              <div data-hf-id="hf-q3gp" class="t-row"><div data-hf-id="hf-ppwh" class="t-from"><span data-hf-id="hf-qq1p" class="t-avatar av-pink"><img data-hf-id="hf-gkpm" src="assets/avatars/women-90.jpg" alt=""></span>Meera Kapoor</div><div data-hf-id="hf-xfcu"><span data-hf-id="hf-civ7" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-b4jr" class="t-msg"><b data-hf-id="hf-lk6d">Hiring plan review</b>Can you sign off on the Q1 headcount?</div></div>
+              <div data-hf-id="hf-pp5o" class="t-row"><div data-hf-id="hf-te79" class="t-from"><span data-hf-id="hf-bdac" class="t-avatar av-amber"><img data-hf-id="hf-rnow" src="assets/avatars/men-61.jpg" alt=""></span>Tom Becker</div><div data-hf-id="hf-w8fr"><span data-hf-id="hf-ajc2" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-51ht" class="t-msg"><b data-hf-id="hf-36pk">Re: Contract renewal</b>We can hold the current rate if we sign by Friday.</div></div>
+              <div data-hf-id="hf-paun" class="t-row"><div data-hf-id="hf-rd19" class="t-from"><span data-hf-id="hf-oce6" class="t-avatar av-amber"><img data-hf-id="hf-gcfh" src="assets/avatars/men-11.jpg" alt=""></span>Nikhil Joshi</div><div data-hf-id="hf-wmqs"><span data-hf-id="hf-a511" class="t-chip lbl-respond">Respond</span></div><div data-hf-id="hf-tjuh" class="t-msg"><b data-hf-id="hf-cbuy">Venue options</b>Three venues shortlisted, which one do you prefer?</div></div>
+            </div>
+
+            <!-- The assistant -->
+            <div data-hf-id="hf-8gb9" class="t-tia">
+              <div data-hf-id="hf-dde9" class="tia-head">
+                <span data-hf-id="hf-zxhw" class="t-tia-mark"><svg data-hf-id="hf-1tol" viewBox="0 0 24 24"><path data-hf-id="hf-gkus" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span>
+                Tia <span data-hf-id="hf-inif" class="t-badge">Beta</span> <span data-hf-id="hf-c7sd" class="tia-role">Your AI Assistant</span>
+                <span data-hf-id="hf-4auf" class="tia-tools">
+                  <svg data-hf-id="hf-owiu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-ox9p" d="M4 20h4L19 9l-4-4L4 16z" /></svg>
+                  <svg data-hf-id="hf-8vfu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-t2we" d="M6 6l12 12M18 6 6 18" /></svg>
+                </span>
+              </div>
+
+              <div data-hf-id="hf-2o8f" class="tia-mid">
+                <div data-hf-id="hf-krwx" class="tia-welcome">
+                  <div data-hf-id="hf-bsp2" class="tia-orb"><span data-hf-id="hf-uquk" class="t-tia-mark"><svg data-hf-id="hf-30lo" viewBox="0 0 24 24"><path data-hf-id="hf-c9t8" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span></div>
+                  <div data-hf-id="hf-lb0l" style="font-size: 25px; font-weight: 700; letter-spacing: -0.02em">Hi Maya, how can I help?</div>
+                  <div data-hf-id="hf-954h" style="font-size: 15px; line-height: 1.5; color: var(--text-2); margin-top: 10px">Ask me to find, summarise or draft email, check your calendar, or set up a meeting.</div>
+                  <div data-hf-id="hf-j8oi" class="tia-try">
+                    <div data-hf-id="hf-wmkq" class="tia-try-k">TRY ASKING</div>
+                    <div data-hf-id="hf-3o2y" class="t-action">Summarize my unread emails</div>
+                    <div data-hf-id="hf-vtuj" class="t-action">Draft a reply to Divya</div>
+                    <div data-hf-id="hf-1muv" class="t-action">Schedule a sync with Priya</div>
+                  </div>
+                </div>
+
+                <div data-hf-id="hf-lr7d" class="tia-chat">
+                  <div data-hf-id="hf-6yn0" class="t-bubble-user">Summarize my unread emails</div>
+                  <div data-hf-id="hf-zvzx" class="slot c-slot1">
+                  <div data-hf-id="hf-czog" class="thinking c-read"><span data-hf-id="hf-tjxh" class="t-tia-mark"><svg data-hf-id="hf-2man" viewBox="0 0 24 24"><path data-hf-id="hf-b2w5" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span><span data-hf-id="hf-j41b" class="t-shimmer sh1">Reading your mail…</span></div>
+                  <div data-hf-id="hf-w6ob" class="tia-msg c-sum">
+                    <span data-hf-id="hf-ty8i" class="t-tia-mark"><svg data-hf-id="hf-3t7q" viewBox="0 0 24 24"><path data-hf-id="hf-bh76" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span>
+                    <div data-hf-id="hf-vftp">
+                      <div data-hf-id="hf-fltm" class="ln">You have 12 unread emails. Three need you today:</div>
+                      <ul data-hf-id="hf-ovcc">
+                        <li data-hf-id="hf-eaqr" class="ln"><b data-hf-id="hf-wgz8">Divya Rao</b> wants to lock Thursday for the launch by noon.</li>
+                        <li data-hf-id="hf-8hdt" class="ln"><b data-hf-id="hf-tciq">Anuj Gupta</b> is waiting on finance for the Q4 pricing.</li>
+                        <li data-hf-id="hf-4o24" class="ln"><b data-hf-id="hf-ts3x">Sana Iyer</b> asked if Tuesday works for a partnership call.</li>
+                      </ul>
+                      <div data-hf-id="hf-st6a" class="ln">The rest are updates and newsletters.</div>
+                      <div data-hf-id="hf-gmyq" class="ln"><span data-hf-id="hf-fest" class="tia-src"><svg data-hf-id="hf-v6by" class="t-ico" viewBox="0 0 24 24" style="width: 12px; height: 12px"><path data-hf-id="hf-3q6f" d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" /><path data-hf-id="hf-h39m" d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" /></svg>12 sources</span></div>
+                    </div>
+                  </div>
+                  </div>
+                  <div data-hf-id="hf-5rsw" class="tia-stack c-acts">
+                    <div data-hf-id="hf-pxbb" class="t-action"><svg data-hf-id="hf-99qv" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-62o9" d="M3 13h5l2 3h4l2-3h5" /><path data-hf-id="hf-aw5i" d="M5 5h14l2 8v6H3v-6z" /></svg>Open email <span data-hf-id="hf-qvc9">Divya Rao · Re: Launch date</span><svg data-hf-id="hf-uqnp" class="t-ico t-chev" viewBox="0 0 24 24"><path data-hf-id="hf-9fxp" d="m9 6 6 6-6 6" /></svg></div>
+                    <div data-hf-id="hf-t95y" class="t-action"><svg data-hf-id="hf-9o1w" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-u8ox" d="M9 14 4 9l5-5" /><path data-hf-id="hf-flrc" d="M4 9h10a6 6 0 0 1 6 6v3" /></svg>Open conversation <span data-hf-id="hf-jp6e">Anuj Gupta</span><svg data-hf-id="hf-i3zd" class="t-ico t-chev" viewBox="0 0 24 24"><path data-hf-id="hf-lyg1" d="m9 6 6 6-6 6" /></svg></div>
+                  </div>
+                  <div data-hf-id="hf-qlig" class="t-bubble-user c-ask2">Schedule a sync with Priya</div>
+                  <div data-hf-id="hf-3u3y" class="slot c-slot2">
+                  <div data-hf-id="hf-700o" class="thinking c-cal"><span data-hf-id="hf-vxrn" class="t-tia-mark"><svg data-hf-id="hf-3ewp" viewBox="0 0 24 24"><path data-hf-id="hf-dgqb" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span><span data-hf-id="hf-zh0b" class="t-shimmer sh2">Checking your calendar…</span></div>
+                  <div data-hf-id="hf-d2ze" class="tia-msg c-done">
+                    <span data-hf-id="hf-wc2o" class="t-tia-mark"><svg data-hf-id="hf-4lts" viewBox="0 0 24 24"><path data-hf-id="hf-dv1c" d="M12 5c.4 3.3 2.7 5.6 6 6-3.3.4-5.6 2.7-6 6-.4-3.3-2.7-5.6-6-6 3.3-.4 5.6-2.7 6-6z" /></svg></span>
+                    <div data-hf-id="hf-pk90">Done. You're both free Thursday at 11:00 AM, so I booked it and invited Priya.</div>
+                  </div>
+                  </div>
+                  <div data-hf-id="hf-mp2t" class="tia-stack c-event">
+                    <div data-hf-id="hf-0o9f" class="t-event">
+                      <svg data-hf-id="hf-rudc" class="t-ico" viewBox="0 0 24 24" style="width: 22px; height: 22px; color: var(--accent-text)"><rect data-hf-id="hf-ac1n" x="4" y="5" width="16" height="15" rx="2" /><path data-hf-id="hf-su30" d="M4 10h16M9 3v4M15 3v4" /></svg>
+                      <div data-hf-id="hf-vu4q">
+                        <div data-hf-id="hf-sk62" style="font-size: 15px; font-weight: 700">Sync with Priya</div>
+                        <div data-hf-id="hf-bx1d" style="font-size: 13px; color: var(--text-2); margin-top: 3px">Thu, Oct 29 · 11:00 to 11:30 AM</div>
+                        <div data-hf-id="hf-26v5" style="font-size: 13px; color: var(--muted); margin-top: 2px">Maya, Priya Shah</div>
+                      </div>
+                    </div>
+                    <div data-hf-id="hf-qwfz" class="t-action"><svg data-hf-id="hf-a2cx" class="t-ico" viewBox="0 0 24 24"><rect data-hf-id="hf-65a3" x="4" y="5" width="16" height="15" rx="2" /><path data-hf-id="hf-vtzt" d="M4 10h16" /></svg>Open event<svg data-hf-id="hf-jawg" class="t-ico t-chev" viewBox="0 0 24 24"><path data-hf-id="hf-n5d4" d="m9 6 6 6-6 6" /></svg></div>
+                  </div>
+                <div data-hf-id="hf-339q" class="tia-blob"><canvas data-hf-id="hf-a9ik" id="tia-blob-canvas" class="clip" width="288" height="288" data-start="0" data-duration="18.6" data-track-index="0"></canvas></div>
+                  <div data-hf-id="hf-ou5p" class="tia-status">
+                <span data-hf-id="hf-12h3" class="st-think">Thinking…</span>
+                <span data-hf-id="hf-l6xw" class="st-look">Looking through your mail…</span>
+                <span data-hf-id="hf-kuxb" class="st-plan">Working out a plan…</span>
+                <span data-hf-id="hf-aht2" class="st-run">Booking it…</span>
+              </div>
+                </div>
+              </div>
+
+              <div data-hf-id="hf-ckwb" class="tia-foot">
+                <div data-hf-id="hf-tvyb" class="t-input">
+                  <span data-hf-id="hf-sb5o" class="in-ph">What can Tia help you with?</span>
+                  <span data-hf-id="hf-lioc" class="t-type in-typed in-1">Summarize my unread emails</span>
+                  <span data-hf-id="hf-45he" class="t-type in-typed in-2">Schedule a sync with Priya</span>
+                  <span data-hf-id="hf-066u" class="t-send"><svg data-hf-id="hf-agny" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-436h" d="M12 19V5M5 12l7-7 7 7" /></svg></span>
+                </div>
+                <div data-hf-id="hf-ickp" class="tia-credits">Tia credits: <b data-hf-id="hf-ypkn">82% left</b><a data-hf-id="hf-sltd">Get more</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.fonts.load('600 15px "Inter"').catch(() => {}).then(function () {
+          const root = document.getElementById("tia");
+          const q = (s) => root.querySelectorAll(s);
+          const one = (s) => root.querySelector(s);
+          const tl = gsap.timeline({ paused: true });
+          const type = (el, at, dur) => tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: dur, ease: "steps(26)" }, at);
+          const show = (el, at) => tl.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, at);
+
+          // What Tia's blob is doing, by time (0 idle, 1 thinking, 2 retrieving, 3 executing, 4 planning, 5 done).
+          const BLOB_STATES = [
+            { at: 0, state: 0 },
+            { at: 3.6, state: 1 },
+            { at: 4.3, state: 2 },
+            { at: 5.4, state: 0 },
+            { at: 8.45, state: 4 },
+            { at: 9.25, state: 3 },
+            { at: 10.1, state: 5 },
+            { at: 12.0, state: 0 },
+          ];
+          // The words beside the docked blob, in step with it.
+          const STATUS = [
+            [".st-think", 3.6, 4.3],
+            [".st-look", 4.3, 5.4],
+            [".st-plan", 8.45, 9.25],
+            [".st-run", 9.25, 10.1],
+          ];
+
+          // Where the blob sits: on the welcome screen, then beside each of Tia's replies.
+          // All in the chat's coordinates, so it scrolls with the conversation.
+          const canvas = one(".tia-blob canvas");
+          const chat = one(".tia-chat");
+          const mid = one(".tia-mid");
+          const offsetIn = (el) => {
+            let x = 0, y = 0;
+            for (let n = el; n && n !== chat && n !== mid; n = n.offsetParent) {
+              x += n.offsetLeft;
+              y += n.offsetTop;
+            }
+            return { x, y };
+          };
+          const orb = one(".tia-orb");
+          const o = offsetIn(orb);
+          const welcomeAt = { x: o.x + orb.offsetWidth / 2 - 56, y: o.y + orb.offsetHeight / 2 - 56 };
+          const reply1 = offsetIn(one(".c-sum .t-tia-mark"));
+          const reply2 = offsetIn(one(".c-done .t-tia-mark"));
+          const scrollTo = 12 - offsetIn(one(".c-ask2")).y;
+          const AVATAR = 56 / 112;
+          // The words beside the blob sit where the reply's text will start.
+          [[".st-think", reply1], [".st-look", reply1], [".st-plan", reply2], [".st-run", reply2]].forEach(([sel, at]) => {
+            const el = one(".tia-status " + sel);
+            el.style.left = `${at.x + 68}px`;
+            el.style.top = `${at.y + 17}px`;
+          });
+
+          // 0.4: Tia opens over the inbox.
+          tl.set(q(".in-typed"), { clipPath: "inset(0 100% 0 0)" }, 0);
+          tl.set(one(".t-tia"), { xPercent: 101 }, 0);
+          tl.to(q(".tia-bg"), { opacity: 0.3, filter: "blur(2px)", duration: 0.6, ease: "power2.out" }, 0.4);
+          tl.to(one(".t-tia"), { xPercent: 0, duration: 0.7, ease: "expo.out" }, 0.4);
+          tl.fromTo(q(".tia-welcome > *"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "power2.out" }, 0.75);
+          tl.fromTo(one(".tia-blob"), { x: welcomeAt.x, y: welcomeAt.y + 14, scale: 0.6, opacity: 0 }, { y: welcomeAt.y, scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.8)" }, 0.7);
+
+          // 2.6: "Summarize my unread emails". The blob drops to its dock and gets to work.
+          tl.to(one(".in-ph"), { opacity: 0, duration: 0.1 }, 2.6);
+          type(one(".in-1"), 2.62, 0.8);
+          tl.to(one(".in-1"), { opacity: 0, duration: 0.12 }, 3.6);
+          tl.to(one(".in-ph"), { opacity: 1, duration: 0.2 }, 3.7);
+          tl.to(one(".tia-welcome"), { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 3.55);
+          tl.to(one(".tia-blob"), { x: reply1.x, y: reply1.y, scale: AVATAR, duration: 0.6, ease: "power3.inOut" }, 3.5);
+          tl.fromTo(canvas, { scale: 1, transformOrigin: "50% 80%" }, { scale: 1.18, duration: 0.6, ease: "power3.inOut" }, 3.5);
+          show(one(".tia-chat .t-bubble-user"), 3.7);
+          tl.set(one(".c-sum"), { opacity: 1 }, 5.4);
+          tl.fromTo(q(".c-sum .t-tia-mark, .c-sum .ln"), { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.22, ease: "power2.out" }, 5.4);
+          show(one(".c-acts"), 6.8);
+
+          // 7.4: "Schedule a sync with Priya".
+          tl.to(one(".in-ph"), { opacity: 0, duration: 0.1 }, 7.4);
+          type(one(".in-2"), 7.42, 0.8);
+          tl.to(one(".in-2"), { opacity: 0, duration: 0.12 }, 8.4);
+          tl.to(one(".in-ph"), { opacity: 1, duration: 0.2 }, 8.5);
+          tl.to(chat, { y: scrollTo, duration: 0.6, ease: "power3.inOut" }, 8.45);
+          tl.to(one(".tia-blob"), { x: reply2.x, y: reply2.y, duration: 0.6, ease: "power3.inOut" }, 8.45);
+          show(one(".c-ask2"), 8.5);
+          show(one(".c-done"), 10.1);
+          tl.fromTo(one(".c-event"), { opacity: 0, y: 14, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 10.4);
+
+          STATUS.forEach(([sel, from, to]) => {
+            tl.fromTo(one(".tia-status " + sel), { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.25, ease: "power2.out" }, from);
+            tl.to(one(".tia-status " + sel), { opacity: 0, duration: 0.18 }, to - 0.18);
+          });
+
+          // The blob is a frame source: the renderer waits for it to load, then asks it for each frame's time.
+          let blob = null;
+          const ready = window.TiaBlob
+            ? window.TiaBlob.create(canvas, { src: "assets/tia/blob.riv", states: BLOB_STATES }).then((b) => {
+                blob = b;
+              })
+            : Promise.reject(new Error("TiaBlob missing"));
+          const loaded = ready.catch((e) => console.warn("[tia] blob unavailable:", e.message));
+          if (window.__hyperframes && window.__hyperframes.registerFrameSource) {
+            window.__hyperframes.registerFrameSource({
+              element: canvas,
+              ready: loaded,
+              render: (time) => {
+                if (blob) blob.t = time;
+              },
+            });
+          } else {
+            // Older runtimes: drive it from this timeline instead.
+            const driver = { get t() { return blob ? blob.t : 0; }, set t(v) { if (blob) blob.t = v; } };
+            tl.fromTo(driver, { t: 0 }, { t: 18, duration: 18, ease: "none" }, 0);
+          }
+
+          window.__timelines["screen-tia"] = tl;
+        });
+      </script>
+    </template>
+  </body>
+</html>

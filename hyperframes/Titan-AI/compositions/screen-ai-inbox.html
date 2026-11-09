@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <link rel="stylesheet" href="assets/ui/titan-ui.css">
+      <style>
+        #ai-inbox {
+          position: absolute;
+          inset: 0;
+        }
+        #ai-inbox .t-window {
+          border-radius: 0;
+          border: 0;
+        }
+        #ai-inbox .t-sidebar {
+          width: 196px;
+          padding: 18px 12px;
+        }
+        #ai-inbox .t-nav {
+          font-size: 14px;
+          height: 36px;
+        }
+        #ai-inbox .ai-head {
+          display: flex;
+          align-items: flex-start;
+          padding: 24px 24px 0;
+        }
+        #ai-inbox .ai-greet {
+          position: relative;
+          height: 22px;
+          margin-top: 6px;
+          font-size: 15px;
+          color: var(--text-2);
+        }
+        #ai-inbox .ai-greet span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+        }
+        #ai-inbox .ai-cards {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          padding: 22px 24px 0;
+          align-items: start;
+        }
+        #ai-inbox .t-card-head {
+          padding: 14px 14px 12px;
+        }
+        #ai-inbox .t-person {
+          padding: 10px 14px;
+          overflow: hidden;
+        }
+        #ai-inbox .t-card-foot {
+          padding: 12px 14px 14px;
+        }
+        #ai-inbox .t-btn {
+          font-size: 13px;
+                  }
+        #ai-inbox .ai-foot {
+          position: absolute;
+          left: 24px;
+          bottom: 20px;
+          font-size: 13px;
+          color: var(--muted);
+        }
+        #ai-inbox .ai-receipt .t-who span {
+          font-weight: 400;
+          color: var(--text-2);
+        }
+        #ai-inbox .caught {
+          height: 0;
+          overflow: hidden;
+          padding: 0 14px;
+          font-size: 13px;
+          color: var(--success);
+        }
+
+        /* Reply queue panel */
+        #ai-inbox .t-panel {
+          width: 470px;
+          box-shadow: -24px 0 48px rgba(20, 24, 40, 0.08);
+        }
+        #ai-inbox .p-top {
+          position: relative;
+          display: flex;
+          align-items: center;
+          height: 54px;
+          padding: 0 20px;
+          border-bottom: 1px solid var(--border);
+          font-size: 14px;
+          font-weight: 600;
+          gap: 8px;
+          flex: none;
+        }
+        #ai-inbox .t-progress i[data-on="1"] {
+          background: var(--accent);
+        }
+        #ai-inbox .p-count {
+          position: relative;
+          width: 44px;
+          height: 20px;
+        }
+        #ai-inbox .p-count span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          white-space: nowrap;
+          opacity: 0;
+        }
+        #ai-inbox .p-top .p-link {
+          margin-left: auto;
+          font-weight: 400;
+          color: var(--muted);
+          font-size: 13px;
+        }
+        #ai-inbox .p-stack {
+          position: relative;
+          flex: 1;
+        }
+        #ai-inbox .p-mail {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+        }
+        #ai-inbox .p-body {
+          flex: 1;
+          padding: 22px 20px;
+        }
+        #ai-inbox .p-subject {
+          font-size: 20px;
+          font-weight: 700;
+          margin: 18px 0 12px;
+          letter-spacing: -0.02em;
+        }
+        #ai-inbox .p-text {
+          font-size: 15px;
+          line-height: 1.6;
+          color: var(--text-2);
+        }
+        #ai-inbox .t-reply {
+          margin: 0 20px 20px;
+          padding: 16px;
+        }
+        #ai-inbox .p-reply-text {
+          font-size: 15px;
+          line-height: 1.6;
+          height: 24px;
+        }
+        #ai-inbox .p-reply-bar {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 16px;
+          font-size: 13px;
+          color: var(--muted);
+        }
+        #ai-inbox .p-done {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          text-align: center;
+          opacity: 0;
+        }
+        #ai-inbox .p-check {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: color-mix(in srgb, var(--success) 18%, transparent);
+          color: var(--success);
+          margin-bottom: 8px;
+        }
+        #ai-inbox .p-check svg {
+          width: 28px;
+          height: 28px;
+          stroke-width: 2.4;
+        }
+      </style>
+
+      <!-- AI Inbox (iPad, landscape): triage cards, then "Power through replies" clears the Respond queue one email at a time. -->
+      <div data-hf-id="hf-z1zu" id="ai-inbox" data-composition-id="screen-ai-inbox" data-width="1210" data-height="810">
+        <div data-hf-id="hf-o8ei" class="t-ui sk" data-theme="light" style="position: absolute; inset: 0">
+          <div data-hf-id="hf-yjcp" class="t-window">
+            <aside data-hf-id="hf-3t6q" class="t-sidebar">
+              <div data-hf-id="hf-w48o" class="t-compose-btn" style="height: 40px; font-size: 14px">
+                <svg data-hf-id="hf-owiu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-ox9p" d="M4 20h4L19 9l-4-4L4 16z" /><path data-hf-id="hf-qqya" d="m14 6 4 4" /></svg>
+                Compose
+              </div>
+              <div data-hf-id="hf-hqwp" class="t-nav is-active">
+                <span data-hf-id="hf-6jsn" class="t-ai-glyph"><svg data-hf-id="hf-ulu9" viewBox="0 0 24 24"><path data-hf-id="hf-k0rf" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg></span>
+                AI Inbox
+              </div>
+              <div data-hf-id="hf-lfho" class="t-nav">
+                <svg data-hf-id="hf-8vfu" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-62o9" d="M3 13h5l2 3h4l2-3h5" /><path data-hf-id="hf-aw5i" d="M5 5h14l2 8v6H3v-6z" /></svg>
+                Inbox <span data-hf-id="hf-xc7x" class="t-count">1,278</span>
+              </div>
+              <div data-hf-id="hf-j7nv" class="t-nav"><span data-hf-id="hf-5ax5" class="t-nav-dot"></span>Starred</div>
+              <div data-hf-id="hf-07oq" class="t-nav"><span data-hf-id="hf-movx" class="t-nav-dot"></span>Sent</div>
+              <div data-hf-id="hf-cw4c" class="t-nav"><span data-hf-id="hf-nvt0" class="t-nav-dot"></span>Drafts <span data-hf-id="hf-4lta" class="t-count">3</span></div>
+              <div data-hf-id="hf-njju" class="t-nav"><span data-hf-id="hf-nhhz" class="t-nav-dot"></span>Archive</div>
+            </aside>
+
+            <div data-hf-id="hf-e3jq" class="t-main">
+              <div data-hf-id="hf-s6il" class="ai-head">
+                <div data-hf-id="hf-yeow">
+                  <div data-hf-id="hf-je8m" style="display: flex; align-items: center; gap: 10px">
+                    <span data-hf-id="hf-wh3g" class="t-title">AI Inbox</span><span data-hf-id="hf-inif" class="t-badge">Beta</span>
+                  </div>
+                  <div data-hf-id="hf-h46q" class="ai-greet">
+                    <span data-hf-id="hf-9skj" class="g-busy">Good morning, Maya, 6 emails need your reply.</span>
+                    <span data-hf-id="hf-lk94" class="g-done" style="opacity: 0">Good morning, Maya, you're all caught up.</span>
+                  </div>
+                </div>
+                <span data-hf-id="hf-z1q2" class="t-ghost-btn" style="margin-left: auto">Send Feedback</span>
+              </div>
+
+              <div data-hf-id="hf-2ok8" class="ai-cards">
+                <!-- Respond card -->
+                <div data-hf-id="hf-k7dg" class="t-card ai-card lbl-respond">
+                  <div data-hf-id="hf-uili" class="t-card-head">
+                    <span data-hf-id="hf-h0i0" class="t-card-icon"><svg data-hf-id="hf-99qv" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-u8ox" d="M9 14 4 9l5-5" /><path data-hf-id="hf-5hxi" d="M4 9h10a6 6 0 0 1 6 6v5" /></svg></span>
+                    <div data-hf-id="hf-y7yw">
+                      <div data-hf-id="hf-zfmb" class="t-card-title">Respond <span data-hf-id="hf-zhrr" class="t-pill-n resp-n">6</span></div>
+                      <div data-hf-id="hf-se8a" class="t-card-sub">Needs your reply · oldest 8d</div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-m1xt" class="t-person rq"><span data-hf-id="hf-4u0g" class="t-avatar sm av-slate"><img data-hf-id="hf-qc5d" src="assets/avatars/women-44.jpg" alt=""></span><div data-hf-id="hf-x11t"><div data-hf-id="hf-duey" class="t-who">Divya Rao</div><div data-hf-id="hf-4q9x" class="t-what">Re: Launch date</div></div><span data-hf-id="hf-hneo" class="t-ago">2h ago</span></div>
+                  <div data-hf-id="hf-fp39" class="t-person rq"><span data-hf-id="hf-4ky0" class="t-avatar sm av-amber"><img data-hf-id="hf-2b57" src="assets/avatars/women-68.jpg" alt=""></span><div data-hf-id="hf-xfcu"><div data-hf-id="hf-emnv" class="t-who">Sana Iyer</div><div data-hf-id="hf-pwf6" class="t-what">Re: Partnership intro</div></div><span data-hf-id="hf-mqfv" class="t-ago">5h ago</span></div>
+                  <div data-hf-id="hf-gw0c" class="t-person rq"><span data-hf-id="hf-e2hu" class="t-avatar sm av-blue"><img data-hf-id="hf-hkp1" src="assets/avatars/men-46.jpg" alt=""></span><div data-hf-id="hf-w8fr"><div data-hf-id="hf-m55p" class="t-who">Arjun Das</div><div data-hf-id="hf-n0da" class="t-what">Invoice #4821</div></div><span data-hf-id="hf-om5v" class="t-ago">1d ago</span></div>
+                  <div data-hf-id="hf-ghpb" class="t-person rq"><span data-hf-id="hf-70n3" class="t-avatar sm av-pink"><img data-hf-id="hf-gkpm" src="assets/avatars/women-90.jpg" alt=""></span><div data-hf-id="hf-wmqs"><div data-hf-id="hf-h7or" class="t-who">Meera Kapoor</div><div data-hf-id="hf-pajr" class="t-what">Hiring plan review</div></div><span data-hf-id="hf-vrl8" class="t-ago">2d ago</span></div>
+                  <div data-hf-id="hf-home" class="t-person rq"><span data-hf-id="hf-umc2" class="t-avatar sm av-amber"><img data-hf-id="hf-rnow" src="assets/avatars/men-61.jpg" alt=""></span><div data-hf-id="hf-vftp"><div data-hf-id="hf-zqef" class="t-who">Tom Becker</div><div data-hf-id="hf-013a" class="t-what">Re: Contract renewal</div></div><span data-hf-id="hf-nfvd" class="t-ago">3d ago</span></div>
+                  <div data-hf-id="hf-habd" class="t-person rq"><span data-hf-id="hf-scxk" class="t-avatar sm av-amber"><img data-hf-id="hf-gcfh" src="assets/avatars/men-11.jpg" alt=""></span><div data-hf-id="hf-vu4q"><div data-hf-id="hf-a48n" class="t-who">Nikhil Joshi</div><div data-hf-id="hf-9tm4" class="t-what">Venue options</div></div><span data-hf-id="hf-uodz" class="t-ago is-late">8d ago</span></div>
+                  <div data-hf-id="hf-lcrr" class="caught">Nothing left to answer.</div>
+                  <div data-hf-id="hf-vl90" class="t-card-foot">
+                    <span data-hf-id="hf-wuvk" class="t-btn is-tertiary power-btn"><svg data-hf-id="hf-9o1w" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-gy5o" d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>Power through replies</span>
+                  </div>
+                </div>
+
+                <!-- Awaiting Reply card -->
+                <div data-hf-id="hf-zp7n" class="t-card ai-card lbl-awaiting">
+                  <div data-hf-id="hf-3ei2" class="t-card-head">
+                    <span data-hf-id="hf-3osg" class="t-card-icon"><svg data-hf-id="hf-a2cx" class="t-ico" viewBox="0 0 24 24"><circle data-hf-id="hf-xksm" cx="12" cy="12" r="8" /><path data-hf-id="hf-0m9l" d="M12 8v4l3 2" /></svg></span>
+                    <div data-hf-id="hf-1043">
+                      <div data-hf-id="hf-l5bc" class="t-card-title">Awaiting Reply <span data-hf-id="hf-1oz8" class="t-pill-n">4</span></div>
+                      <div data-hf-id="hf-er4w" class="t-card-sub">Waiting on them · longest 5d</div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-czi2" class="t-person"><span data-hf-id="hf-r6dm" class="t-avatar sm av-slate"><img data-hf-id="hf-mia8" src="assets/avatars/men-32.jpg" alt=""></span><div data-hf-id="hf-1ef4"><div data-hf-id="hf-o8us" class="t-who">Anuj Gupta</div><div data-hf-id="hf-1ll7" class="t-what">Re: Q4 pricing proposal</div></div><span data-hf-id="hf-u47b" class="t-ago">5d ago</span></div>
+                  <div data-hf-id="hf-ojtq" class="t-person"><span data-hf-id="hf-4kge" class="t-avatar sm av-amber"><img data-hf-id="hf-yau1" src="assets/avatars/women-79.jpg" alt=""></span><div data-hf-id="hf-c4s8"><div data-hf-id="hf-g71j" class="t-who">Lena Fischer</div><div data-hf-id="hf-v9mg" class="t-what">Re: Onboarding feedback</div></div><span data-hf-id="hf-wr2c" class="t-ago">2d ago</span></div>
+                  <div data-hf-id="hf-oy4r" class="t-person"><span data-hf-id="hf-cp0s" class="t-avatar sm av-blue"><img data-hf-id="hf-jw0x" src="assets/avatars/women-17.jpg" alt=""></span><div data-hf-id="hf-bqh7"><div data-hf-id="hf-lgm3" class="t-who">Rachel Kim</div><div data-hf-id="hf-ugxq" class="t-what">Re: Vendor quote</div></div><span data-hf-id="hf-anwz" class="t-ago">1d ago</span></div>
+                  <div data-hf-id="hf-pcfs" class="t-person"><span data-hf-id="hf-t0ju" class="t-avatar sm av-teal"><img data-hf-id="hf-m6hn" src="assets/avatars/men-22.jpg" alt=""></span><div data-hf-id="hf-bc66"><div data-hf-id="hf-hlo2" class="t-who">Omar Haddad</div><div data-hf-id="hf-11xa" class="t-what">Re: Intro to Northwind</div></div><span data-hf-id="hf-nei6" class="t-ago">4h ago</span></div>
+                  <div data-hf-id="hf-r818" class="t-card-foot"><span data-hf-id="hf-b25y" class="t-btn is-tertiary">Power through follow-ups</span></div>
+                </div>
+
+                <!-- Read receipts card -->
+                <div data-hf-id="hf-1euk" class="t-card ai-card ai-receipt" style="--c: var(--text-2); --cb: var(--surface-2)">
+                  <div data-hf-id="hf-3st3" class="t-card-head">
+                    <span data-hf-id="hf-2hvd" class="t-card-icon"><svg data-hf-id="hf-agny" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-gxzk" d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" /><circle data-hf-id="hf-2731" cx="12" cy="12" r="3" /></svg></span>
+                    <div data-hf-id="hf-axv5">
+                      <div data-hf-id="hf-lyrz" class="t-card-title">Read receipts <span data-hf-id="hf-23a9" class="t-pill-n">3</span></div>
+                      <div data-hf-id="hf-onl1" class="t-card-sub">opened in the last 7 days</div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-iibh" class="t-person"><span data-hf-id="hf-toso" class="t-avatar sm av-slate"><img data-hf-id="hf-lyc5" src="assets/avatars/women-44.jpg" alt=""></span><div data-hf-id="hf-ajk4"><div data-hf-id="hf-wuse" class="t-who">Divya Rao</div><div data-hf-id="hf-cwpj" class="t-what t-ok">No reply yet</div></div><span data-hf-id="hf-gzcf" class="t-ago">12m</span></div>
+                  <div data-hf-id="hf-iwmi" class="t-person"><span data-hf-id="hf-lmz6" class="t-avatar sm av-amber"><img data-hf-id="hf-gdnx" src="assets/avatars/women-79.jpg" alt=""></span><div data-hf-id="hf-a593"><div data-hf-id="hf-jqdj" class="t-who">Lena Fischer</div><div data-hf-id="hf-2nx0" class="t-what">Replied</div></div><span data-hf-id="hf-ncf1" class="t-ago">2h</span></div>
+                  <div data-hf-id="hf-jaxj" class="t-person"><span data-hf-id="hf-kll0" class="t-avatar sm av-blue"><img data-hf-id="hf-11px" src="assets/avatars/women-17.jpg" alt=""></span><div data-hf-id="hf-9qy2"><div data-hf-id="hf-7jbv" class="t-who">Rachel Kim</div><div data-hf-id="hf-tnkn" class="t-what t-ok">No reply yet</div></div><span data-hf-id="hf-eoj6" class="t-ago">5h</span></div>
+                  <div data-hf-id="hf-q145" class="t-card-foot"><span data-hf-id="hf-o7u2" class="t-btn is-tertiary">View all</span></div>
+                </div>
+              </div>
+
+              <div data-hf-id="hf-6xs9" class="ai-foot">You wrote in 23 conversations this week</div>
+
+              <!-- Reply queue -->
+              <div data-hf-id="hf-2ipt" class="t-panel">
+                <div data-hf-id="hf-hxgq" class="p-top">
+                  <svg data-hf-id="hf-2z7w" class="t-ico" viewBox="0 0 24 24" style="color: var(--accent-2)"><path data-hf-id="hf-ergk" d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
+                  <span data-hf-id="hf-r9ph" class="p-count"><span data-hf-id="hf-v69b">1 of 6</span><span data-hf-id="hf-mxms">2 of 6</span><span data-hf-id="hf-3tp9">3 of 6</span><span data-hf-id="hf-eafm">4 of 6</span><span data-hf-id="hf-23vv">5 of 6</span><span data-hf-id="hf-j7z4">6 of 6</span></span>
+                  <span data-hf-id="hf-15xp" class="t-progress"><i data-hf-id="hf-9ny2" data-on="0"></i><i data-hf-id="hf-tsm6" data-on="0"></i><i data-hf-id="hf-u6x7" data-on="0"></i><i data-hf-id="hf-ul88" data-on="0"></i><i data-hf-id="hf-rt31" data-on="0"></i><i data-hf-id="hf-s7e2" data-on="0"></i></span>
+                  <span data-hf-id="hf-3tqd" class="p-link">Open in folder</span>
+                </div>
+                <div data-hf-id="hf-7l9f" class="p-stack">
+                  <div data-hf-id="hf-doyg" class="p-mail">
+                    <div data-hf-id="hf-ezrh" class="p-body">
+                      <div data-hf-id="hf-qo5o" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-btdh" class="t-avatar lg av-slate"><img data-hf-id="hf-n598" src="assets/avatars/women-44.jpg" alt=""></span><div data-hf-id="hf-9cn1"><div data-hf-id="hf-uqsw" style="font-size: 15px; font-weight: 600">Divya Rao</div><div data-hf-id="hf-p8yk" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-1sk9" class="p-subject">Re: Launch date</div>
+                      <div data-hf-id="hf-0ogm" class="p-text">Hi Maya, marketing needs to lock the launch slot by noon. Are we good for Thursday?</div>
+                    </div>
+                    <div data-hf-id="hf-1odb" class="t-reply">
+                      <div data-hf-id="hf-upv5" class="p-reply-text"><span data-hf-id="hf-5rra" class="t-type">Hi Divya,</span></div>
+                      <div data-hf-id="hf-g4th" class="p-reply-text"><span data-hf-id="hf-plrb" class="t-type">Thursday works. Locking it in now.</span></div>
+                      <div data-hf-id="hf-5p3p" class="p-reply-bar">Reply to all<span data-hf-id="hf-0yi0" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-xz5m" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-b9cr" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-549b" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-ke7k" class="p-mail">
+                    <div data-hf-id="hf-7bgh" class="p-body">
+                      <div data-hf-id="hf-8mw4" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-gin9" class="t-avatar lg av-amber"><img data-hf-id="hf-gfd7" src="assets/avatars/women-68.jpg" alt=""></span><div data-hf-id="hf-fb8g"><div data-hf-id="hf-n66p" style="font-size: 15px; font-weight: 600">Sana Iyer</div><div data-hf-id="hf-6q38" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-nedy" class="p-subject">Re: Partnership intro</div>
+                      <div data-hf-id="hf-5878" class="p-text">Would Tuesday work for a quick call with our team?</div>
+                    </div>
+                    <div data-hf-id="hf-rbxb" class="t-reply">
+                      <div data-hf-id="hf-hbqk" class="p-reply-text"><span data-hf-id="hf-u02g" class="t-type">Hi Sana,</span></div>
+                      <div data-hf-id="hf-gxfj" class="p-reply-text"><span data-hf-id="hf-y9wn" class="t-type">Tuesday at 3 works, sending an invite.</span></div>
+                      <div data-hf-id="hf-9g95" class="p-reply-bar">Reply to all<span data-hf-id="hf-l9k0" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-zqvy" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-av1q" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-fzlb" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-j7ah" class="p-mail">
+                    <div data-hf-id="hf-8idk" class="p-body">
+                      <div data-hf-id="hf-7fz1" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-4wx1" class="t-avatar lg av-blue"><img data-hf-id="hf-2tsp" src="assets/avatars/men-46.jpg" alt=""></span><div data-hf-id="hf-ewxf"><div data-hf-id="hf-jir3" style="font-size: 15px; font-weight: 600">Arjun Das</div><div data-hf-id="hf-5j65" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-tbwg" class="p-subject">Quick question on invoice #4821</div>
+                      <div data-hf-id="hf-lnd5" class="p-text">Is the PO number on this one correct?</div>
+                    </div>
+                    <div data-hf-id="hf-qxma" class="t-reply">
+                      <div data-hf-id="hf-i4cm" class="p-reply-text"><span data-hf-id="hf-cxnp" class="t-type">Hi Arjun,</span></div>
+                      <div data-hf-id="hf-hq1l" class="p-reply-text"><span data-hf-id="hf-oxyn" class="t-type">Yes, that PO is right.</span></div>
+                      <div data-hf-id="hf-an68" class="p-reply-bar">Reply to all<span data-hf-id="hf-k2mx" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-056z" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-agqp" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-flaa" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-jlli" class="p-mail">
+                    <div data-hf-id="hf-842j" class="p-body">
+                      <div data-hf-id="hf-7ua2" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-bftg" class="t-avatar lg av-pink"><img data-hf-id="hf-rtoe" src="assets/avatars/women-90.jpg" alt=""></span><div data-hf-id="hf-88dv"><div data-hf-id="hf-jwvx" style="font-size: 15px; font-weight: 600">Meera Kapoor</div><div data-hf-id="hf-5xh6" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-9al7" class="p-subject">Hiring plan review</div>
+                      <div data-hf-id="hf-zj3v" class="p-text">Can you sign off on the Q1 headcount?</div>
+                    </div>
+                    <div data-hf-id="hf-qjb9" class="t-reply">
+                      <div data-hf-id="hf-iwyo" class="p-reply-text"><span data-hf-id="hf-z7ex" class="t-type">Hi Meera,</span></div>
+                      <div data-hf-id="hf-iinn" class="p-reply-text"><span data-hf-id="hf-v6ku" class="t-type">Approved, go ahead.</span></div>
+                      <div data-hf-id="hf-a8v7" class="p-reply-bar">Reply to all<span data-hf-id="hf-kgxy" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-0ji0" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-a2fo" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-f6z9" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-ieof" class="p-mail">
+                    <div data-hf-id="hf-64je" class="p-body">
+                      <div data-hf-id="hf-9tt7" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-vri7" class="t-avatar lg av-amber"><img data-hf-id="hf-2sug" src="assets/avatars/men-61.jpg" alt=""></span><div data-hf-id="hf-8mow"><div data-hf-id="hf-zhc1" style="font-size: 15px; font-weight: 600">Tom Becker</div><div data-hf-id="hf-7x0b" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-rpsq" class="p-subject">Re: Contract renewal</div>
+                      <div data-hf-id="hf-uf39" class="p-text">We can hold the current rate if we sign by Friday.</div>
+                    </div>
+                    <div data-hf-id="hf-tbgg" class="t-reply">
+                      <div data-hf-id="hf-dcoa" class="p-reply-text"><span data-hf-id="hf-cbfx" class="t-type">Hi Tom,</span></div>
+                      <div data-hf-id="hf-cyd9" class="p-reply-text"><span data-hf-id="hf-hmzm" class="t-type">Let's sign this week.</span></div>
+                      <div data-hf-id="hf-89c2" class="p-reply-bar">Reply to all<span data-hf-id="hf-ja0v" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-xrct" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-9o4n" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-hz4g" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-iszg" class="p-mail">
+                    <div data-hf-id="hf-5q8d" class="p-body">
+                      <div data-hf-id="hf-a848" style="display: flex; align-items: center; gap: 12px"><span data-hf-id="hf-i2u5" class="t-avatar lg av-amber"><img data-hf-id="hf-kyw1" src="assets/avatars/men-11.jpg" alt=""></span><div data-hf-id="hf-7frt"><div data-hf-id="hf-0kxl" style="font-size: 15px; font-weight: 600">Nikhil Joshi</div><div data-hf-id="hf-8bbc" style="font-size: 13px; color: var(--muted)">to me</div></div></div>
+                      <div data-hf-id="hf-liio" class="p-subject">Venue options</div>
+                      <div data-hf-id="hf-mqmt" class="p-text">Three venues shortlisted, which one do you prefer?</div>
+                    </div>
+                    <div data-hf-id="hf-sx5f" class="t-reply">
+                      <div data-hf-id="hf-b1sf" class="p-reply-text"><span data-hf-id="hf-o0qu" class="t-type">Hi Nikhil,</span></div>
+                      <div data-hf-id="hf-bg3g" class="p-reply-text"><span data-hf-id="hf-vf6s" class="t-type">The riverside one. Book it.</span></div>
+                      <div data-hf-id="hf-7v11" class="p-reply-bar">Reply to all<span data-hf-id="hf-jobw" class="t-ghost-btn" style="margin-left: auto"><svg data-hf-id="hf-y5nu" class="t-spark" viewBox="0 0 24 24" style="width: 14px; height: 14px"><path data-hf-id="hf-99tm" d="M12 2c.6 5.5 4.5 9.4 10 10-5.5.6-9.4 4.5-10 10-.6-5.5-4.5-9.4-10-10 5.5-.6 9.4-4.5 10-10z" /></svg>Refine</span><span data-hf-id="hf-hktf" class="t-btn send-btn">Send</span></div>
+                    </div>
+                  </div>
+                  <div data-hf-id="hf-1km9" class="p-done">
+                    <div data-hf-id="hf-vzk3" class="p-check"><svg data-hf-id="hf-auyz" class="t-ico" viewBox="0 0 24 24"><path data-hf-id="hf-gznq" d="m5 12 5 5 9-10" /></svg></div>
+                    <div data-hf-id="hf-ompo" style="font-size: 21px; font-weight: 700">That's all of them</div>
+                    <div data-hf-id="hf-ho9d" style="font-size: 14px; color: var(--muted); line-height: 1.5"><div data-hf-id="hf-xi9b">You have reached the end of this queue.</div><div data-hf-id="hf-twgg">Nice work.</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <span data-hf-id="hf-zvdz" class="t-pointer"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.getElementById("ai-inbox");
+          const q = (s) => root.querySelectorAll(s);
+          const one = (s) => root.querySelector(s);
+          const mails = Array.from(q(".p-mail"));
+          const counts = Array.from(q(".p-count span"));
+          const bars = Array.from(q(".t-progress i"));
+          const queue = Array.from(q(".rq"));
+          const respN = one(".resp-n");
+          const tl = gsap.timeline({ paused: true });
+
+          // 0: the three cards build in.
+          tl.fromTo(q(".ai-card"), { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" }, 0.05);
+          tl.fromTo(q(".ai-card .t-person"), { opacity: 0, x: -8 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.03, ease: "power2.out" }, 0.35);
+          tl.set(q(".t-panel"), { xPercent: 101 }, 0);
+
+          // 1.4: the pointer finds "Power through replies" and taps it.
+          tl.fromTo(one(".t-pointer"), { x: 640, y: 560, opacity: 0 }, { x: 640, y: 560, opacity: 1, duration: 0.25 }, 1.2);
+          const pointerHome = one(".t-pointer").offsetParent;
+          let btnX = 0, btnY = 0;
+          for (let n = one(".power-btn"); n && n !== pointerHome; n = n.offsetParent) {
+            btnX += n.offsetLeft;
+            btnY += n.offsetTop;
+          }
+          tl.to(one(".t-pointer"), { x: btnX + one(".power-btn").offsetWidth * 0.55, y: btnY + one(".power-btn").offsetHeight / 2, duration: 0.7, ease: "power3.inOut" }, 1.4);
+          tl.to(one(".t-pointer"), { scale: 0.7, duration: 0.1, yoyo: true, repeat: 1 }, 2.15);
+          tl.to(one(".power-btn"), { scale: 0.94, duration: 0.1, yoyo: true, repeat: 1 }, 2.15);
+          tl.to(one(".t-pointer"), { opacity: 0, duration: 0.3 }, 2.45);
+
+          // 2.4: the reply queue slides in.
+          tl.to(q(".t-panel"), { xPercent: 0, duration: 0.7, ease: "expo.out" }, 2.4);
+
+          // One email at a time: its reply types, it sends, the next one comes up.
+          // Typing time and pause per email: the first ones read, the rest fly by.
+          const beats = [
+            { type: 0.7, hold: 0.3 },
+            { type: 0.5, hold: 0.2 },
+            { type: 0.3, hold: 0.1 },
+            { type: 0.25, hold: 0.08 },
+            { type: 0.25, hold: 0.08 },
+            { type: 0.3, hold: 0.15 },
+          ];
+          let next = 2.6;
+          beats.forEach((b) => {
+            b.at = next;
+            next = b.at + 0.3 + b.type + b.hold + 0.25;
+          });
+          beats.forEach((b, i) => {
+            const m = mails[i];
+            const lines = m.querySelectorAll(".t-type");
+            tl.set(counts, { opacity: 0 }, b.at);
+            tl.set(counts[i], { opacity: 1 }, b.at);
+            tl.set(bars[i], { attr: { "data-on": "1" } }, b.at);
+            tl.fromTo(m, { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, b.at);
+            tl.fromTo(lines[0], { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: b.type * 0.3, ease: "none" }, b.at + 0.3);
+            tl.fromTo(lines[1], { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: b.type * 0.7, ease: "none" }, b.at + 0.3 + b.type * 0.3);
+            const sent = b.at + 0.3 + b.type + b.hold;
+            tl.to(m.querySelector(".send-btn"), { scale: 0.92, duration: 0.08, yoyo: true, repeat: 1 }, sent - 0.1);
+            tl.to(m, { opacity: 0, x: -24, duration: 0.16, ease: "power2.in" }, sent + 0.05);
+            tl.to(queue[i], { height: 0, paddingTop: 0, paddingBottom: 0, opacity: 0, borderBottomWidth: 0, duration: 0.4, ease: "power3.inOut" }, sent);
+            tl.set(respN, { textContent: String(5 - i) }, sent + 0.2);
+          });
+
+          // 9.0: queue done; the Respond card is empty and the greeting changes.
+          tl.fromTo(one(".p-done"), { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 9.0);
+          tl.to(one(".caught"), { height: 40, paddingTop: 12, duration: 0.4, ease: "power3.out" }, 9.0);
+          tl.to(one(".g-busy"), { opacity: 0, duration: 0.25 }, 9.0);
+          tl.to(one(".g-done"), { opacity: 1, duration: 0.35 }, 9.15);
+
+          window.__timelines["screen-ai-inbox"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
