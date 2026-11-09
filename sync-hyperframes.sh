@@ -67,6 +67,7 @@ sync_hyperframes_state() {
     --include='app-history.jsonl' \
     --include='blank-snapshot.json' \
     --include='moved-from.jsonl' \
+    --include='asset-creation.json' \
     --include='artifacts/checks/***' \
     --exclude='*'
 }
@@ -76,6 +77,11 @@ update_existing_project() {
   local src_name="$2"
   local src="$STUDIO/$src_name"
   local dest="$DEST_ROOT/$slug"
+
+  if [[ ! -d "$src" ]]; then
+    echo "skip missing studio project: $src_name ($slug)"
+    return 0
+  fi
 
   # 1 — composition + project metadata (+ optional lock / compositions)
   sync_subset "$src" "$dest" \
@@ -146,4 +152,7 @@ update_existing_project "Birdie" "Birdie"
 update_existing_project "Birdie-hardware" "Birdie-hardware"
 
 push_new_project "Pampa-lake" "Pampa-lake"
-push_new_project "Untitled" "Untitled"
+
+push_new_project "Titan-AI" "Titan-AI"
+push_new_project "tarot-3D-mock" "tarot-3D-mock"
+push_new_project "pampa-quick-edit" "Pampa Quick Edit"
