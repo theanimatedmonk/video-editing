@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./assets/vendor/three/three.module.js",
+          "three/addons/": "./assets/vendor/three/addons/"
+        }
+      }
+    </script>
+    <style>
+      @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+      @font-face { font-family: "Cormorant Garamond"; src: url("assets/fonts/cormorant-garamond-italic.woff2") format("woff2"); font-weight: 300 700; font-style: italic; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dm-sans.woff2") format("woff2"); font-weight: 100 1000; font-style: normal; }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #05030b; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; background: #05030b; }
+      .layer { position: absolute; inset: 0; pointer-events: none; }
+
+      /* The night sky behind the phone. */
+      #sky { background: radial-gradient(120% 90% at 50% 46%, #1d1238 0%, #0d0820 42%, #05030b 78%); }
+      .nebula { position: absolute; border-radius: 50%; filter: blur(90px); mix-blend-mode: screen; }
+      #neb-a { width: 1100px; height: 760px; left: -160px; top: -120px; background: radial-gradient(closest-side, rgba(112, 64, 196, 0.55), rgba(112, 64, 196, 0)); }
+      #neb-b { width: 980px; height: 820px; left: 1040px; top: 380px; background: radial-gradient(closest-side, rgba(58, 42, 150, 0.5), rgba(58, 42, 150, 0)); }
+      #neb-c { width: 760px; height: 560px; left: 640px; top: 120px; background: radial-gradient(closest-side, rgba(214, 160, 82, 0.16), rgba(214, 160, 82, 0)); }
+      #halo { position: absolute; width: 1300px; height: 1300px; left: 310px; top: -110px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(232, 197, 110, 0.20), rgba(150, 96, 220, 0.10) 45%, rgba(0, 0, 0, 0) 72%); mix-blend-mode: screen; }
+
+      /* The 3D phone. */
+      #stage { position: absolute; inset: 0; }
+      #ui-screen { position: relative; width: 100%; height: 100%; background: #000; }
+      .ui-part { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+
+      /* Light over the picture. */
+      #flare { background: radial-gradient(60% 70% at 50% 45%, rgba(255, 226, 160, 0.9), rgba(220, 160, 255, 0.35) 38%, rgba(0, 0, 0, 0) 70%); mix-blend-mode: screen; opacity: 0; }
+      #streak { position: absolute; left: -10%; top: 47%; width: 120%; height: 6px; border-radius: 50%;
+        background: linear-gradient(90deg, rgba(255, 220, 150, 0), rgba(255, 236, 196, 0.95) 50%, rgba(255, 220, 150, 0)); filter: blur(3px); mix-blend-mode: screen; opacity: 0; }
+
+      /* Lens: vignette, grain, the black at the ends. */
+      #vignette { background: radial-gradient(130% 100% at 50% 50%, rgba(0, 0, 0, 0) 48%, rgba(0, 0, 0, 0.72) 100%); }
+      #grain { inset: -64px; opacity: 0.075; mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+      #black { background: #000; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-199x" id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-ay5s" id="sky" class="layer">
+        <div data-hf-id="hf-pawc" id="neb-a" class="nebula"></div>
+        <div data-hf-id="hf-xys7" id="neb-b" class="nebula"></div>
+        <div data-hf-id="hf-u0o6" id="neb-c" class="nebula"></div>
+        <div data-hf-id="hf-tyg7" id="halo"></div>
+      </div>
+
+      <div data-hf-id="hf-j1he" id="stage" data-layout-allow-overflow=""></div>
+
+      <!-- The tarot app, filmed frame by frame; it plays on the phone's screen. -->
+      <div data-hf-id="hf-kx6c" id="ui-screen">
+        <!-- Skips the home screen: the fan and the pick in slow motion, the charge
+             a touch slow, then real time from the reveal burst (on the 7.56 beat). -->
+        <video data-hf-id="hf-6lnl" id="ui-flow" class="clip ui-part" data-start="1.9" data-duration="2.5" data-media-start="1.85" data-playback-rate="0.48" data-track-index="1" src="assets/tarot-flow.mp4" muted playsinline></video>
+        <video data-hf-id="hf-1thc" id="ui-flow-charge" class="clip ui-part" data-start="4.4" data-duration="3.16" data-media-start="3.05" data-playback-rate="0.826" data-track-index="1" src="assets/tarot-flow.mp4" muted playsinline></video>
+        <video data-hf-id="hf-tlkp" id="ui-flow-reveal" class="clip ui-part" data-start="7.56" data-duration="12.44" data-media-start="5.66" data-track-index="1" src="assets/tarot-flow.mp4" muted playsinline></video>
+      </div>
+
+      <div data-hf-id="hf-zo6r" id="flare" class="layer"></div>
+      <div data-hf-id="hf-a8wf" class="layer"><div data-hf-id="hf-cb12" id="streak" data-layout-allow-overflow=""></div></div>
+
+      <div data-hf-id="hf-ipac" id="prologue" data-composition-id="prologue" data-composition-src="compositions/prologue.html" data-start="0" data-duration="2" data-track-index="2" data-width="1920" data-height="1080"></div>
+      <div data-hf-id="hf-8gtz" id="endcard" data-composition-id="endcard" data-composition-src="compositions/endcard.html" data-start="17.4" data-duration="2.6" data-track-index="3" data-width="1920" data-height="1080"></div>
+
+      <div data-hf-id="hf-etlp" id="vignette" class="layer" data-layout-allow-occlusion=""></div>
+      <div data-hf-id="hf-gqhc" id="grain" class="layer" data-layout-allow-occlusion=""></div>
+      <div data-hf-id="hf-mdse" id="black" class="layer"></div>
+
+      <audio data-hf-id="hf-g3v8" id="music" data-timeline-role="music" data-start="0" data-duration="20" data-media-start="0" data-track-index="4" data-volume="1" src="assets/music.m4a" data-automation="{&quot;version&quot;:1,&quot;lanes&quot;:[{&quot;target&quot;:&quot;volume&quot;,&quot;points&quot;:[{&quot;t&quot;:0,&quot;v&quot;:1},{&quot;t&quot;:18.4,&quot;v&quot;:1},{&quot;t&quot;:20,&quot;v&quot;:0}]}]}"></audio>
+
+      <!-- iPhone-style haptics: taps quickening as the card charges, then a soft bubble pop on the explosion (7.6 s). -->
+      <audio data-hf-id="hf-m4xi" id="sfx-haptic" data-start="5.5" data-duration="2.2" data-track-index="5" data-volume="0.85" src="assets/haptic-burst.wav"></audio>
+      <audio data-hf-id="hf-uomw" id="sfx-pop" data-start="7.44" data-duration="0.36" data-track-index="6" data-volume="0.8" src="assets/Hollow pop.mp3"></audio>
+    </div>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { DeviceStage } from "./assets/device-stage/stage.js";
+
+      const DURATION = 20;
+      // Moments, in seconds. The app's recording is placed (see the screen's
+      // videos) so its beats land on the music: the reveal burst on 7.56, the card hitting the lens on 12.05.
+      const WAKE = 1.9, BURST = 7.56, HIT = 12.05, READ = 14.2, END = 17.4;
+
+      let resolveBuild;
+      window.__hf = window.__hf || {};
+      window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady["device-stage"] = new Promise((r) => (resolveBuild = r));
+
+      const TAU = Math.PI * 2;
+      const rad = THREE.MathUtils.degToRad;
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const clamp01 = (x) => Math.min(Math.max(x, 0), 1);
+      const outCubic = (t) => 1 - Math.pow(1 - t, 3);
+      const inOutSine = (t) => -(Math.cos(Math.PI * t) - 1) / 2;
+
+      // --- The stage: an iPhone 17 Pro in a dark room ------------------------
+      const stage = new DeviceStage(document.getElementById("stage"), {
+        state: { shot: "manual", playing: false, interact: "device", slots: [{ model: "iphone17pro", finish: "Deep Blue", screen: "" }], look: { backdrop: "Black", shadow: 0, glare: 1.15 } },
+        lockToggle: false,
+      });
+      cancelAnimationFrame(stage.raf);
+      stage.tick = () => {};
+      stage.demos.ios.update = stage.demos.android.update = () => {};
+      stage.shadows.group.visible = false;
+      stage.scene.background = null;
+      stage.renderer.setClearColor(0x000000, 0);
+
+      // The app's video on the screen, laid out at 3x so it stays sharp up close.
+      const slot = stage.slots[0];
+      stage.screen(0).append(document.getElementById("ui-screen"));
+      const vp = stage.viewport("iphone17pro");
+      slot.el.style.width = `${vp.width * 3}px`;
+      slot.el.style.height = `${vp.height * 3}px`;
+      slot.scale /= 3;
+
+      // Reflections: a black room with a gold strip, a violet strip and a dim top light.
+      function nightEnvironment(renderer) {
+        const scene = new THREE.Scene();
+        scene.add(new THREE.Mesh(new THREE.SphereGeometry(50, 48, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color(0.01, 0.008, 0.018), side: THREE.BackSide })));
+        const box = (w, h, rgb, pos) => {
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: new THREE.Color(...rgb), side: THREE.DoubleSide }));
+          m.position.set(...pos);
+          m.lookAt(0, 0, 0);
+          scene.add(m);
+        };
+        box(3, 40, [7.0, 4.6, 2.0], [-24, 4, 6]);
+        box(3, 40, [3.0, 2.0, 6.5], [24, 4, 2]);
+        box(30, 14, [1.1, 1.0, 1.25], [0, 26, 14]);
+        box(40, 4, [3.2, 2.2, 4.2], [0, 10, -26]);
+        box(60, 20, [0.12, 0.1, 0.16], [0, 2, 40]);
+        box(12, 6, [2.4, 1.6, 0.8], [-18, -8, 18]);
+        const pmrem = new THREE.PMREMGenerator(renderer);
+        const env = pmrem.fromScene(scene, 0.02).texture;
+        pmrem.dispose();
+        return env;
+      }
+      stage.scene.environment = nightEnvironment(stage.renderer);
+      const rimLight = new THREE.DirectionalLight(0xffd79a, 0.0);
+      rimLight.position.set(-14, 8, -10);
+      stage.scene.add(rimLight);
+
+      // Gold dust drifting through the room, seeded so every frame repeats.
+      function seeded(seed) {
+        return () => {
+          seed |= 0; seed = (seed + 0x6d2b79f5) | 0;
+          let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = seeded(1977);
+      const COUNT = 1400;
+      const base = new Float32Array(COUNT * 3), seeds = new Float32Array(COUNT * 4);
+      for (let i = 0; i < COUNT; i++) {
+        base.set([lerp(-60, 60, rnd()), lerp(-32, 32, rnd()), lerp(-55, 26, rnd())], i * 3);
+        seeds.set([rnd(), rnd(), rnd(), rnd()], i * 4);
+      }
+      const dustGeo = new THREE.BufferGeometry();
+      dustGeo.setAttribute("position", new THREE.BufferAttribute(base, 3));
+      dustGeo.setAttribute("seed", new THREE.BufferAttribute(seeds, 4));
+      const dust = new THREE.Points(dustGeo, new THREE.ShaderMaterial({
+        transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+        uniforms: { uTime: { value: 0 }, uGain: { value: 1.8 }, uScale: { value: 1080 } },
+        vertexShader: `
+          attribute vec4 seed; uniform float uTime; uniform float uScale; varying float vA; varying float vWarm;
+          void main() {
+            vec3 p = position;
+            p.y += mod(uTime * (0.25 + seed.x * 0.6) + seed.y * 64.0, 64.0) - 32.0 - position.y * 0.0;
+            p.x += sin(uTime * (0.3 + seed.z * 0.5) + seed.w * 6.283) * (0.6 + seed.x);
+            p.z += cos(uTime * (0.2 + seed.y * 0.4) + seed.z * 6.283) * 0.8;
+            vec4 mv = modelViewMatrix * vec4(p, 1.0);
+            gl_Position = projectionMatrix * mv;
+            float size = (0.07 + 0.22 * seed.w * seed.w);
+            gl_PointSize = clamp(size * uScale / -mv.z, 1.0, 64.0);
+            float twinkle = 0.55 + 0.45 * sin(uTime * (1.2 + seed.z * 2.6) + seed.x * 40.0);
+            float nearFade = smoothstep(4.0, 16.0, -mv.z);
+            vA = twinkle * nearFade * (0.35 + 0.65 * seed.y);
+            vWarm = seed.z;
+          }`,
+        fragmentShader: `
+          uniform float uGain; varying float vA; varying float vWarm;
+          void main() {
+            float d = length(gl_PointCoord - 0.5);
+            float a = smoothstep(0.5, 0.0, d);
+            a *= a;
+            vec3 col = mix(vec3(1.0, 0.80, 0.45), vec3(0.78, 0.66, 1.0), step(0.72, vWarm));
+            gl_FragColor = vec4(col, clamp(a * vA * uGain, 0.0, 1.0));
+          }`,
+      }));
+      dust.frustumCulled = false;
+      stage.scene.add(dust);
+
+
+      // --- One unbroken move --------------------------------------------------
+      // The phone and the camera glide through these poses, one smooth curve
+      // through all of them: no cuts. Each pose is the phone (position in cm,
+      // tilt / turn / roll in radians), the point the camera looks at (on the
+      // phone, in its own coordinates) and the camera's orbit round that point
+      // (degrees, cm).
+      const W = TAU; // a full turn: the phone ends the opening spin facing us
+      const MODULE = [1.695, 5.58, -0.69]; // the camera module, seen from the back
+      const POSES = [
+        // The back of the phone in the dark, the camera module catching gold.
+        { t: 0.0, dev: [0, 0, 0, 0.06, Math.PI + 0.42, 0], aim: MODULE, cam: [26, 7, 17, -2] },
+        { t: 1.3, dev: [0, 0, 0, 0.05, Math.PI + 0.18, 0], aim: MODULE, cam: [17, 3, 12.5, 1] },
+        // It turns to face us as the screen wakes on the card fan.
+        { t: 3.0, dev: [0, 0, 0, 0.03, W - 0.42, 0.01], aim: [0, 0.3, 0], cam: [9, 2, 37, 0] },
+        // Close and low on the screen: the pick, the card charging.
+        { t: 4.9, dev: [0, 0, 0, 0.04, W - 0.32, 0.03], aim: [0.2, 1.5, 0], cam: [21, -8, 27, 2.5] },
+        { t: 7.2, dev: [0, 0, 0, 0.04, W - 0.2, 0.03], aim: [0.2, 1.0, 0], cam: [12, -3, 22.5, 0.5] },
+        // The burst: the camera eases back as the light blooms.
+        { t: 8.6, dev: [0, 0.1, 0, 0.02, W + 0.14, 0], aim: [0, 0.2, 0], cam: [-13, 6, 37, 0] },
+        { t: 11.0, dev: [0, 0.1, 0, 0.02, W + 0.05, 0], aim: [0, 0.3, 0], cam: [-5, 2.5, 33, 0] },
+        // The card flies at us; the camera rushes in to meet it.
+        { t: 12.15, dev: [0, 0, 0, 0.05, W - 0.08, -0.02], aim: [0, 0.9, 0], cam: [4, 2.5, 21.5, -1.5] },
+        { t: 13.2, dev: [0, 0, 0, 0.02, W - 0.04, 0], aim: [0, 0.6, 0], cam: [6, 1, 23.5, 0] },
+        // The reading: a low, close glide across the glass.
+        { t: 14.7, dev: [0, 0, 0, -0.06, W + 0.3, 0.05], aim: [0, 1.2, 0], cam: [-28, -11, 29, -3] },
+        { t: 16.9, dev: [0, 0, 0, -0.05, W + 0.12, 0.05], aim: [0, -0.4, 0], cam: [-14, -4, 25.5, -1] },
+        // The end: the phone drifts right, leaving room for the words.
+        { t: 18.7, dev: [5.8, -0.2, 0, 0.03, W - 0.3, 0], aim: [-5.8, 0.2, 0], cam: [0, 2, 41, 0] },
+        { t: 20.0, dev: [5.8, -0.2, 0, 0.03, W - 0.25, 0], aim: [-5.8, 0.2, 0], cam: [1, 2, 40, 0] },
+      ].map((k) => ({ t: k.t, v: [...k.dev, ...k.aim, ...k.cam] }));
+
+      // A smooth curve through the poses (cubic Hermite, Catmull-Rom slopes):
+      // the move never stops and never jerks between poses.
+      function poseAt(t) {
+        const n = POSES.length;
+        let i = 0;
+        while (i < n - 2 && t > POSES[i + 1].t) i++;
+        const k0 = POSES[i], k1 = POSES[i + 1];
+        const h = k1.t - k0.t;
+        const u = clamp01((t - k0.t) / h);
+        const slope = (j) => {
+          if (j <= 0 || j >= n - 1) return POSES[j].v.map(() => 0);
+          const a = POSES[j - 1], b = POSES[j + 1];
+          return b.v.map((v, c) => (v - a.v[c]) / (b.t - a.t));
+        };
+        const m0 = slope(i), m1 = slope(i + 1);
+        const u2 = u * u, u3 = u2 * u;
+        const h00 = 2 * u3 - 3 * u2 + 1, h10 = u3 - 2 * u2 + u, h01 = -2 * u3 + 3 * u2, h11 = u3 - u2;
+        return k0.v.map((v, c) => h00 * v + h10 * h * m0[c] + h01 * k1.v[c] + h11 * h * m1[c]);
+      }
+
+      const _euler = new THREE.Euler(0, 0, 0, "YXZ");
+      const _aim = new THREE.Vector3();
+      function frameAt(t) {
+        const [x, y, z, rx, ry, rz, ax, ay, az, camAz, camEl, camDist, camRoll] = poseAt(t);
+        // A slow breath on top of the move, so the phone always feels alive.
+        const a = TAU * (t / 9);
+        const pos = [x, y + 0.18 * Math.sin(a), z];
+        const rot = [rx + 0.015 * Math.sin(2 * a + 1), ry + 0.03 * Math.sin(a), rz + 0.01 * Math.sin(a + 0.6)];
+        _euler.set(rot[0], rot[1], rot[2]);
+        _aim.set(ax, ay, az).applyEuler(_euler);
+        const target = [_aim.x + pos[0], _aim.y + pos[1], _aim.z + pos[2]];
+        const e = rad(camEl), o = rad(camAz);
+        const camPos = [target[0] + camDist * Math.sin(o) * Math.cos(e), target[1] + camDist * Math.sin(e), target[2] + camDist * Math.cos(o) * Math.cos(e)];
+        return { items: [{ slot: 0, pos, rot }], cam: { pos: camPos, target, fov: 28, roll: rad(camRoll) } };
+      }
+      stage.frameAt = frameAt;
+
+      // Light levels per moment: the room starts black and the gold strip finds the phone.
+      function exposureAt(t) {
+        if (t < WAKE) return lerp(0.15, 1.0, outCubic(clamp01(t / 1.3)));
+        if (t >= BURST && t < BURST + 0.9) return 1 + 0.45 * (1 - outCubic((t - BURST) / 0.9));
+        if (t >= HIT && t < HIT + 0.6) return 1 + 0.35 * (1 - outCubic((t - HIT) / 0.6));
+        return 1;
+      }
+
+      let last = -1;
+      function draw(t) {
+        t = Math.min(Math.max(Number(t) || 0, 0), DURATION);
+        if (t === last) return;
+        last = t;
+        stage.state.time = t;
+        stage.renderer.toneMappingExposure = exposureAt(t);
+        rimLight.intensity = lerp(1.4, 0.5, inOutSine(clamp01((t - 1.2) / 1.6)));
+        // Grazing angles in the reading glide would fill the glass with the gold strip.
+        const lowGlare = inOutSine(clamp01((t - (READ - 0.9)) / 0.9)) * (1 - inOutSine(clamp01((t - END) / 1.0)));
+        slot.dev.glass.material.envMapIntensity = lerp(1.15, 0.22, lowGlare);
+        dust.material.uniforms.uTime.value = t;
+        dust.material.uniforms.uScale.value = stage.canvas.height || 1080;
+        stage.apply(t);
+        stage.renderer.render(stage.scene, stage.camera);
+        stage.cssScene.updateMatrixWorld(true);
+        stage.css.render(stage.cssScene, stage.camera);
+      }
+      window.addEventListener("hf-seek", (e) => draw(e.detail.time));
+
+      // --- The timeline: everything around the phone ---------------------------
+      const tl = gsap.timeline({ paused: true });
+      const clock = { t: 0 };
+      tl.to(clock, { t: DURATION, duration: DURATION, ease: "none", onUpdate: () => draw(clock.t) }, 0);
+
+      // The sky breathes; the halo follows the phone.
+      tl.fromTo("#neb-a", { x: -40, y: 0 }, { x: 80, y: 30, duration: DURATION, ease: "none" }, 0);
+      tl.fromTo("#neb-b", { x: 40, y: 0 }, { x: -90, y: -40, duration: DURATION, ease: "none" }, 0);
+      tl.fromTo("#neb-c", { opacity: 0.6, scale: 0.9 }, { opacity: 1, scale: 1.15, duration: DURATION, ease: "sine.inOut" }, 0);
+      tl.fromTo("#halo", { opacity: 0, scale: 0.8 }, { opacity: 0.7, scale: 1, duration: 3, ease: "sine.out" }, 0.4);
+      tl.to("#halo", { opacity: 1, scale: 1.12, duration: 0.5, ease: "power2.out" }, BURST);
+      tl.to("#halo", { opacity: 0.75, scale: 1, duration: 2.4, ease: "sine.inOut" }, BURST + 0.5);
+      tl.to("#halo", { x: 330, duration: 1.8, ease: "sine.inOut" }, 16.9);
+
+      // Black in; the screen wakes.
+      tl.fromTo("#black", { opacity: 1 }, { opacity: 0, duration: 0.9, ease: "power2.out" }, 0);
+      tl.fromTo("#ui-screen", { opacity: 0, filter: "brightness(2.2) blur(6px)" }, { opacity: 1, filter: "brightness(1) blur(0px)", duration: 0.7, ease: "power2.out" }, WAKE);
+
+
+      // Flashes on the burst and the throw.
+      tl.fromTo("#flare", { opacity: 0 }, { opacity: 0.85, duration: 0.08, ease: "none" }, BURST);
+      tl.to("#flare", { opacity: 0, duration: 1.1, ease: "power2.out" }, BURST + 0.08);
+      tl.fromTo("#streak", { opacity: 0, scaleX: 0.3 }, { opacity: 1, scaleX: 1, duration: 0.12, ease: "power2.out" }, BURST);
+      tl.to("#streak", { opacity: 0, scaleX: 1.3, duration: 0.7, ease: "power2.out" }, BURST + 0.12);
+      tl.fromTo("#flare", { opacity: 0 }, { immediateRender: false, opacity: 0.55, duration: 0.06, ease: "none" }, HIT);
+      tl.to("#flare", { opacity: 0, duration: 0.7, ease: "power2.out" }, HIT + 0.06);
+
+      tl.to("#black", { opacity: 1, duration: 0.75, ease: "power2.in" }, DURATION - 0.75);
+
+      // Grain that moves every frame.
+      tl.to("#grain", { x: 48, y: -36, duration: DURATION, ease: `steps(${DURATION * 24})` }, 0);
+
+      document.fonts.ready.then(() => {
+        draw(0);
+        window.__timelines["main"] = tl;
+        window.__hfForceTimelineRebind?.();
+        resolveBuild();
+      });
+    </script>
+  </body>
+</html>

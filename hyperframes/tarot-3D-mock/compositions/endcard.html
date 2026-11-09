@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face { font-family: "Cormorant Garamond"; src: url("../assets/fonts/cormorant-garamond.woff2") format("woff2"); font-weight: 300 700; font-style: normal; }
+        @font-face { font-family: "Cormorant Garamond"; src: url("../assets/fonts/cormorant-garamond-italic.woff2") format("woff2"); font-weight: 300 700; font-style: italic; }
+        @font-face { font-family: "DM Sans"; src: url("../assets/fonts/dm-sans.woff2") format("woff2"); font-weight: 100 1000; font-style: normal; }
+        #endcard-root { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding-left: 170px; gap: 26px; pointer-events: none; }
+        #end-eyebrow { display: flex; align-items: center; gap: 18px; font-family: "DM Sans", sans-serif; font-weight: 500; font-size: 22px; letter-spacing: 0.42em; color: #e8c547; }
+        #end-eyebrow svg { display: block; width: 20px; height: 20px; }
+        #end-title { font-family: "Cormorant Garamond", serif; font-size: 128px; line-height: 0.98; font-weight: 500; letter-spacing: -0.01em; color: #f3e6c4; text-shadow: 0 0 50px rgba(232, 197, 110, 0.25); }
+        #end-title .row { display: block; overflow: hidden; padding-bottom: 0.08em; }
+        #end-title .row span { display: block; }
+        #end-title em { font-style: italic; color: #e9cf8a; }
+        #end-rule { width: 280px; height: 1px; background: linear-gradient(90deg, rgba(232, 197, 71, 0.9), rgba(232, 197, 71, 0)); transform-origin: 0 50%; }
+      </style>
+
+      <div data-hf-id="hf-8zhg" id="endcard-root" data-composition-id="endcard" data-width="1920" data-height="1080">
+        <p data-hf-id="hf-df97" id="end-eyebrow"><svg data-hf-id="hf-0bxi" viewBox="0 0 12 12" aria-hidden="true"><path data-hf-id="hf-ymgo" d="M6 0 7.4 4.6 12 6 7.4 7.4 6 12 4.6 7.4 0 6 4.6 4.6Z" fill="#E8C547" /></svg>DAILY DIVINATION</p>
+        <h2 data-hf-id="hf-8orm" id="end-title"><span data-hf-id="hf-yofr" class="row"><span data-hf-id="hf-m6dk">Your card</span></span><span data-hf-id="hf-dquv" class="row"><span data-hf-id="hf-uckh"><em data-hf-id="hf-j1bq">is waiting.</em></span></span></h2>
+        <div data-hf-id="hf-i7zz" id="end-rule"></div>
+      </div>
+
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#end-eyebrow", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }, 0.25);
+          tl.fromTo("#end-title .row span", { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 1.0, ease: "expo.out", stagger: 0.18 }, 0.4);
+          tl.fromTo("#end-rule", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "expo.out" }, 0.85);
+          window.__timelines["endcard"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
