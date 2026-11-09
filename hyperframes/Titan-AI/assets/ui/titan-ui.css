@@ -1,0 +1,879 @@
+/* ============================================================
+   Titan AI — UI kit
+   One stylesheet shared by every screen. Switch a screen's look
+   by setting data-theme="dark" | "light" on its wrapper.
+   ============================================================ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* ---------- Theme tokens ---------- */
+.t-ui,
+[data-theme="dark"] {
+  --bg: #0a0a0c;
+  --window: #19191b;
+  --sidebar: #161618;
+  --surface: #1e1e21;
+  --surface-2: #252528;
+  --hover: #2a2a2e;
+  --border: #2b2b2f;
+  --border-strong: #3a3a3f;
+  --text: #f4f4f5;
+  --text-2: #b4b4bb;
+  --muted: #8e8e96;
+  --accent: #2f6bff;
+  --accent-2: #4d82ff;
+  --accent-soft: rgba(47, 107, 255, 0.16);
+  --accent-text: #8fb0ff;
+  --on-accent: #ffffff;
+  --success: #4cc38a;
+  --warn: #e7b84a;
+  --scrim: rgba(10, 10, 12, 0.62);
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  --l-respond: #f0736b;      --l-respond-bg: rgba(229, 83, 75, 0.2);
+  --l-awaiting: #f0c44c;     --l-awaiting-bg: rgba(227, 179, 65, 0.2);
+  --l-done: #a9c95a;         --l-done-bg: rgba(155, 191, 74, 0.18);
+  --l-fyi: #5cc6d3;          --l-fyi-bg: rgba(79, 184, 199, 0.18);
+  --l-notif: #9aa8f7;        --l-notif-bg: rgba(110, 125, 240, 0.2);
+  --l-promo: #cf95fb;        --l-promo-bg: rgba(178, 107, 245, 0.2);
+
+  color-scheme: dark;
+}
+
+.t-ui[data-theme="light"],
+[data-theme="light"],
+[data-theme="light"] .t-ui {
+  --bg: #eef0f4;
+  --window: #ffffff;
+  --sidebar: #f6f7f9;
+  --surface: #ffffff;
+  --surface-2: #f3f4f6;
+  --hover: #eceef2;
+  --border: #e5e7eb;
+  --border-strong: #d4d7dd;
+  --text: #111216;
+  --text-2: #3c3f47;
+  --muted: #6b6f7a;
+  --accent: #2563eb;
+  --accent-2: #3b74f0;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --accent-text: #1d4ed8;
+  --on-accent: #ffffff;
+  --success: #16a34a;
+  --warn: #b7791f;
+  --scrim: rgba(240, 242, 246, 0.6);
+  --shadow: 0 30px 80px rgba(20, 24, 40, 0.16), 0 0 0 1px rgba(15, 20, 30, 0.06);
+
+  --l-respond: #c8342b;      --l-respond-bg: #fde7e5;
+  --l-awaiting: #a16207;     --l-awaiting-bg: #fdf3d3;
+  --l-done: #4d7c0f;         --l-done-bg: #ecf6d8;
+  --l-fyi: #0e7490;          --l-fyi-bg: #dcf3f7;
+  --l-notif: #4f46e5;        --l-notif-bg: #e7e8fd;
+  --l-promo: #9333ea;        --l-promo-bg: #f3e6fd;
+
+  color-scheme: light;
+}
+
+/* ---------- Base ---------- */
+/* .sk = the wrapper inside each screen that carries its theme and state settings */
+.t-ui.sk {
+  position: absolute;
+  inset: 0;
+}
+.t-ui {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.006em;
+}
+.t-ui * {
+  box-sizing: border-box;
+}
+.t-ico {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- App window ---------- */
+.t-window {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  background: var(--window);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.t-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  position: relative;
+}
+
+/* ---------- Sidebar ---------- */
+.t-sidebar {
+  width: 260px;
+  flex: none;
+  background: var(--sidebar);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.t-compose-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.t-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-2);
+}
+.t-nav.is-active {
+  background: var(--hover);
+  color: var(--text);
+  font-weight: 500;
+}
+.t-nav .t-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--muted);
+}
+.t-nav-dot {
+  width: 16px;
+  display: flex;
+  justify-content: center;
+}
+.t-nav-dot::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--muted);
+  opacity: 0.6;
+}
+.t-ai-glyph {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+.t-ai-glyph svg {
+  width: 10px;
+  height: 10px;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- Top bar / headings ---------- */
+.t-topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 64px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  flex: none;
+}
+.t-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.t-subcount {
+  font-size: 14px;
+  color: var(--muted);
+}
+.t-search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 300px;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 14px;
+}
+.t-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.t-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ---------- Tabs ---------- */
+.t-tabs {
+  display: flex;
+  gap: 30px;
+  padding: 0 24px;
+  height: 54px;
+  border-bottom: 1px solid var(--border);
+  flex: none;
+}
+.t-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--text-2);
+}
+.t-tab .t-n {
+  font-size: 12px;
+  font-weight: 600;
+}
+.t-tab.is-active {
+  color: var(--text);
+  font-weight: 600;
+}
+.t-tab.is-active::after {
+  content: "";
+  position: absolute;
+  left: -6px;
+  right: -6px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* ---------- Label chip ---------- */
+.t-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--c);
+  background: var(--cb);
+}
+.t-chip svg {
+  width: 11px;
+  height: 11px;
+  fill: currentColor;
+  stroke: none;
+}
+.t-dot {
+  width: 11px;
+  height: 11px;
+  fill: var(--c);
+}
+.lbl-respond { --c: var(--l-respond); --cb: var(--l-respond-bg); }
+.lbl-awaiting { --c: var(--l-awaiting); --cb: var(--l-awaiting-bg); }
+.lbl-done { --c: var(--l-done); --cb: var(--l-done-bg); }
+.lbl-fyi { --c: var(--l-fyi); --cb: var(--l-fyi-bg); }
+.lbl-notif { --c: var(--l-notif); --cb: var(--l-notif-bg); }
+.lbl-promo { --c: var(--l-promo); --cb: var(--l-promo-bg); }
+
+/* ---------- Avatar ---------- */
+.t-avatar {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--av, #8a8f9c);
+}
+.t-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.t-avatar.sm { width: 26px; height: 26px; font-size: 10px; }
+.t-avatar.lg { width: 40px; height: 40px; font-size: 14px; }
+.av-slate { --av: #8b91a1; }
+.av-coral { --av: #ec7a62; }
+.av-amber { --av: #efa83a; }
+.av-teal { --av: #3fb5be; }
+.av-blue { --av: #5b86e5; }
+.av-pink { --av: #e0629a; }
+.av-violet { --av: #9a7cf0; }
+.av-green { --av: #46b37b; }
+
+/* ---------- Mail list row ---------- */
+.t-list {
+  flex: 1;
+  overflow: hidden;
+}
+.t-row {
+  display: grid;
+  grid-template-columns: 230px 170px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  height: 64px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.t-row .t-from {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.t-row .t-msg {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+}
+.t-row .t-msg b {
+  color: var(--text);
+  font-weight: 600;
+  margin-right: 8px;
+}
+.t-row .t-time {
+  font-size: 13px;
+  color: var(--muted);
+}
+.t-row.is-hot {
+  background: var(--hover);
+}
+
+/* ---------- Cards (AI Inbox) ---------- */
+.t-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.t-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 18px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.t-card-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--c);
+  background: var(--cb);
+}
+.t-card-icon svg { width: 16px; height: 16px; }
+.t-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.t-pill-n {
+  font-size: 11px;
+  font-weight: 700;
+  height: 18px;
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 5px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--c);
+  background: var(--cb);
+}
+.t-card-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.t-person {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.t-person:last-of-type { border-bottom: 0; }
+.t-person .t-who { font-size: 14px; font-weight: 600; }
+.t-person .t-what { font-size: 13px; color: var(--muted); margin-top: 1px; }
+.t-person .t-ago { margin-left: auto; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.t-person .t-ago.is-late { color: var(--warn); }
+.t-ok { color: var(--success); }
+.t-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.t-btn svg { width: 14px; height: 14px; }
+/* Tertiary: just the words, in the accent colour */
+.t-btn.is-tertiary {
+  height: 28px;
+  padding: 0;
+  background: none;
+  color: var(--accent);
+}
+.t-card-foot { padding: 14px 18px 18px; }
+
+/* ---------- Reading / reply panel ---------- */
+.t-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 560px;
+  background: var(--window);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.t-progress {
+  display: flex;
+  gap: 4px;
+  margin-left: 14px;
+}
+.t-progress i {
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border-strong);
+}
+.t-progress i.on { background: var(--accent); }
+.t-reply {
+  margin: 0 24px 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 18px;
+}
+
+/* ---------- Compose / AI Write ---------- */
+.t-field {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 52px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+.t-field .t-k { color: var(--muted); width: 58px; }
+.t-recipient {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 12px 0 4px;
+  border-radius: 15px;
+  background: var(--surface-2);
+}
+.t-aibar {
+  margin: 0 20px 20px;
+  border-radius: 12px;
+  border: 1.5px solid var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 40px rgba(124, 92, 255, 0.18);
+  padding: 14px 16px 12px;
+}
+.t-aibar-input {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.t-spark {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent-2);
+  stroke: none;
+  flex: none;
+}
+.t-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-2);
+}
+.t-select .t-ico { width: 13px; height: 13px; }
+
+/* ---------- Tia assistant ---------- */
+.t-tia {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 520px;
+  background: var(--window);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.t-tia-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  flex: none;
+}
+.t-tia-mark svg { width: 12px; height: 12px; fill: currentColor; stroke: none; }
+.t-bubble-user {
+  align-self: flex-end;
+  padding: 9px 14px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  font-size: 14px;
+  font-weight: 500;
+}
+.t-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 9px;
+  background: var(--surface-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+.t-action span { font-weight: 400; color: var(--muted); font-size: 13px; }
+.t-action .t-chev { margin-left: auto; color: var(--muted); width: 14px; height: 14px; }
+.t-event {
+  display: flex;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.t-input {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 8px 0 14px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 14px;
+}
+.t-send {
+  margin-left: auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.t-dim {
+  filter: blur(1.5px);
+  opacity: 0.35;
+}
+
+/* ---------- Brand pieces ---------- */
+.t-appicon {
+  width: 168px;
+  height: 168px;
+  border-radius: 38px;
+  background: linear-gradient(160deg, #3c86ff 0%, #1f5cf0 55%, #1747c9 100%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), 0 30px 80px rgba(31, 92, 240, 0.45);
+  display: grid;
+  place-items: center;
+}
+.t-appicon svg { width: 92px; height: 92px; fill: #fff; }
+.t-section-tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.t-section-tag .t-slash { color: var(--muted); font-weight: 400; letter-spacing: 0; }
+.t-section-tag .t-sub { color: var(--accent-text); }
+.t-section-tag .t-mini {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+}
+.t-section-tag .t-mini svg { width: 18px; height: 18px; fill: #fff; }
+.t-headline {
+  font-size: 96px;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+.t-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.t-feature svg { width: 16px; height: 16px; fill: var(--accent-2); stroke: none; }
+.t-notif {
+  display: flex;
+  gap: 12px;
+  width: 400px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  font-size: 13px;
+}
+.t-notif .t-app {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.t-notif .t-app svg { width: 18px; height: 18px; fill: #fff; }
+.t-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+.t-counter .t-num {
+  font-size: 240px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.t-counter .t-cap {
+  font-size: 20px;
+  letter-spacing: 0.4em;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+/* ============================================================
+   Device frames — drop any screen inside .t-screen
+   ============================================================ */
+.t-macbook {
+  position: relative;
+  width: 1560px;
+  transform-style: preserve-3d;
+}
+.t-macbook .t-lid {
+  position: relative;
+  width: 1560px;
+  height: 1004px;
+  padding: 30px 30px 44px;
+  border-radius: 36px 36px 18px 18px;
+  background: #0b0b0d;
+  box-shadow: inset 0 0 0 2px #2c2c30, inset 0 0 0 9px #050506, 0 50px 120px rgba(0, 0, 0, 0.45);
+}
+.t-macbook .t-lid::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: #1c1f26;
+  box-shadow: inset 0 0 0 2px #0c0d10;
+}
+.t-macbook .t-screen {
+  position: relative;
+  width: 1500px;
+  height: 930px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg, #000);
+}
+.t-macbook .t-base {
+  position: relative;
+  width: 1700px;
+  height: 34px;
+  margin-left: -70px;
+  border-radius: 4px 4px 40px 40px;
+  background: linear-gradient(180deg, #d9dbe0 0%, #b8bbc2 40%, #8d9098 100%);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+}
+.t-macbook .t-base::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 260px;
+  height: 14px;
+  margin-left: -130px;
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(180deg, #9a9da5, #c4c7cd);
+}
+
+.t-phone {
+  position: relative;
+  width: 430px;
+  height: 900px;
+  padding: 14px;
+  border-radius: 68px;
+  background: #0b0b0d;
+  box-shadow: inset 0 0 0 2px #3a3a40, inset 0 0 0 6px #111114, 0 50px 120px rgba(0, 0, 0, 0.45);
+}
+.t-phone .t-screen {
+  position: relative;
+  width: 402px;
+  height: 872px;
+  border-radius: 55px;
+  overflow: hidden;
+  background: var(--bg, #000);
+}
+.t-phone .t-island {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  width: 124px;
+  height: 36px;
+  margin-left: -62px;
+  border-radius: 20px;
+  background: #000;
+  z-index: 5;
+}
+
+/* ============================================================
+   Pointers and menus — used when a screen acts out a flow
+   ============================================================ */
+.t-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  z-index: 50;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+}
+.t-cursor svg { width: 26px; height: 26px; }
+.t-pointer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border-radius: 50%;
+  z-index: 50;
+  background: rgba(110, 115, 128, 0.42);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 4px 10px rgba(20, 24, 40, 0.2);
+}
+.t-menu {
+  position: absolute;
+  min-width: 190px;
+  padding: 6px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 18px 40px rgba(20, 24, 40, 0.16);
+  font-size: 14px;
+  z-index: 40;
+}
+.t-menu .t-menu-k {
+  padding: 6px 10px 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.t-menu .t-mi {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 6px;
+  color: var(--text-2);
+}
+.t-menu .t-mi.is-hover { background: var(--hover); color: var(--text); }
+.t-menu .t-mi .t-tick { margin-left: auto; color: var(--accent-2); }
+.t-type { display: inline-block; white-space: nowrap; }
+.t-shimmer {
+  background: linear-gradient(90deg, var(--muted) 0%, var(--text) 50%, var(--muted) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
