@@ -1,0 +1,36 @@
+[
+  {
+    "id": "63f42efb-3474-4a9d-862d-fc892c8e6d46",
+    "input": {
+      "kind": "music",
+      "prompt": "Serene, melodious Indian classical instrumental for a misty lotus lake at dawn (Pampa Sarovar, Ramayana). Lead: a Saraswati veena playing a slow, lyrical, singing raga melody with expressive glides (meend), clear and memorable phrases, in the spirit of a meditative alap that gently blossoms. Underneath: warm tanpura drone, a soft bansuri flute answering the veena's phrases in the middle, faint shimmering santoor and a light, airy string pad. No drums, no beat; spacious, reverberant, intimate. Opens softly with the drone and veena, the melody blooms in the middle, and resolves into a calm, peaceful ending.",
+      "duration_seconds": 30,
+      "instrumental": true,
+      "bpm": 64,
+      "intensity": 2
+    },
+    "via": "tool",
+    "state": "failed",
+    "createdAt": 1793908389447,
+    "files": [],
+    "message": "**No HeyGen API key.** Generating with HeyGen's models needs a HeyGen API key. [Add a key](hf:place:api-key)",
+    "need": "key"
+  },
+  {
+    "id": "652cf2ae-7f0e-498b-9b82-88cbf299622f",
+    "input": {
+      "kind": "music",
+      "prompt": "Serene, melodious Indian instrumental for a misty lotus lake at dawn (Pampa Sarovar from the Ramayana). Lead: an expressive, singing bansuri bamboo flute playing a clear, memorable, lyrical melody in a gentle raga (like Raga Yaman or Bhupali), with graceful meends. Underneath: soft tanpura drone, delicate santoor shimmering arpeggios, and warm, slow string pads. No percussion or very light hand percussion only near the middle. Slow tempo, peaceful, tender, uplifting, cinematic. Opens softly, the melody blooms in the middle, and it resolves gently to a calm ending.",
+      "duration_seconds": 30,
+      "instrumental": true,
+      "bpm": 68,
+      "intensity": 2
+    },
+    "via": "tool",
+    "state": "failed",
+    "createdAt": 1793907993364,
+    "files": [],
+    "message": "**No HeyGen API key.** Generating with HeyGen's models needs a HeyGen API key. [Add a key](hf:place:api-key)",
+    "need": "key"
+  }
+]
